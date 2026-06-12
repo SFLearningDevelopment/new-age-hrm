@@ -21,6 +21,8 @@
   .eyebrow{font-family:'Source Code Pro',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
   .subline{color:var(--muted);margin:2px 0 8px}
   .progress{margin:14px 0;font-family:'Source Code Pro',monospace;color:var(--muted)}
+  .briefing-link{display:inline-block;margin:10px 0 2px;padding:11px 16px;background:#e3edf9;border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:10px;color:var(--blue-dark);text-decoration:none;font-weight:600;font-size:14px;transition:box-shadow .15s ease,transform .15s ease}
+  .briefing-link:hover{box-shadow:0 4px 14px rgba(26,110,181,.16);transform:translateY(-1px)}
   /* Module cards — blue border, highlight on hover */
   .modules{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:18px}
   .mod-card{display:block;background:var(--card);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:12px;padding:18px 20px;text-decoration:none;color:inherit;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
@@ -66,6 +68,7 @@
   <h1>New-Age HRM Essentials</h1>
   <p class="subline">A concise, high-impact introduction to strategic, new-age people management — six modules, each with a worked scenario and a quick understanding check.</p>
   <p class="subline">Leads to the SF Certified New-Age HRM Practitioner certification.</p>
+  <a href="nahrm-overview.html" class="briefing-link">📋 Start with the Executive Briefing — a strategic synthesis of all six modules (≈5 min read)</a>
   <div class="progress" id="progressLine">0 of 6 complete</div>
 
   <div class="modules" id="moduleGrid">
