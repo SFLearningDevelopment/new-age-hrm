@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!-- ============================================================================
+     NEW-AGE HRM ESSENTIALS — COURSE MAP / DASHBOARD  (TYPE 1, practice model)
+     courseId: newAgeHrm2026SFCert
+     6 Module cards (blue border, hover highlight) -> example pages.
+     Cert exam gated until all 6 modules complete (complete===true in localStorage).
+     ============================================================================ -->
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New-Age HRM Essentials</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@400;600&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--blue:#1a6eb5;--blue-dark:#0f4c81;--ink:#1f2933;--muted:#647687;--bg:#eef2f8;--card:#fff;--border:#d6e0ee;--green:#16a34a}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .userbar{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:var(--card);border-bottom:1px solid var(--border);font-size:14px}
+  .signout{padding:8px 16px;border:none;border-radius:6px;background:var(--blue);color:#fff;cursor:pointer;font-family:inherit}
+  .wrap{max-width:900px;margin:0 auto;padding:24px}
+  h1{font-family:'Source Serif 4',Georgia,serif;font-size:34px;margin:6px 0}
+  .eyebrow{font-family:'Source Code Pro',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+  .subline{color:var(--muted);margin:2px 0 8px}
+  .progress{margin:14px 0;font-family:'Source Code Pro',monospace;color:var(--muted)}
+  /* Module cards — blue border, highlight on hover */
+  .modules{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:18px}
+  .mod-card{display:block;background:var(--card);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:12px;padding:18px 20px;text-decoration:none;color:inherit;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+  .mod-card:hover{border-color:var(--blue);box-shadow:0 6px 18px rgba(26,110,181,.16);transform:translateY(-2px)}
+  .mod-card .mod-num{font-family:'Source Code Pro',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue)}
+  .mod-card .mod-title{font-weight:700;font-size:17px;margin:6px 0 4px}
+  .mod-card .mod-desc{font-size:13px;color:var(--muted);min-height:34px}
+  .mod-card .status{display:inline-block;margin-top:10px;font-family:'Source Code Pro',monospace;font-size:13px;color:var(--muted)}
+  .mod-card .status.done{color:var(--green)}
+  .cert-card{background:var(--card);border-left:4px solid var(--blue);border:1px solid var(--border);border-radius:12px;padding:22px;margin-top:30px;opacity:.55}
+  .cert-card.unlocked{opacity:1}
+  .cert-card a{color:var(--blue);font-weight:700;text-decoration:none}
+  #authPanel{max-width:360px;margin:60px auto;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px}
+  #authPanel input{width:100%;padding:10px;margin:6px 0;border:1px solid var(--border);border-radius:8px;font-family:inherit}
+  #authPanel button{width:100%;padding:11px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-family:inherit;cursor:pointer;margin-top:8px}
+  #authPanel hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+  .hidden{display:none}
+  .err{color:#c0392b;font-size:13px;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="userbar">
+  <span>Welcome, <span id="userEmail">…</span></span>
+  <button class="signout" onclick="pmSignOut()">Sign out</button>
+</div>
+
+<!-- AUTH PANEL -->
+<div id="authPanel">
+  <div class="eyebrow">Sign in</div>
+  <h1 style="font-size:22px">New-Age HRM Essentials</h1>
+  <button onclick="pmGoogleSignIn()">Sign in with Google</button>
+  <hr>
+  <input id="pm-ep-email" type="email" placeholder="you@sourcefuse.com">
+  <input id="pm-ep-password" type="password" placeholder="Password">
+  <button onclick="pmEmailSignIn()">Sign in with email</button>
+  <div class="err hidden" id="authError"></div>
+</div>
+
+<!-- COURSE CONTENT -->
+<div class="wrap hidden" id="courseWrap">
+  <div class="eyebrow">Course map · HR &amp; Leadership track</div>
+  <h1>New-Age HRM Essentials</h1>
+  <p class="subline">A concise, high-impact introduction to strategic, new-age people management — six modules, each with a worked scenario and a quick understanding check.</p>
+  <p class="subline">Leads to the SF Certified New-Age HRM Practitioner certification.</p>
+  <div class="progress" id="progressLine">0 of 6 complete</div>
+
+  <div class="modules" id="moduleGrid">
+    <a class="mod-card" href="nahrm-module-1-future-workplace.html" data-example="nahrm-module-1-future-workplace">
+      <div class="mod-num">Module 1</div>
+      <div class="mod-title">Future Workplace &amp; New-Age HRM</div>
+      <div class="mod-desc">Digital change, Industry 4.0, hybrid work, and HR's evolving strategic mandate.</div>
+      <span class="status">Not started</span>
+    </a>
+    <a class="mod-card" href="nahrm-module-2-strategic-hrm.html" data-example="nahrm-module-2-strategic-hrm">
+      <div class="mod-num">Module 2</div>
+      <div class="mod-title">Strategic HRM</div>
+      <div class="mod-desc">Aligning HR with business strategy: talent, change, learning organizations, governance.</div>
+      <span class="status">Not started</span>
+    </a>
+    <a class="mod-card" href="nahrm-module-3-ai-digital-hr.html" data-example="nahrm-module-3-ai-digital-hr">
+      <div class="mod-num">Module 3</div>
+      <div class="mod-title">Digitalization, AI &amp; Data in HR</div>
+      <div class="mod-desc">Analytics, predictive modeling, and GenAI across the HR lifecycle — with ethics.</div>
+      <span class="status">Not started</span>
+    </a>
+    <a class="mod-card" href="nahrm-module-4-next-gen-talent.html" data-example="nahrm-module-4-next-gen-talent">
+      <div class="mod-num">Module 4</div>
+      <div class="mod-title">Motivating &amp; Managing Next-Gen Talent</div>
+      <div class="mod-desc">Modern careers, succession, performance management, and rewards for next-gen employees.</div>
+      <span class="status">Not started</span>
+    </a>
+    <a class="mod-card" href="nahrm-module-5-wellness.html" data-example="nahrm-module-5-wellness">
+      <div class="mod-num">Module 5</div>
+      <div class="mod-title">Employee Wellness &amp; Mental Well-Being</div>
+      <div class="mod-desc">Post-pandemic realities, workplace stress, and mental health as a strategic priority.</div>
+      <span class="status">Not started</span>
+    </a>
+    <a class="mod-card" href="nahrm-module-6-dei.html" data-example="nahrm-module-6-dei">
+      <div class="mod-num">Module 6</div>
+      <div class="mod-title">Diversity, Equity &amp; Inclusion</div>
+      <div class="mod-desc">The business case, dimensions of diversity, psychological foundations, leading inclusively.</div>
+      <span class="status">Not started</span>
+    </a>
+  </div>
+
+  <div class="cert-card" id="certCard">
+    <div class="eyebrow">Certification</div>
+    <h2>SF Certified New-Age HRM Practitioner</h2>
+    <p>Complete all six modules, then take the certification exam — 30 questions, 75% to pass.</p>
+    <a href="certification-test.html" id="certLink">Start the certification exam →</a>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+const _FB_CONFIG = {
+  apiKey:"AIzaSyC-I-IOCq2fCwa471fsD5xOn6SYQSBDp7Q", authDomain:"sfcertification-grafana.firebaseapp.com",
+  projectId:"sfcertification-grafana", storageBucket:"sfcertification-grafana.firebasestorage.app",
+  messagingSenderId:"227322696511", appId:"1:227322696511:web:12e7ced7dd3d45fa06798a"
+};
+if (!window._fbApp) window._fbApp = firebase.initializeApp(_FB_CONFIG);
+const _auth = firebase.auth(window._fbApp);
+window._learnerUid='anon'; window._learnerEmail=null;
+
+// Ordered list — each = filename minus .html. Mirrors CP_MODULE_IDS.
+const EXAMPLE_IDS = [
+  'nahrm-module-1-future-workplace',
+  'nahrm-module-2-strategic-hrm',
+  'nahrm-module-3-ai-digital-hr',
+  'nahrm-module-4-next-gen-talent',
+  'nahrm-module-5-wellness',
+  'nahrm-module-6-dei'
+];
+
+window.pmSignOut = function(){ _auth.signOut(); };
+window.pmGoogleSignIn = function(){
+  const p = new firebase.auth.GoogleAuthProvider();
+  p.setCustomParameters({ hd:'sourcefuse.com' });
+  _auth.signInWithPopup(p).catch(function(e){ showErr(e.message); });
+};
+window.pmEmailSignIn = function(){
+  const email=(document.getElementById('pm-ep-email').value||'').trim().toLowerCase();
+  const pwd=document.getElementById('pm-ep-password').value||'';
+  if(!email||!pwd){ showErr('Enter email and password.'); return; }
+  if(!email.endsWith('@sourcefuse.com')){ showErr('Only @sourcefuse.com accounts are allowed.'); return; }
+  _auth.signInWithEmailAndPassword(email,pwd).catch(function(e){ showErr(e.message); });
+};
+function showErr(m){ const e=document.getElementById('authError'); e.textContent=m; e.classList.remove('hidden'); }
+
+_auth.onAuthStateChanged(function(user){
+  if (user && user.email && user.email.endsWith('@sourcefuse.com')) {
+    window._learnerUid=user.uid; window._learnerEmail=user.email;
+    document.getElementById('userEmail').textContent=user.email;
+    document.getElementById('authPanel').classList.add('hidden');
+    document.getElementById('courseWrap').classList.remove('hidden');
+    renderProgress();
+  } else if (user && user.email) { _auth.signOut(); }
+  else { document.getElementById('authPanel').classList.remove('hidden'); document.getElementById('courseWrap').classList.add('hidden'); }
+});
+
+function exComplete(id){
+  try { const s=JSON.parse(localStorage.getItem('pm_learner_'+window._learnerUid+'_'+id)); return !!(s && s.complete===true); }
+  catch(e){ return false; }
+}
+function renderProgress(){
+  let done=0;
+  document.querySelectorAll('.mod-card').forEach(function(card){
+    const id=card.getAttribute('data-example');
+    const st=card.querySelector('.status');
+    if (exComplete(id)) { st.textContent='✓ Complete'; st.classList.add('done'); done++; }
+    else { st.textContent='Not started'; st.classList.remove('done'); }
+  });
+  document.getElementById('progressLine').textContent = done+' of '+EXAMPLE_IDS.length+' complete';
+  const allDone = done>=EXAMPLE_IDS.length && EXAMPLE_IDS.length>0;
+  const card=document.getElementById('certCard'), link=document.getElementById('certLink');
+  if (allDone){ card.classList.add('unlocked'); link.style.pointerEvents='auto'; }
+  else { card.classList.remove('unlocked'); link.style.pointerEvents='none'; }
+}
+</script>
+</body>
+</html>
