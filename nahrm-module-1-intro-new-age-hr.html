@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 1 — Introduction to New-Age HR &middot; New-Age HRM Essentials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#eef2f7; --bg2:#ffffff; --bg3:#f0f4f9; --border:#d0dae8;
+    --text:#1a2332; --text-dim:#4a5568; --text-dimmer:#8fa3bc;
+    --blue:#1a6eb5; --blue-light:#e8f1fb; --blue-mid:#b8d0ed; --blue-dark:#0f4a7a;
+    --coral:#c0392b; --coral-light:#fdf0ee; --coral-mid:#f0b8b2;
+    --green:#1a6b3a; --green-light:#e8f5ed; --green-mid:#a3d4b8;
+    --amber:#92600a; --amber-light:#fdf3e3;
+    --radius:12px;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Merriweather Sans',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+  .topnav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 32px; height:52px; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:700; color:var(--text-dim); }
+  .topnav a { color:var(--blue); text-decoration:none; }
+  .topnav a:hover { text-decoration:underline; }
+  .sep { opacity:.4; }
+  .module-band { background:var(--bg2); border-bottom:1px solid var(--border); padding:24px 40px; }
+  .module-eyebrow { font-size:13px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); margin-bottom:6px; }
+  .module-title { font-size:26px; font-weight:700; color:var(--text); }
+  .module-progress { font-size:13px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); margin-top:10px; }
+  .refresh-wrap { max-width:1100px; margin:18px auto 0; padding:0 32px; }
+  .refresh-toggle { width:100%; display:flex; align-items:center; gap:12px; padding:16px 20px; background:var(--blue-light); border:1.5px solid var(--blue-mid); border-left:3px solid var(--blue); border-radius:var(--radius); cursor:pointer; font-family:'Merriweather Sans',sans-serif; font-size:15.5px; font-weight:700; color:var(--blue-dark); text-align:left; transition:background .15s; }
+  .refresh-toggle:hover { border-color:var(--blue); }
+  .refresh-toggle .rt-icon { font-size:20px; flex-shrink:0; }
+  .refresh-toggle .rt-text { flex:1; }
+  .refresh-toggle .rt-sub { display:block; font-weight:400; font-size:13px; color:var(--text-dim); margin-top:3px; }
+  .refresh-toggle .rt-chev { font-size:13px; font-family:'Source Code Pro',monospace; transition:transform .2s; flex-shrink:0; }
+  .refresh-panel { display:none; margin-top:14px; background:var(--bg2); border:1.5px solid var(--border); border-radius:var(--radius); padding:30px 34px; animation:fadeIn .25s ease; }
+  .refresh-panel.open { display:block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+  .refresh-panel h3 { font-size:20px; font-weight:700; color:var(--text); margin:0 0 10px; }
+  .refresh-panel p { font-size:16px; color:var(--text-dim); line-height:1.8; margin-bottom:12px; }
+  .refresh-panel p strong { color:var(--text); font-weight:600; }
+  .refresh-panel ul { margin:0 0 14px; padding-left:22px; }
+  .refresh-panel li { font-size:15.5px; color:var(--text-dim); line-height:1.75; margin-bottom:8px; }
+  .refresh-close { margin-top:20px; padding:10px 20px; background:var(--bg2); color:var(--text-dim); border:1.5px solid var(--border); border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .refresh-close:hover { background:var(--bg3); }
+  .section-pills-wrap { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 40px; overflow-x:auto; }
+  .section-pills { display:flex; gap:0; }
+  .section-pill { display:flex; align-items:center; gap:8px; padding:14px 18px; font-size:15px; font-weight:700; color:var(--text-dimmer); border-bottom:2px solid transparent; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; white-space:nowrap; transition:color .15s; font-family:'Merriweather Sans',sans-serif; }
+  .section-pill .pnum { width:26px; height:26px; border-radius:50%; background:var(--bg3); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; font-family:'Source Code Pro',monospace; flex-shrink:0; transition:all .15s; }
+  .section-pill.active { color:var(--blue); border-bottom-color:var(--blue); }
+  .section-pill.active .pnum { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .section-pill.done .pnum { background:var(--green); border-color:var(--green); color:#fff; }
+  .main { max-width:1100px; margin:0 auto; padding:32px; }
+  .section-panel { display:none; }
+  .section-panel.active { display:block; }
+  .tabs-wrap { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius) var(--radius) 0 0; padding:0 8px; overflow-x:auto; }
+  .tabs { display:flex; gap:0; }
+  .tab-btn { display:flex; align-items:center; gap:8px; padding:14px 16px; font-size:14.5px; font-weight:700; color:var(--text-dimmer); border-bottom:2px solid transparent; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; white-space:nowrap; transition:color .15s; font-family:'Merriweather Sans',sans-serif; }
+  .tab-btn .num { width:24px; height:24px; border-radius:50%; background:var(--bg3); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-family:'Source Code Pro',monospace; flex-shrink:0; transition:all .15s; }
+  .tab-btn.active { color:var(--blue); border-bottom-color:var(--blue); }
+  .tab-btn.active .num { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .tab-body { background:var(--bg2); border:1px solid var(--border); border-top:none; border-radius:0 0 var(--radius) var(--radius); padding:32px; }
+  .tab-pane { display:none; }
+  .tab-pane.active { display:block; }
+  .tab-label { font-size:13px; font-family:'Source Code Pro',monospace; font-weight:700; color:var(--blue); letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px; }
+  .tab-heading { font-size:23px; font-weight:700; margin-bottom:18px; }
+  .prose { font-size:16.5px; color:var(--text-dim); line-height:1.85; margin-bottom:18px; }
+  .prose strong { color:var(--text); font-weight:600; }
+  .callout { border-left:3px solid var(--blue); background:var(--blue-light); padding:14px 18px; border-radius:0 8px 8px 0; margin:18px 0; font-size:14.5px; line-height:1.7; color:var(--text-dim); }
+  .callout-warn { border-left-color:var(--amber); background:var(--amber-light); }
+  .callout-bad  { border-left-color:var(--coral); background:var(--coral-light); }
+  .callout-good { border-left-color:var(--green); background:var(--green-light); }
+  .callout strong { color:var(--text); }
+  .example-block { background:var(--bg3); border:1.5px solid var(--border); border-radius:var(--radius); padding:18px 22px; margin:18px 0; font-size:15.5px; line-height:1.8; color:var(--text-dim); }
+  .example-block .ex-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin-bottom:10px; }
+  .divider { height:1px; background:var(--border); margin:26px 0; }
+  .tab-nav-row { display:flex; justify-content:space-between; margin-top:24px; }
+  .continue-btn { padding:11px 22px; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:14.5px; font-weight:700; cursor:pointer; font-family:'Merriweather Sans',sans-serif; transition:background .15s; }
+  .continue-btn:hover { background:var(--blue-dark); }
+  .assessment-sub { font-size:14.5px; color:var(--text-dim); line-height:1.7; margin-bottom:22px; }
+  .question-block { margin-bottom:26px; padding-bottom:22px; border-bottom:1px solid var(--border); }
+  .question-block:last-of-type { border-bottom:none; }
+  .q-num { font-size:11px; font-family:'Source Code Pro',monospace; color:var(--blue); letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; font-weight:600; }
+  .q-text { font-size:15.5px; font-weight:600; color:var(--text); line-height:1.5; margin-bottom:14px; }
+  .options { display:flex; flex-direction:column; gap:10px; }
+  .option { display:flex; align-items:flex-start; gap:10px; padding:12px 16px; border-radius:8px; border:1.5px solid var(--border); cursor:pointer; font-size:14.5px; color:var(--text-dim); line-height:1.5; transition:border-color .15s, background .15s; }
+  .option:hover { border-color:var(--blue-mid); background:var(--blue-light); }
+  .option input[type="radio"] { margin-top:3px; flex-shrink:0; accent-color:var(--blue); }
+  .submit-btn { margin-top:18px; padding:12px 28px; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:15px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .submit-btn:disabled { background:var(--border); color:var(--text-dimmer); cursor:not-allowed; }
+  .submit-btn:not(:disabled):hover { background:var(--blue-dark); }
+  .submit-note { font-size:13px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); margin-top:8px; }
+  .submitted-wrap { text-align:center; padding:16px 0; }
+  .submitted-icon { font-size:34px; color:var(--green); margin-bottom:6px; }
+  .submitted-title { font-size:17px; font-weight:700; color:var(--green); margin-bottom:8px; }
+  .submitted-body { font-size:14.5px; color:var(--text-dim); line-height:1.7; }
+  .redo-btn { display:inline-block; margin-top:14px; padding:8px 18px; background:var(--bg2); color:var(--coral); border:1.5px solid var(--coral-mid); border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .redo-btn:hover { background:var(--coral-light); }
+  .complete-bar { display:flex; align-items:center; gap:12px; padding:16px 20px; border-radius:8px; margin:28px auto 8px; max-width:1100px; font-size:14px; font-family:'Source Code Pro',monospace; font-weight:600; border:1.5px solid var(--border); background:var(--bg3); color:var(--text-dimmer); }
+  .complete-bar.done { background:var(--green-light); border-color:var(--green-mid); border-left:3px solid var(--green); color:var(--green); }
+  .bottom-nav { display:flex; justify-content:space-between; padding:28px 0 0; border-top:1px solid var(--border); margin-top:32px; }
+  .nav-btn { padding:12px 20px; border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; text-decoration:none; font-family:'Merriweather Sans',sans-serif; background:var(--blue); color:#fff; border:none; }
+  .nav-btn:hover { background:var(--blue-dark); }
+  .nav-btn.back { background:var(--bg2); color:var(--text-dim); border:1.5px solid var(--border); }
+  footer { text-align:center; padding:26px 32px; font-size:11px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); border-top:1px solid var(--border); line-height:1.7; }
+  .hidden { display:none !important; }
+  .auth-overlay { position:fixed; inset:0; background:rgba(15,30,60,.7); display:flex; align-items:center; justify-content:center; z-index:9999; backdrop-filter:blur(4px); }
+  .auth-overlay.hidden { display:none; }
+  .auth-box { background:#fff; border-radius:16px; padding:48px 40px; max-width:420px; width:90%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.2); }
+  .auth-logo { font-size:32px; margin-bottom:16px; }
+  .auth-title { font-size:22px; font-weight:700; color:var(--text); margin-bottom:8px; }
+  .auth-sub { font-size:15px; color:var(--text-dim); line-height:1.6; margin-bottom:28px; }
+  .auth-google-btn { display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:14px 20px; border-radius:8px; background:var(--blue); color:#fff; border:none; font-size:16px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .auth-google-btn:hover { background:var(--blue-dark); }
+  .auth-google-btn svg { width:20px; height:20px; flex-shrink:0; }
+  .auth-divider { display:flex; align-items:center; gap:10px; margin:16px 0 14px; color:var(--text-dimmer); font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+  .auth-divider::before, .auth-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+  .auth-input { width:100%; padding:12px 14px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; margin-bottom:10px; outline:none; font-family:'Merriweather Sans',sans-serif; color:var(--text); background:#fff; display:block; }
+  .auth-input:focus { border-color:var(--blue); }
+  .auth-email-btn { display:block; width:100%; padding:14px 20px; border-radius:8px; background:var(--blue); color:#fff; border:none; font-size:16px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; margin-top:2px; }
+  .auth-email-btn:hover { background:var(--blue-dark); }
+  .auth-error { font-size:13px; color:var(--coral); margin-top:12px; font-family:'Source Code Pro',monospace; }
+  .auth-user-bar { background:var(--blue-light); border-bottom:1px solid var(--blue-mid); padding:8px 32px; font-size:13px; font-family:'Source Code Pro',monospace; color:var(--blue-dark); display:flex; align-items:center; justify-content:space-between; }
+  .auth-user-bar.hidden { display:none; }
+  .auth-signout { background:var(--blue); color:#fff; border:none; border-radius:8px; cursor:pointer; font-size:14px; font-weight:700; font-family:'Merriweather Sans',sans-serif; padding:8px 18px; text-decoration:none; }
+  @media(max-width:640px) { .topnav,.main,.module-band { padding-left:18px; padding-right:18px; } .section-pills-wrap { padding-left:14px; } .tab-body { padding:22px 18px; } }
+</style>
+</head>
+<body>
+
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-box">
+    <div class="auth-logo">&#128188;</div>
+    <div class="auth-title">New-Age HRM Essentials</div>
+    <div class="auth-sub">Sign in with your SourceFuse account to access the course and save your progress.</div>
+    <button class="auth-google-btn" id="googleSignInBtn">
+      <svg viewBox="0 0 48 48"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>
+      Sign in with Google
+    </button>
+    <div class="auth-divider">OR</div>
+    <input type="email" class="auth-input" id="authEmail" placeholder="you@sourcefuse.com" autocomplete="email">
+    <input type="password" class="auth-input" id="authPassword" placeholder="Password" autocomplete="current-password">
+    <button class="auth-email-btn" id="emailSignInBtn">Sign in with Email</button>
+    <div class="auth-error hidden" id="authError"></div>
+  </div>
+</div>
+
+<div class="auth-user-bar hidden" id="authUserBar">
+  <span id="authUserEmail"></span>
+  <button class="auth-signout" id="authSignOutBtn">Sign out</button>
+</div>
+
+<nav class="topnav">
+  <a href="course-map.html">Back to course dashboard</a>
+  <span class="sep">/</span>
+  <span>Module 1</span>
+  <span class="sep">/</span>
+  <span>Introduction to New-Age HR</span>
+</nav>
+
+<div class="module-band">
+  <div class="module-eyebrow">Module 1 of 6</div>
+  <div class="module-title">Introduction to New-Age HR</div>
+  <div class="module-progress" id="moduleProgress">0 of 4 sections complete</div>
+</div>
+
+<div class="refresh-wrap">
+  <button class="refresh-toggle" id="refreshToggle" onclick="toggleRefresh()">
+    <span class="rt-icon">&#128161;</span>
+    <span class="rt-text">New to the language of digital HR?
+      <span class="rt-sub">A quick primer on the core terms before you begin &mdash; open it if the sections feel fast-paced.</span>
+    </span>
+    <span class="rt-chev">&#9660; OPEN</span>
+  </button>
+  <div class="refresh-panel" id="refreshPanel">
+    <h3>A few terms you&rsquo;ll meet in this module</h3>
+    <ul>
+      <li><strong>Digital HR</strong> &mdash; using technology and data to run and improve people processes, and to make HR a faster, more evidence-based partner to the business.</li>
+      <li><strong>Industry 4.0</strong> &mdash; the current wave of automation, AI, data, and connected systems reshaping work and the skills it requires.</li>
+      <li><strong>Reskilling / upskilling</strong> &mdash; helping people learn new capabilities (reskilling) or deepen existing ones (upskilling) as roles evolve.</li>
+      <li><strong>Employer branding</strong> &mdash; an organisation&rsquo;s reputation as a place to work, increasingly shaped in public and by employees themselves.</li>
+      <li><strong>Hybrid / work-from-anywhere</strong> &mdash; work models that combine or remove fixed-location constraints, changing how culture is sustained.</li>
+      <li><strong>Generative AI assistant</strong> &mdash; a tool (such as Claude, Gemini, or ChatGPT) that produces text and other content to support &mdash; not replace &mdash; human work.</li>
+    </ul>
+    <button class="refresh-close" onclick="toggleRefresh()">Close primer</button>
+  </div>
+</div>
+
+<div class="section-pills-wrap">
+  <div class="section-pills" id="sectionPills">
+    <button class="section-pill active" data-sec="1" onclick="showSection(1)"><span class="pnum">1</span> New Age HR</button>
+    <button class="section-pill" data-sec="2" onclick="showSection(2)"><span class="pnum">2</span> Digital AI Tools</button>
+    <button class="section-pill" data-sec="3" onclick="showSection(3)"><span class="pnum">3</span> Digital HR</button>
+    <button class="section-pill" data-sec="4" onclick="showSection(4)"><span class="pnum">4</span> Managing Organisation Culture Hybrid Workmode</button>
+  </div>
+</div>
+
+<div class="main" id="sectionsRoot"></div>
+
+<div class="complete-bar" id="completeBar">Complete all 4 sections to finish this module.</div>
+
+<div class="main" style="padding-top:0;">
+  <div class="bottom-nav">
+    <a class="nav-btn back" href="course-map.html">&larr; Course dashboard</a>
+    <a class="nav-btn" href="nahrm-module-2-strategic-hrm.html">Module 2 &mdash; Strategic HRM &rarr;</a>
+  </div>
+</div>
+
+<footer>
+  New-Age HRM Essentials &middot; SourceFuse L&amp;D &middot; Leads to the SF Certified New-Age HRM Practitioner certification
+</footer>
+
+<script>
+window.NAHRM_QUESTION_BANK = {
+  "nahrm_m1": {
+    "s1": [
+      {
+        "q": "What best describes &lsquo;digital change in HR&rsquo;?",
+        "options": [
+          "Repositioning HR toward a data-informed, anticipatory partner to the business",
+          "Replacing all HR staff with software",
+          "Limiting HR to payroll and compliance only",
+          "Removing technology from HR processes"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "q": "Why does Industry 4.0 make continuous reskilling a core HR responsibility?",
+        "options": [
+          "Because the half-life of skills is shrinking as automation and AI change which skills retain value",
+          "Because it eliminates the need for any workforce",
+          "Because training budgets must always be reduced",
+          "Because skills never change once learned"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "q": "New-age organization design tends to favour:",
+        "options": [
+          "Flatter, networked, project-based structures that increase adaptability",
+          "Taller hierarchies with more approval layers",
+          "Permanent fixed departments with no cross-function work",
+          "Eliminating all reporting lines"
+        ],
+        "correctIndex": 0
+      }
+    ],
+    "s2": [
+      {
+        "q": "What is the constant principle across all AI tools discussed?",
+        "options": [
+          "AI augments HR judgement but does not replace human accountability for decisions",
+          "Whichever tool is newest should always be adopted",
+          "Employee data can be freely entered into any tool",
+          "AI tools remove the need for HR judgement"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "q": "Why is &lsquo;durable judgement&rsquo; emphasised over choosing a single tool?",
+        "options": [
+          "Because tools and capabilities change quickly, while principles for responsible use persist",
+          "Because all tools are identical",
+          "Because HR should avoid AI entirely",
+          "Because only one vendor will ever exist"
+        ],
+        "correctIndex": 0
+      }
+    ],
+    "s3": [
+      {
+        "q": "In a connected world, employer brand is best described as:",
+        "options": [
+          "Co-authored by every employee's lived experience, shaped publicly and continuously",
+          "Fully controlled by the HR marketing team alone",
+          "Irrelevant to talent attraction",
+          "Set once and never changing"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "q": "Why does authenticity matter most in employer branding?",
+        "options": [
+          "Because a gap between marketing claims and real employee experience is quickly exposed and deters candidates",
+          "Because branding has no effect on hiring",
+          "Because employees never share their experiences",
+          "Because candidates do not research employers"
+        ],
+        "correctIndex": 0
+      }
+    ],
+    "s4": [
+      {
+        "q": "What is the central challenge of managing culture in a hybrid work mode?",
+        "options": [
+          "Sustaining a coherent, inclusive culture when the informal mechanisms of a shared space are absent",
+          "Forcing everyone back to the office permanently",
+          "Ignoring culture because it maintains itself",
+          "Eliminating all remote work"
+        ],
+        "correctIndex": 0
+      },
+      {
+        "q": "&lsquo;Proximity bias&rsquo; in a hybrid model refers to:",
+        "options": [
+          "Those physically present getting more visibility, feedback, and opportunity than distributed colleagues",
+          "A preference for remote workers over office workers",
+          "A type of scheduling software",
+          "The cost of office space"
+        ],
+        "correctIndex": 0
+      }
+    ]
+  }
+};
+</script>
+
+<script>
+const CACHE_VERSION = '2026-06-13-v1';
+const MODULE_ID     = 'nahrm_m1';
+const CP_COURSE_ID  = 'newAgeHrm2026SFCert';
+const CP_MODULE_IDS = ['nahrm_m1','nahrm_m2','nahrm_m3','nahrm_m4','nahrm_m5','nahrm_m6'];
+const BANK_KEY      = 'nahrm_m1';
+
+const SECTION_DATA = [
+  {
+    "title": "New Age HR",
+    "tabs": [
+      {
+        "label": "Setting Context",
+        "heading": "Setting the context: digital change in HR",
+        "html": "<p class=\"prose\">Human resource management is being reshaped by the same digital forces transforming every other part of the enterprise. <strong>Digital change in HR</strong> is the move from HR as a record-keeping and compliance function toward HR as a digitally-enabled, data-informed partner that helps the business anticipate and absorb change.</p><p class=\"prose\">The shift has three drivers. <strong>Technology</strong> has made workforce data abundant and decisions faster. <strong>Expectations</strong> have risen — employees and candidates expect the same seamless, personalised experience at work that they get as consumers. And the <strong>pace of change</strong> itself has compressed, so the ability to re-skill and re-organise quickly has become a competitive necessity rather than a periodic project.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>A traditional HR team learns about an attrition problem when exit interviews pile up. A digitally-enabled HR team sees engagement and login-frequency signals trending down weeks earlier and intervenes before the resignations arrive. Same function, fundamentally different posture — reactive versus anticipatory.</div><div class=\"callout\"><strong>The leadership point:</strong> digital change in HR is not about buying tools. It is about repositioning the function so that people decisions are made with evidence, at the speed the business now moves.</div>"
+      },
+      {
+        "label": "Digital: Future HR",
+        "heading": "Digital: the future of HR",
+        "html": "<p class=\"prose\">If &ldquo;setting context&rdquo; describes the shift underway, the <strong>future of HR</strong> describes where it leads: a function defined by data fluency, employee experience, and continuous adaptation rather than annual cycles.</p><p class=\"prose\">Three characteristics stand out. HR becomes <strong>predictive</strong> — using workforce data to anticipate attrition, capability gaps, and hiring needs. It becomes <strong>experience-led</strong> — designing the employee journey with the same care a product team designs a customer journey. And it becomes <strong>continuous</strong> — feedback, learning, and performance conversations run year-round instead of once a year.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>Performance management moves from a single annual rating to ongoing check-ins supported by lightweight digital tools; learning moves from a fixed catalogue to a personalised, on-demand experience that adapts to each person's role and goals.</div><div class=\"callout callout-good\">Digital HR is a direction of travel, not a destination — the future-ready function is the one that keeps adapting, not the one that finishes a transformation programme.</div>"
+      },
+      {
+        "label": "Industry 4.0 Skilling",
+        "heading": "Industry 4.0 and the skilling challenge",
+        "html": "<p class=\"prose\"><strong>Industry 4.0</strong> — the convergence of automation, AI, data, and connected systems — changes not just <em>how</em> work is done but <em>which skills</em> retain value. The defining HR challenge it creates is the shrinking <strong>half-life of skills</strong>: capabilities that were current a few years ago age out faster than ever.</p><p class=\"prose\">This makes <strong>continuous reskilling and upskilling</strong> a core, ongoing HR responsibility rather than an occasional training initiative. The task is twofold: identify which capabilities the business will need next, and build credible pathways for the existing workforce to get there — because hiring alone cannot close a gap that keeps moving.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>Rather than replacing a workforce whose technical skills are dating, a forward-looking organisation maps adjacent skills its people already have and builds structured reskilling paths into emerging roles — protecting institutional knowledge while closing the capability gap.</div><div class=\"callout callout-warn\"><strong>The risk if ignored:</strong> a widening gap between the skills the business needs and the skills it has — felt as stalled initiatives, over-reliance on expensive external hiring, and disengagement among employees who feel left behind.</div>"
+      },
+      {
+        "label": "New-Age Org Design",
+        "heading": "New-age organization design structures",
+        "html": "<p class=\"prose\">The rigid, multi-layer hierarchy was built for stability and control. <strong>New-age organization design</strong> responds to a different need — speed, adaptability, and cross-functional collaboration — and so favours flatter, more networked, and more project-based structures.</p><p class=\"prose\">Common patterns include <strong>networked teams</strong> that form around outcomes rather than fixed departments, <strong>flatter hierarchies</strong> that shorten decision paths, and <strong>fluid roles</strong> that let people contribute across boundaries. HR co-owns these design choices, because structure directly shapes how quickly an organisation can sense and respond to change.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>A company facing fast-moving market demands reorganises a fixed-function department into cross-functional squads aligned to customer outcomes — shortening hand-offs and decision latency, with HR redesigning roles, reporting lines, and rewards to match.</div><div class=\"callout\">Structure is not neutral: it either accelerates or throttles an organisation's ability to adapt. That is why organisation design now sits firmly within HR's strategic remit.</div>"
+      }
+    ]
+  },
+  {
+    "title": "Digital AI Tools",
+    "tabs": [
+      {
+        "label": "Claude",
+        "heading": "Claude (Anthropic)",
+        "html": "<p class=\"prose\"><strong>Claude</strong> is a family of AI assistants from Anthropic, designed with a strong emphasis on safety, helpfulness, and handling long, nuanced documents. For HR work, its strengths show up in tasks that involve careful reasoning over text — drafting and refining policies, summarising long documents, structuring communications, and working through scenarios where tone and judgement matter.</p><p class=\"prose\">In an L&amp;D and HR context, Claude is often used to draft first versions of learning content, structure frameworks, and act as a thinking partner on complex people questions — with a human always reviewing and owning the final output.</p><div class=\"example-block\"><div class=\"ex-label\">HR use case</div>Turning a dense, multi-page policy document into a clear, plain-language summary for employees, or drafting a structured first version of a course outline that an L&amp;D specialist then refines.</div><div class=\"callout callout-warn\">As with any AI tool, the output is a starting point, not a final decision. HR judgement, accuracy checks, and confidentiality safeguards remain essential.</div>"
+      },
+      {
+        "label": "Google Gemini",
+        "heading": "Google Gemini",
+        "html": "<p class=\"prose\"><strong>Gemini</strong> is Google's family of multimodal AI models, able to work across text, images, and other formats, and integrated across Google's ecosystem. Its tight integration with workspace and productivity tools makes it convenient where an organisation already works inside that environment.</p><p class=\"prose\">For HR teams, Gemini can assist with drafting, summarising, and surfacing information within familiar productivity tools, reducing the friction of switching between applications.</p><div class=\"example-block\"><div class=\"ex-label\">HR use case</div>Summarising a long email thread about a policy change, or drafting communications directly within the productivity suite an HR team already uses day to day.</div><div class=\"callout\">Convenience of integration is a real benefit — but the same care over accuracy, bias, and the privacy of employee data applies regardless of which vendor's tool is used.</div>"
+      },
+      {
+        "label": "ChatGPT",
+        "heading": "ChatGPT (OpenAI)",
+        "html": "<p class=\"prose\"><strong>ChatGPT</strong>, built on OpenAI's models, is among the most widely adopted general-purpose AI assistants. Its broad capability and large ecosystem of integrations make it a flexible option for a wide range of drafting, brainstorming, and information tasks.</p><p class=\"prose\">In HR, it is commonly used for first-draft generation, ideation, and quick reformatting of content — the same broad strengths and the same limitations as other general assistants.</p><div class=\"example-block\"><div class=\"ex-label\">HR use case</div>Brainstorming interview questions for a role, or rapidly producing several alternative phrasings of an internal announcement for an HR lead to choose from.</div><div class=\"callout callout-warn\">Wide adoption does not remove the need for governance: confidential employee data should not be entered into general consumer tools without clear organisational policy.</div>"
+      },
+      {
+        "label": "Others",
+        "heading": "Other tools and the bigger picture",
+        "html": "<p class=\"prose\">Beyond the major general assistants, a growing set of <strong>specialised tools</strong> targets specific HR workflows — recruitment screening, learning experience platforms, sentiment and engagement analysis, and skills-mapping. New entrants appear constantly, and capabilities overlap and shift quickly.</p><p class=\"prose\">The leadership takeaway is to focus less on any single product and more on building <strong>durable judgement</strong>: how to evaluate a tool's fit, govern its use, protect employee data, and keep a human accountable for decisions. Tools will change; the principles for using them responsibly do not.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>Rather than standardising permanently on one assistant, a mature HR function defines clear principles — data handling, human oversight, bias checks — and applies them to whichever tools it adopts as the market evolves.</div><div class=\"callout callout-good\">The constant across every tool: AI augments HR judgement, it does not replace accountability. A person always owns the decision.</div>"
+      }
+    ]
+  },
+  {
+    "title": "Digital HR",
+    "tabs": [
+      {
+        "label": "Social Media & Employer Branding",
+        "heading": "Social media and employer branding",
+        "html": "<p class=\"prose\"><strong>Employer branding</strong> is the reputation an organisation holds as a place to work, and in a connected world that reputation is shaped publicly and continuously. <strong>Social media</strong> has turned employer brand from a recruitment-marketing exercise into a live, two-way signal that candidates and employees both read and contribute to.</p><p class=\"prose\">This matters because candidates research an employer's brand before they ever apply, and current employees broadcast their experience — positively or negatively — to wide networks. A strong, authentic employer brand widens and improves the talent pool; a weak or inauthentic one narrows it. The key word is <strong>authentic</strong>: a brand that promises an experience the organisation does not actually deliver is quickly exposed.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>Employees sharing genuine, positive experiences of their work do more for talent attraction than any paid campaign — while a visible gap between an employer's marketing claims and real employee reviews actively deters strong candidates.</div><div class=\"callout\">Employer brand is no longer controlled by HR alone — it is co-authored by every employee's experience. The strategic task is to make the lived experience worth talking about, then enable people to share it.</div>"
+      }
+    ]
+  },
+  {
+    "title": "Managing Organisation Culture Hybrid Workmode",
+    "tabs": [
+      {
+        "label": "Impact: Work From Anywhere",
+        "heading": "Managing culture in a hybrid work mode: the impact of work-from-anywhere",
+        "html": "<p class=\"prose\"><strong>Work-from-anywhere</strong> decouples work from a fixed location, and with it many of the informal mechanisms that traditionally carried culture — hallway conversations, shared spaces, and visible day-to-day norms. The central challenge of a <strong>hybrid work mode</strong> is sustaining a coherent, inclusive culture when people are distributed across locations and schedules.</p><p class=\"prose\">The impact runs in two directions. The opportunity is access to wider talent, greater flexibility, and often higher individual focus. The risk is weakened belonging, uneven access to visibility and opportunity (a &ldquo;proximity bias&rdquo; favouring those physically present), and the slow erosion of shared norms. Managing culture in this mode means being <strong>deliberate</strong> about what once happened by accident — intentionally designing connection, communication, and fairness rather than assuming the office will supply them.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>An organisation that codifies its norms explicitly, designs rituals that include remote and in-office people equally, and checks that promotions and high-visibility work are not skewed toward those in the building, sustains culture far better than one that lets hybrid &ldquo;just happen.&rdquo;</div><div class=\"callout callout-warn\"><strong>Proximity bias</strong> is the most common hidden failure of hybrid: when those physically present get more visibility, feedback, and opportunity, distributed colleagues are quietly disadvantaged — an equity issue leaders must actively manage.</div><div class=\"callout callout-good\">In a hybrid world, culture shifts from something absorbed in a shared space to something deliberately designed and communicated. That design responsibility sits with leadership and HR.</div>"
+      }
+    ]
+  }
+];
+
+
+function bankFor(sectionKey) {
+  try { return (window.NAHRM_QUESTION_BANK[BANK_KEY] || {})[sectionKey] || []; }
+  catch(e) { return []; }
+}
+
+function buildSections() {
+  const root = document.getElementById('sectionsRoot');
+  SECTION_DATA.forEach(function(sec, idx) {
+    const secNum = idx + 1;
+    const questions = bankFor('s' + secNum);
+    const panel = document.createElement('section');
+    panel.className = 'section-panel' + (secNum === 1 ? ' active' : '');
+    panel.id = 'section-' + secNum;
+
+    const tabs = sec.tabs;
+    const quizTabNum = tabs.length + 1;
+
+    let tabsBtns = '';
+    tabs.forEach(function(t, ti) {
+      tabsBtns += '<button class="tab-btn' + (ti===0?' active':'') + '" onclick="showTab(' + secNum + ',' + (ti+1) + ')">'
+        + '<span class="num">' + (ti+1) + '</span> ' + t.label + '</button>';
+    });
+    tabsBtns += '<button class="tab-btn" onclick="showTab(' + secNum + ',' + quizTabNum + ')"><span class="num">' + quizTabNum + '</span> Check understanding</button>';
+
+    let panes = '';
+    tabs.forEach(function(t, ti) {
+      const nextTab = ti + 2;
+      panes += '<div class="tab-pane' + (ti===0?' active':'') + '" id="pane-' + secNum + '-' + (ti+1) + '">'
+        + '<div class="tab-label">' + t.label + '</div>'
+        + '<div class="tab-heading">' + t.heading + '</div>'
+        + t.html
+        + '<div class="divider"></div>'
+        + '<div class="tab-nav-row"><span></span><button class="continue-btn" onclick="showTab(' + secNum + ',' + nextTab + ')">Continue &rarr;</button></div>'
+        + '</div>';
+    });
+
+    let qHtml = '';
+    questions.forEach(function(q, qi) {
+      let opts = '';
+      q.options.forEach(function(opt, oi) {
+        opts += '<label class="option"><input type="radio" name="s' + secNum + '_q' + (qi+1) + '" value="' + oi + '"> ' + opt + '</label>';
+      });
+      qHtml += '<div class="question-block">'
+        + '<div class="q-num">Question ' + (qi+1) + ' of ' + questions.length + '</div>'
+        + '<div class="q-text">' + q.q + '</div>'
+        + '<div class="options">' + opts + '</div>'
+        + '</div>';
+    });
+
+    panes += '<div class="tab-pane" id="pane-' + secNum + '-' + quizTabNum + '">'
+      + '<div class="tab-label">Check understanding</div>'
+      + '<div class="tab-heading">Check your understanding</div>'
+      + '<div class="questions-wrap" id="questionsWrap-' + secNum + '">'
+      + '<p class="assessment-sub">Answer all ' + questions.length + ' questions to complete this section. Your answers are saved.</p>'
+      + qHtml
+      + '<button class="submit-btn" id="submitBtn-' + secNum + '" disabled>Submit answers</button>'
+      + '<div class="submit-note" id="submitNote-' + secNum + '">Select an answer for each question to submit.</div>'
+      + '</div>'
+      + '<div class="submitted-wrap hidden" id="submittedWrap-' + secNum + '">'
+      + '<div class="submitted-icon">&#10003;</div><div class="submitted-title">Section complete</div>'
+      + '<div class="submitted-body">Your answers have been recorded and this section is marked complete.</div>'
+      + '<button class="redo-btn" id="redoBtn-' + secNum + '">&#x21BA; Redo section</button>'
+      + '</div>'
+      + '</div>';
+
+    panel.innerHTML = '<div class="tabs-wrap"><div class="tabs">' + tabsBtns + '</div></div>'
+      + '<div class="tab-body">' + panes + '</div>';
+    root.appendChild(panel);
+  });
+}
+
+function toggleRefresh() {
+  var t = document.getElementById('refreshToggle');
+  var p = document.getElementById('refreshPanel');
+  if (!t || !p) return;
+  var open = p.classList.toggle('open');
+  t.classList.toggle('open', open);
+  var chev = t.querySelector('.rt-chev');
+  if (chev) chev.textContent = open ? '\u25B2 CLOSE' : '\u25BC OPEN';
+}
+
+function showSection(n) {
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.section-pill').forEach(b => b.classList.remove('active'));
+  document.getElementById('section-' + n)?.classList.add('active');
+  document.querySelector('.section-pill[data-sec="' + n + '"]')?.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function showTab(sec, t) {
+  const panel = document.getElementById('section-' + sec);
+  if (!panel) return;
+  const paneCount = panel.querySelectorAll('.tab-pane').length;
+  if (t > paneCount) t = paneCount;
+  panel.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  panel.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  panel.querySelector('#pane-' + sec + '-' + t)?.classList.add('active');
+  panel.querySelectorAll('.tab-btn')[t-1]?.classList.add('active');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function loadSec(secNum) {
+  const k = window.nahrmLearnerKey('s' + secNum);
+  try { return JSON.parse(localStorage.getItem(k)) || {}; } catch(e) { return {}; }
+}
+function saveSec(secNum, s) {
+  const k = window.nahrmLearnerKey('s' + secNum);
+  localStorage.setItem(k, JSON.stringify(s));
+}
+function updateModuleProgress() {
+  let done = 0;
+  for (let i = 1; i <= SECTION_DATA.length; i++) {
+    if (loadSec(i).complete) {
+      done++;
+      document.querySelector('.section-pill[data-sec="' + i + '"]')?.classList.add('done');
+    }
+  }
+  const el = document.getElementById('moduleProgress');
+  if (el) el.textContent = done + ' of ' + SECTION_DATA.length + ' sections complete';
+  const bar = document.getElementById('completeBar');
+  if (done >= SECTION_DATA.length) {
+    if (bar) { bar.classList.add('done'); bar.textContent = '\u2713 Module complete \u2014 all ' + SECTION_DATA.length + ' sections finished.'; }
+    cpWriteModuleComplete();
+  } else if (bar) {
+    bar.classList.remove('done');
+    bar.textContent = 'Complete all ' + SECTION_DATA.length + ' sections to finish this module. (' + done + '/' + SECTION_DATA.length + ' done)';
+  }
+}
+
+function wireSection(secNum) {
+  const questions = bankFor('s' + secNum);
+  const qCount = questions.length;
+  const submitBtn = document.getElementById('submitBtn-' + secNum);
+  const note = document.getElementById('submitNote-' + secNum);
+
+  function checkAll() {
+    let answered = 0;
+    for (let i = 1; i <= qCount; i++) {
+      if (document.querySelector('input[name="s' + secNum + '_q' + i + '"]:checked')) answered++;
+    }
+    const all = answered === qCount;
+    if (submitBtn) submitBtn.disabled = !all;
+    if (note) note.textContent = all ? 'Ready to submit.' : 'Select an answer for each question to submit.';
+  }
+  document.querySelectorAll('#questionsWrap-' + secNum + ' input[type="radio"]').forEach(function(r) {
+    r.addEventListener('change', checkAll);
+  });
+
+  function showSubmitted() {
+    document.getElementById('questionsWrap-' + secNum)?.classList.add('hidden');
+    document.getElementById('submittedWrap-' + secNum)?.classList.remove('hidden');
+  }
+
+  if (submitBtn) submitBtn.addEventListener('click', function() {
+    const answers = {};
+    for (let i = 1; i <= qCount; i++) {
+      const v = document.querySelector('input[name="s' + secNum + '_q' + i + '"]:checked')?.value;
+      answers['q' + i] = v != null ? parseInt(v, 10) : null;
+    }
+    const correct = {};
+    questions.forEach(function(q, qi) { correct['q' + (qi+1)] = q.correctIndex; });
+    let score = 0;
+    for (let i = 1; i <= qCount; i++) { if (answers['q'+i] === correct['q'+i]) score++; }
+    const s = loadSec(secNum);
+    s.sectionId='s'+secNum; s.answers=answers; s.correct=correct; s.score=score; s.total=qCount;
+    s.submittedAt=new Date().toISOString(); s.complete=true;
+    saveSec(secNum, s);
+    showSubmitted();
+    document.querySelector('.section-pill[data-sec="' + secNum + '"]')?.classList.add('done');
+    updateModuleProgress();
+  });
+
+  const redo = document.getElementById('redoBtn-' + secNum);
+  if (redo) redo.addEventListener('click', function() {
+    localStorage.removeItem(window.nahrmLearnerKey('s' + secNum));
+    document.getElementById('questionsWrap-' + secNum)?.classList.remove('hidden');
+    document.getElementById('submittedWrap-' + secNum)?.classList.add('hidden');
+    document.querySelectorAll('#questionsWrap-' + secNum + ' input[type="radio"]').forEach(function(r){ r.checked = false; });
+    if (submitBtn) submitBtn.disabled = true;
+    if (note) note.textContent = 'Select an answer for each question to submit.';
+    document.querySelector('.section-pill[data-sec="' + secNum + '"]')?.classList.remove('done');
+    updateModuleProgress();
+  });
+
+  if (loadSec(secNum).submittedAt) showSubmitted();
+}
+
+document.addEventListener('learnerReady', function() {
+  cpEnsureModuleStarted();
+  for (let i = 1; i <= SECTION_DATA.length; i++) wireSection(i);
+  updateModuleProgress();
+});
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+const _FB_CONFIG = {
+  apiKey: "AIzaSyC-I-IOCq2fCwa471fsD5xOn6SYQSBDp7Q",
+  authDomain: "sfcertification-grafana.firebaseapp.com",
+  projectId: "sfcertification-grafana",
+  storageBucket: "sfcertification-grafana.firebasestorage.app",
+  messagingSenderId: "227322696511",
+  appId: "1:227322696511:web:12e7ced7dd3d45fa06798a"
+};
+if (!window._fbApp) { window._fbApp = firebase.initializeApp(_FB_CONFIG); }
+const _auth = firebase.auth(window._fbApp);
+const _provider = new firebase.auth.GoogleAuthProvider();
+_provider.setCustomParameters({ hd: 'sourcefuse.com' });
+
+window.nahrmLearnerKey = function(sectionId) {
+  const uid = window._learnerUid || 'anon';
+  return 'nahrm_learner_' + uid + '_' + MODULE_ID + '_' + sectionId;
+};
+
+function showOverlay() { document.getElementById('authOverlay')?.classList.remove('hidden'); }
+function hideOverlay() { document.getElementById('authOverlay')?.classList.add('hidden'); }
+function showUserBar(email) {
+  const bar = document.getElementById('authUserBar'); const em = document.getElementById('authUserEmail');
+  if (bar) bar.classList.remove('hidden'); if (em) em.textContent = 'Welcome, ' + email;
+}
+
+_auth.onAuthStateChanged(function(user) {
+  if (user) {
+    const email = user.email || '';
+    if (!email.endsWith('@sourcefuse.com')) {
+      const errEl = document.getElementById('authError');
+      if (errEl) { errEl.textContent = 'Please use your @sourcefuse.com account.'; errEl.classList.remove('hidden'); }
+      _auth.signOut(); showOverlay(); return;
+    }
+    window._learnerUid = user.uid; window._learnerEmail = email;
+    hideOverlay(); showUserBar(email);
+    document.dispatchEvent(new Event('learnerReady'));
+  } else {
+    window._learnerUid = null; window._learnerEmail = null;
+    showOverlay();
+  }
+});
+
+document.getElementById('googleSignInBtn')?.addEventListener('click', function() {
+  _auth.signInWithPopup(_provider).catch(function(err) {
+    const el = document.getElementById('authError');
+    if (el) { el.textContent = err.message; el.classList.remove('hidden'); }
+  });
+});
+
+function nahrmEmailSignIn() {
+  const email = (document.getElementById('authEmail')?.value || '').trim().toLowerCase();
+  const pwd = document.getElementById('authPassword')?.value || '';
+  const el = document.getElementById('authError');
+  function fail(msg){ if(el){ el.textContent = msg; el.classList.remove('hidden'); } }
+  if (el) el.classList.add('hidden');
+  if (!email || !pwd) { fail('Please enter your email and password.'); return; }
+  if (!email.endsWith('@sourcefuse.com')) { fail('Only @sourcefuse.com accounts are allowed.'); return; }
+  _auth.signInWithEmailAndPassword(email, pwd).catch(function(err) {
+    const m = (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') ? 'Incorrect password.'
+            : (err.code === 'auth/user-not-found') ? 'No account found for this email.' : err.message;
+    fail(m);
+  });
+}
+document.getElementById('emailSignInBtn')?.addEventListener('click', nahrmEmailSignIn);
+document.getElementById('authPassword')?.addEventListener('keydown', function(e){ if(e.key==='Enter') nahrmEmailSignIn(); });
+document.getElementById('authSignOutBtn')?.addEventListener('click', function() { _auth.signOut(); });
+
+// ── courseProgress (uid-keyed; module map) ──
+function cpNow() {
+  var d = new Date(); var pad = function(n){ return String(n).padStart(2,'0'); };
+  return { date: d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()), time: pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds()), ms: d.getTime() };
+}
+function cpFmtDuration(ms) {
+  if (ms == null || ms < 0) return null;
+  var s = Math.floor(ms/1000), h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
+  if (h > 0) return h+'h '+m+'m '+sec+'s'; if (m > 0) return m+'m '+sec+'s'; return sec+'s';
+}
+function cpDb() { return firebase.firestore(window._fbApp); }
+function cpDocRef() { return cpDb().collection('courseProgress').doc(window._learnerUid); }
+function cpReady() { return window._fbApp && window._learnerUid && window._learnerUid !== 'anon' && window._learnerUid != null; }
+
+function cpEnsureModuleStarted() {
+  if (!cpReady()) return;
+  var ref = cpDocRef();
+  ref.get().then(function(snap){
+    var data = snap.exists ? (snap.data() || {}) : {};
+    var course = (data.courses && data.courses[CP_COURSE_ID]) || {};
+    var mods = course.modules || {};
+    var t = cpNow();
+    var update = { email: window._learnerEmail || null, name: window._learnerEmail || null, courses: {} };
+    update.courses[CP_COURSE_ID] = { moduleInProgress: MODULE_ID, modules: {} };
+    if (!course.courseStartedOn) { update.courses[CP_COURSE_ID].courseStartedOn = t.date; update.courses[CP_COURSE_ID].courseStartedAt = t.time; }
+    if (!mods[MODULE_ID] || !mods[MODULE_ID].startedOn) {
+      update.courses[CP_COURSE_ID].modules[MODULE_ID] = { startedOn: t.date, startedAt: t.time };
+    }
+    ref.set(update, { merge: true }).catch(function(e){ console.warn('[courseProgress] start write failed:', e.message); });
+  }).catch(function(e){ console.warn('[courseProgress] start read failed:', e.message); });
+}
+
+function cpWriteModuleComplete() {
+  if (!cpReady()) return;
+  var ref = cpDocRef();
+  ref.get().then(function(snap){
+    var data = snap.exists ? (snap.data() || {}) : {};
+    var course = (data.courses && data.courses[CP_COURSE_ID]) || {};
+    var mods = course.modules || {};
+    var t = cpNow();
+    var startMs = null; var mEntry = mods[MODULE_ID];
+    if (mEntry && mEntry.startedOn && mEntry.startedAt) { startMs = new Date(mEntry.startedOn + 'T' + mEntry.startedAt).getTime(); }
+    var moduleTimeTaken = startMs != null ? cpFmtDuration(t.ms - startMs) : null;
+    var existing = mods[MODULE_ID] || {};
+    var courseUpdate = { modules: {} };
+    courseUpdate.modules[MODULE_ID] = {
+      completedOn: existing.completedOn || t.date,
+      completedAt: existing.completedAt || t.time,
+      timeTaken: existing.timeTaken || moduleTimeTaken
+    };
+    if (course.moduleInProgress === MODULE_ID) courseUpdate.moduleInProgress = null;
+    var completedCount = 0;
+    CP_MODULE_IDS.forEach(function(id){
+      if (id === MODULE_ID) { completedCount++; return; }
+      if (mods[id] && mods[id].completedOn) completedCount++;
+    });
+    if (completedCount >= CP_MODULE_IDS.length && !course.courseCompletedOn) {
+      courseUpdate.courseCompletedOn = t.date; courseUpdate.courseCompletedAt = t.time;
+      if (course.courseStartedOn && course.courseStartedAt) {
+        var cStart = new Date(course.courseStartedOn + 'T' + course.courseStartedAt).getTime();
+        courseUpdate.timeTaken = cpFmtDuration(t.ms - cStart);
+      }
+    }
+    var update = { email: window._learnerEmail || null, name: window._learnerEmail || null, courses: {} };
+    update.courses[CP_COURSE_ID] = courseUpdate;
+    ref.set(update, { merge: true }).catch(function(e){ console.warn('[courseProgress] complete write failed:', e.message); });
+  }).catch(function(e){ console.warn('[courseProgress] complete read failed:', e.message); });
+}
+
+(function() {
+  function addVersion(url) {
+    if (!url || url.startsWith('http') || url.startsWith('#') || url.startsWith('mailto')) return url;
+    if (!url.endsWith('.html') && !url.includes('.html?')) return url;
+    const sep = url.includes('?') ? '&' : '?';
+    if (url.includes('v=' + CACHE_VERSION)) return url;
+    return url + sep + 'v=' + CACHE_VERSION;
+  }
+  document.querySelectorAll('a[href]').forEach(a => { a.href = addVersion(a.getAttribute('href')); });
+})();
+
+buildSections();
+</script>
+
+</body>
+</html>
