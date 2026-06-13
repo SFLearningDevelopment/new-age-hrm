@@ -409,6 +409,36 @@ window.NAHRM_QUESTION_BANK = {
           "Iterate &mdash; ask for specific edits to the existing draft"
         ],
         "correctIndex": 3
+      },
+      {
+        "q": "Why does responsible AI carry a special duty in HR specifically?",
+        "options": [
+          "AI in HR is risk-free once a tool has been formally purchased",
+          "HR is the only function that is ever allowed to use AI tools",
+          "Responsible AI applies only to engineering, never to HR work",
+          "AI decisions scale across many people, so harm spreads fast"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "An AI tool auto-ranks candidates from historical hiring data. The responsible approach is to:",
+        "options": [
+          "Hide the ranking criteria so candidates cannot question them",
+          "Hire straight from the ranking to save the most time possible",
+          "Use it to shortlist for human review and audit it for bias",
+          "Trust it fully, since models are more objective than any person"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "Which statement best reflects human accountability in AI-supported HR decisions?",
+        "options": [
+          "The system decides, so no individual needs to be accountable",
+          "AI advises, but a named person decides and owns the outcome",
+          "Accountability transfers entirely to the tool&rsquo;s software vendor",
+          "Once AI is involved, the decision no longer needs an owner"
+        ],
+        "correctIndex": 1
       }
     ],
     "s3": [
@@ -529,6 +559,11 @@ const SECTION_DATA = [
         "label": "ChatGPT",
         "heading": "ChatGPT (OpenAI)",
         "html": "<p class=\"prose\"><strong>ChatGPT</strong>, built on OpenAI&rsquo;s models, is among the most widely adopted general-purpose AI assistants. Its broad capability and large ecosystem of integrations make it a flexible option for a wide range of drafting, brainstorming, and information tasks.</p><div class=\"example-block\"><div class=\"ex-label\">How can ChatGPT help you?</div>In HR, ChatGPT is commonly used for <strong>first-draft generation, ideation, and quick reformatting</strong> &mdash; brainstorming interview questions, producing several alternative phrasings of an announcement, or turning rough notes into a structured document. Its breadth makes it a useful all-rounder for getting from a blank page to a working draft quickly.</div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; brainstorm (R-C-T-C-F applied)</div><div class=\"prompt-text\">You are a hiring manager&rsquo;s HR partner. Generate 10 behavioural interview questions for a mid-level project manager role, mapped to four competencies: stakeholder management, prioritisation, handling conflict, and delivery under pressure. For each question, add one line on what a strong answer would show.</div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; reformat / alternatives</div><div class=\"prompt-text\">Here are my rough notes for an internal announcement about a new recognition programme. Turn them into a clear, upbeat 180-word message, then give me two alternative versions &mdash; one more formal, one more casual &mdash; so I can choose. [paste notes]</div></div><div class=\"lab-block\"><div class=\"lab-label\">Try it &mdash; lab steps</div><ol class=\"lab-steps\"><li>Open ChatGPT and start a new chat.</li><li>Paste the example prompt with any source notes it should use.</li><li>Review the output; if you asked for alternatives, compare them and pick a direction.</li><li>Refine with specific follow-ups &mdash; &ldquo;tighten question 7&rdquo; or &ldquo;make the formal version warmer.&rdquo;</li><li>Copy the chosen version into your document and verify all details before publishing.</li></ol></div><div class=\"callout callout-warn\"><strong>Common mistakes</strong><ul><li>Entering confidential employee data into a general consumer tool without clear policy.</li><li>Accepting plausible-sounding but unverified facts &mdash; check anything factual.</li><li>Over-broad prompts that produce generic output; narrow the task and competencies.</li></ul></div><div class=\"callout callout-good\"><strong>Best practices to refine your prompt</strong><ul><li>Use it to get from blank page to draft fast, then refine.</li><li>Ask for several variants when tone is uncertain, then choose.</li><li>Map requests to explicit criteria (e.g. competencies) so output is structured, not generic.</li></ul></div><div class=\"callout callout-warn\">Wide adoption does not remove the need for governance: confidential employee data should not be entered into general consumer tools without clear organisational policy.</div>"
+      },
+      {
+        "label": "Responsible AI",
+        "heading": "Responsible AI: using these tools well in HR",
+        "html": "<p class=\"prose\">Every tool in this section is powerful, and in HR that power touches people&rsquo;s careers, livelihoods, and dignity directly &mdash; hiring, promotion, performance, pay, and exit. <strong>Responsible AI</strong> is the set of principles and habits that make sure these tools help people fairly and safely, rather than causing harm at scale. For a new-age HR function, it is not an optional add-on; it is the condition that makes AI adoption trustworthy enough to use at all.</p><p class=\"prose\">The reason HR carries a special duty here is leverage. A biased decision by one manager affects one process; a biased <em>model</em> applied across thousands of candidates or employees scales that harm instantly and invisibly. Responsible AI is how HR keeps the speed and reach of these tools from outrunning fairness and accountability.</p><div class=\"example-block\"><div class=\"ex-label\">The principles, applied to HR</div><strong>Fairness.</strong> Watch for bias. A model trained on past decisions can inherit and scale historical bias &mdash; so AI-supported hiring, promotion, or performance outputs must be checked for disparate impact across groups.<br><br><strong>Transparency &amp; explainability.</strong> People affected by a decision deserve to understand how it was reached. Avoid &ldquo;black-box&rdquo; outputs that no one can explain to a candidate or employee.<br><br><strong>Privacy &amp; data protection.</strong> Employee and candidate data is sensitive and often regulated. Do not paste confidential personal data into consumer tools, and follow the organisation&rsquo;s data-handling policy.<br><br><strong>Human accountability.</strong> AI advises; a person decides and owns the outcome. There should always be a named human accountable for any AI-influenced people decision &mdash; never &ldquo;the system decided.&rdquo;<br><br><strong>Human oversight.</strong> Keep a human in the loop, especially for high-stakes decisions. AI is a decision-support tool, not an autonomous decision-maker, in matters that affect someone&rsquo;s job.</div><p class=\"prose\"><strong>How this ties back to new-age HR.</strong> The earlier tabs argued that new-age HR is becoming data-informed, AI-augmented, and faster. Responsible AI is what keeps that direction <em>sustainable and trustworthy</em>. The same principle that shaped the org-design discussion applies here: AI handles scale and pattern-finding, but people retain judgement, ethics, and accountability. Without that guardrail, AI adoption erodes the very trust the people function depends on; with it, HR can adopt these tools confidently and lead the rest of the organisation in using them well.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; the same tool, responsibly vs. carelessly</div><strong>Carelessly:</strong> a team lets an AI tool auto-rank candidates and hires straight from the ranking, pastes CVs containing personal data into a consumer chatbot, and tells rejected candidates only that &ldquo;the system scored them low.&rdquo; Bias goes unchecked, data is exposed, and no one can explain or stand behind the decision.<br><br><strong>Responsibly:</strong> the same tool is used to <em>shortlist for human review</em>, its recommendations are audited for disparate impact, personal data is handled per policy, and a named recruiter owns each decision and can explain it. Same speed gain &mdash; without the harm.<br><br><strong>The point:</strong> responsible AI is rarely about whether to use the tool, and almost always about <em>how</em>.</div><div class=\"callout callout-good\">Responsible AI is the bridge between capability and trust. It lets new-age HR move fast with AI while protecting the fairness, privacy, and accountability that people decisions demand &mdash; and it is HR&rsquo;s role to model this for the whole organisation.</div>"
       },
       {
         "label": "Others",
