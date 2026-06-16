@@ -1,149 +1,672 @@
 <!DOCTYPE html>
-<!-- ============================================================================
-     NEW-AGE HRM ESSENTIALS — MODULE 2  (TYPE 1 practice example page)
-     EXAMPLE_ID = nahrm-module-2-strategic-hrm
-     courseId   = newAgeHrm2026SFCert
-     ============================================================================ -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 2 · Strategic HRM — New-Age HRM Essentials</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@400;600&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+<title>Module 2 — Strategic HRM &middot; New-Age HRM Essentials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --blue:#1a6eb5; --blue-dark:#0f4c81; --ink:#1f2933; --muted:#647687;
-    --bg:#eef2f8; --card:#ffffff; --border:#d6e0ee; --green:#16a34a; --coral:#c0392b;
+  :root {
+    --bg:#eef2f7; --bg2:#ffffff; --bg3:#f0f4f9; --border:#d0dae8;
+    --text:#1a2332; --text-dim:#4a5568; --text-dimmer:#8fa3bc;
+    --blue:#1a6eb5; --blue-light:#e8f1fb; --blue-mid:#b8d0ed; --blue-dark:#0f4a7a;
+    --coral:#c0392b; --coral-light:#fdf0ee; --coral-mid:#f0b8b2;
+    --green:#1a6b3a; --green-light:#e8f5ed; --green-mid:#a3d4b8;
+    --amber:#92600a; --amber-light:#fdf3e3;
+    --radius:12px;
   }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
-  .userbar{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:var(--card);border-bottom:1px solid var(--border);font-size:14px}
-  .signout{padding:8px 16px;border:none;border-radius:6px;background:var(--blue);color:#fff;cursor:pointer;font-family:inherit}
-  .crumbs{padding:14px 24px;color:var(--muted);font-size:13px}
-  .crumbs a{color:var(--blue);text-decoration:none}
-  .wrap{max-width:860px;margin:0 auto;padding:8px 24px 80px}
-  h1{font-family:'Source Serif 4',Georgia,serif;font-size:30px;margin:8px 0 4px}
-  h3{margin:18px 0 4px}
-  .eyebrow{font-family:'Source Code Pro',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
-  .tag{font-family:'Source Code Pro',monospace;font-size:12px;background:#e3edf9;color:var(--blue-dark);padding:5px 10px;border-radius:14px}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin:18px 0}
-  .card ul{margin:6px 0 0;padding-left:20px}
-  .card li{margin:4px 0}
-  .lead{font-size:17px}
-  .primer{border:1px solid var(--border);border-radius:12px;margin:18px 0;overflow:hidden}
-  .primer summary{cursor:pointer;padding:14px 18px;background:#f4f8fd;font-weight:600;color:var(--blue-dark);list-style:none}
-  .primer summary::-webkit-details-marker{display:none}
-  .primer summary::before{content:'+ ';font-family:'Source Code Pro',monospace}
-  .primer[open] summary::before{content:'\2013 '}
-  .primer .primer-body{padding:0 18px 16px}
-  .q{margin:16px 0}
-  .q .stem{font-weight:600;margin-bottom:8px}
-  .opt{display:block;border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin:8px 0;cursor:pointer}
-  .opt input{margin-right:10px}
-  .submit-btn{padding:11px 20px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-family:inherit;font-size:15px;cursor:pointer}
-  .submit-btn:disabled{background:#c3d3e6;cursor:not-allowed}
-  .submit-note{font-family:'Source Code Pro',monospace;font-size:13px;color:var(--muted);margin-top:8px}
-  .hidden{display:none}
-  .complete-bar{display:flex;align-items:center;gap:12px;border-top:1px solid var(--border);margin-top:22px;padding-top:18px}
-  .complete-bar.disabled{opacity:.5}
-  .complete-bar .redo-btn{margin-left:auto;display:none;border:1px solid var(--border);background:#fff;border-radius:8px;padding:8px 14px;cursor:pointer;font-family:inherit}
-  .complete-bar .redo-btn.visible{display:inline-block}
-  .complete-bar.done{color:var(--green)}
-  .nav-row{display:flex;justify-content:space-between;margin-top:30px}
-  .nav-btn{padding:12px 18px;border-radius:8px;background:var(--blue);color:#fff;text-decoration:none;font-weight:600}
-  .nav-btn.secondary{background:#fff;color:var(--blue);border:1px solid var(--border)}
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Merriweather Sans',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+  .topnav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 32px; height:52px; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:700; color:var(--text-dim); }
+  .topnav a { color:var(--blue); text-decoration:none; }
+  .topnav a:hover { text-decoration:underline; }
+  .sep { opacity:.4; }
+  .module-band { background:var(--bg2); border-bottom:1px solid var(--border); padding:24px 40px; }
+  .module-eyebrow { font-size:13px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); margin-bottom:6px; }
+  .module-title { font-size:26px; font-weight:700; color:var(--text); }
+  .module-progress { font-size:13px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); margin-top:10px; }
+  .refresh-wrap { max-width:1100px; margin:18px auto 0; padding:0 32px; }
+  .refresh-toggle { width:100%; display:flex; align-items:center; gap:12px; padding:16px 20px; background:var(--blue-light); border:1.5px solid var(--blue-mid); border-left:3px solid var(--blue); border-radius:var(--radius); cursor:pointer; font-family:'Merriweather Sans',sans-serif; font-size:15.5px; font-weight:700; color:var(--blue-dark); text-align:left; transition:background .15s; }
+  .refresh-toggle:hover { border-color:var(--blue); }
+  .refresh-toggle .rt-icon { font-size:20px; flex-shrink:0; }
+  .refresh-toggle .rt-text { flex:1; }
+  .refresh-toggle .rt-sub { display:block; font-weight:400; font-size:13px; color:var(--text-dim); margin-top:3px; }
+  .refresh-toggle .rt-chev { font-size:13px; font-family:'Source Code Pro',monospace; transition:transform .2s; flex-shrink:0; }
+  .refresh-panel { display:none; margin-top:14px; background:var(--bg2); border:1.5px solid var(--border); border-radius:var(--radius); padding:30px 34px; animation:fadeIn .25s ease; }
+  .refresh-panel.open { display:block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+  .refresh-panel h3 { font-size:20px; font-weight:700; color:var(--text); margin:0 0 10px; }
+  .refresh-panel p { font-size:16px; color:var(--text-dim); line-height:1.8; margin-bottom:12px; }
+  .refresh-panel p strong { color:var(--text); font-weight:600; }
+  .refresh-panel ul { margin:0 0 14px; padding-left:22px; }
+  .refresh-panel li { font-size:15.5px; color:var(--text-dim); line-height:1.75; margin-bottom:8px; }
+  .refresh-close { margin-top:20px; padding:10px 20px; background:var(--bg2); color:var(--text-dim); border:1.5px solid var(--border); border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .refresh-close:hover { background:var(--bg3); }
+  .section-pills-wrap { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 40px; overflow-x:auto; }
+  .section-pills { display:flex; gap:0; }
+  .section-pill { display:flex; align-items:center; gap:8px; padding:14px 18px; font-size:15px; font-weight:700; color:var(--text-dimmer); border-bottom:2px solid transparent; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; white-space:nowrap; transition:color .15s; font-family:'Merriweather Sans',sans-serif; }
+  .section-pill .pnum { width:26px; height:26px; border-radius:50%; background:var(--bg3); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; font-family:'Source Code Pro',monospace; flex-shrink:0; transition:all .15s; }
+  .section-pill.active { color:var(--blue); border-bottom-color:var(--blue); }
+  .section-pill.active .pnum { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .section-pill.done .pnum { background:var(--green); border-color:var(--green); color:#fff; }
+  .main { max-width:1100px; margin:0 auto; padding:32px; }
+  .section-panel { display:none; }
+  .section-panel.active { display:block; }
+  .tabs-wrap { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius) var(--radius) 0 0; padding:0 8px; overflow-x:auto; }
+  .tabs { display:flex; gap:0; }
+  .tab-btn { display:flex; align-items:center; gap:8px; padding:14px 16px; font-size:14.5px; font-weight:700; color:var(--text-dimmer); border-bottom:2px solid transparent; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; white-space:nowrap; transition:color .15s; font-family:'Merriweather Sans',sans-serif; }
+  .tab-btn .num { width:24px; height:24px; border-radius:50%; background:var(--bg3); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-family:'Source Code Pro',monospace; flex-shrink:0; transition:all .15s; }
+  .tab-btn.active { color:var(--blue); border-bottom-color:var(--blue); }
+  .tab-btn.active .num { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .tab-body { background:var(--bg2); border:1px solid var(--border); border-top:none; border-radius:0 0 var(--radius) var(--radius); padding:32px; }
+  .tab-pane { display:none; }
+  .tab-pane.active { display:block; }
+  .tab-label { font-size:13px; font-family:'Source Code Pro',monospace; font-weight:700; color:var(--blue); letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px; }
+  .tab-heading { font-size:23px; font-weight:700; margin-bottom:18px; }
+  .prose { font-size:16.5px; color:var(--text-dim); line-height:1.85; margin-bottom:18px; }
+  .prose strong { color:var(--text); font-weight:600; }
+  .callout { border-left:3px solid var(--blue); background:var(--blue-light); padding:14px 18px; border-radius:0 8px 8px 0; margin:18px 0; font-size:14.5px; line-height:1.7; color:var(--text-dim); }
+  .callout-warn { border-left-color:var(--amber); background:var(--amber-light); }
+  .callout-bad  { border-left-color:var(--coral); background:var(--coral-light); }
+  .callout-good { border-left-color:var(--green); background:var(--green-light); }
+  .callout strong { color:var(--text); }
+  .example-block { background:var(--bg3); border:1.5px solid var(--border); border-radius:var(--radius); padding:18px 22px; margin:18px 0; font-size:15.5px; line-height:1.8; color:var(--text-dim); }
+  .example-block .ex-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin-bottom:10px; }
+  .lab-block { background:var(--blue-light); border:1.5px solid var(--blue-mid); border-radius:var(--radius); padding:18px 22px; margin:18px 0; }
+  .lab-block .lab-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+  .lab-steps { margin:0; padding-left:22px; }
+  .lab-steps li { font-size:15px; color:var(--text-dim); line-height:1.7; margin-bottom:8px; }
+  .prompt-ex { border:1.5px solid var(--border); border-left:3px solid var(--blue); border-radius:0 8px 8px 0; background:var(--bg3); padding:14px 18px; margin:14px 0; }
+  .prompt-ex .prompt-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-bottom:8px; }
+  .prompt-ex .prompt-text { font-family:'Source Code Pro',monospace; font-size:13.5px; line-height:1.7; color:var(--text); white-space:pre-wrap; }
+  .callout ul { margin:8px 0 0; padding-left:20px; }
+  .callout li { margin:5px 0; }
+  .divider { height:1px; background:var(--border); margin:26px 0; }
+  .tab-nav-row { display:flex; justify-content:space-between; margin-top:24px; }
+  .continue-btn { padding:11px 22px; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:14.5px; font-weight:700; cursor:pointer; font-family:'Merriweather Sans',sans-serif; transition:background .15s; }
+  .continue-btn:hover { background:var(--blue-dark); }
+  .assessment-sub { font-size:14.5px; color:var(--text-dim); line-height:1.7; margin-bottom:22px; }
+  .question-block { margin-bottom:26px; padding-bottom:22px; border-bottom:1px solid var(--border); }
+  .question-block:last-of-type { border-bottom:none; }
+  .q-num { font-size:11px; font-family:'Source Code Pro',monospace; color:var(--blue); letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; font-weight:600; }
+  .q-text { font-size:15.5px; font-weight:600; color:var(--text); line-height:1.5; margin-bottom:14px; }
+  .options { display:flex; flex-direction:column; gap:10px; }
+  .option { display:flex; align-items:flex-start; gap:10px; padding:12px 16px; border-radius:8px; border:1.5px solid var(--border); cursor:pointer; font-size:14.5px; color:var(--text-dim); line-height:1.5; transition:border-color .15s, background .15s; }
+  .option:hover { border-color:var(--blue-mid); background:var(--blue-light); }
+  .option input[type="radio"] { margin-top:3px; flex-shrink:0; accent-color:var(--blue); }
+  .submit-btn { margin-top:18px; padding:12px 28px; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:15px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .submit-btn:disabled { background:var(--border); color:var(--text-dimmer); cursor:not-allowed; }
+  .submit-btn:not(:disabled):hover { background:var(--blue-dark); }
+  .submit-note { font-size:13px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); margin-top:8px; }
+  .submitted-wrap { text-align:center; padding:16px 0; }
+  .submitted-icon { font-size:34px; color:var(--green); margin-bottom:6px; }
+  .submitted-title { font-size:17px; font-weight:700; color:var(--green); margin-bottom:8px; }
+  .submitted-body { font-size:14.5px; color:var(--text-dim); line-height:1.7; }
+  .review-list { text-align:left; margin:18px auto 4px; max-width:760px; }
+  .review-item { border:1.5px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:12px; background:var(--bg2); }
+  .review-item.correct { border-left:3px solid var(--green); }
+  .review-item.incorrect { border-left:3px solid var(--coral); }
+  .review-q { font-size:14.5px; font-weight:600; color:var(--text); line-height:1.5; margin-bottom:10px; }
+  .review-q .verdict { font-family:'Source Code Pro',monospace; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:2px 8px; border-radius:6px; margin-right:8px; }
+  .review-q .verdict.correct { background:var(--green-light); color:var(--green); }
+  .review-q .verdict.incorrect { background:var(--coral-light); color:var(--coral); }
+  .review-opt { font-size:13.5px; line-height:1.6; padding:6px 10px; border-radius:6px; margin:4px 0; color:var(--text-dim); display:flex; gap:8px; align-items:flex-start; }
+  .review-opt .mark { font-family:'Source Code Pro',monospace; font-weight:700; flex-shrink:0; width:16px; }
+  .review-opt.is-correct { background:var(--green-light); color:var(--green); }
+  .review-opt.is-chosen-wrong { background:var(--coral-light); color:var(--coral); }
+  .redo-btn { display:inline-block; margin-top:14px; padding:8px 18px; background:var(--bg2); color:var(--coral); border:1.5px solid var(--coral-mid); border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .redo-btn:hover { background:var(--coral-light); }
+  .complete-bar { display:flex; align-items:center; gap:12px; padding:16px 20px; border-radius:8px; margin:28px auto 8px; max-width:1100px; font-size:14px; font-family:'Source Code Pro',monospace; font-weight:600; border:1.5px solid var(--border); background:var(--bg3); color:var(--text-dimmer); }
+  .complete-bar.done { background:var(--green-light); border-color:var(--green-mid); border-left:3px solid var(--green); color:var(--green); }
+  .bottom-nav { display:flex; justify-content:space-between; padding:28px 0 0; border-top:1px solid var(--border); margin-top:32px; }
+  .nav-btn { padding:12px 20px; border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; text-decoration:none; font-family:'Merriweather Sans',sans-serif; background:var(--blue); color:#fff; border:none; }
+  .nav-btn:hover { background:var(--blue-dark); }
+  .nav-btn.back { background:var(--bg2); color:var(--text-dim); border:1.5px solid var(--border); }
+  footer { text-align:center; padding:26px 32px; font-size:11px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); border-top:1px solid var(--border); line-height:1.7; }
+  .hidden { display:none !important; }
+  .auth-overlay { position:fixed; inset:0; background:rgba(15,30,60,.7); display:flex; align-items:center; justify-content:center; z-index:9999; backdrop-filter:blur(4px); }
+  .auth-overlay.hidden { display:none; }
+  .auth-box { background:#fff; border-radius:16px; padding:48px 40px; max-width:420px; width:90%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.2); }
+  .auth-logo { font-size:32px; margin-bottom:16px; }
+  .auth-title { font-size:22px; font-weight:700; color:var(--text); margin-bottom:8px; }
+  .auth-sub { font-size:15px; color:var(--text-dim); line-height:1.6; margin-bottom:28px; }
+  .auth-google-btn { display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:14px 20px; border-radius:8px; background:var(--blue); color:#fff; border:none; font-size:16px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .auth-google-btn:hover { background:var(--blue-dark); }
+  .auth-google-btn svg { width:20px; height:20px; flex-shrink:0; }
+  .auth-divider { display:flex; align-items:center; gap:10px; margin:16px 0 14px; color:var(--text-dimmer); font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+  .auth-divider::before, .auth-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+  .auth-input { width:100%; padding:12px 14px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; margin-bottom:10px; outline:none; font-family:'Merriweather Sans',sans-serif; color:var(--text); background:#fff; display:block; }
+  .auth-input:focus { border-color:var(--blue); }
+  .auth-email-btn { display:block; width:100%; padding:14px 20px; border-radius:8px; background:var(--blue); color:#fff; border:none; font-size:16px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; margin-top:2px; }
+  .auth-email-btn:hover { background:var(--blue-dark); }
+  .auth-error { font-size:13px; color:var(--coral); margin-top:12px; font-family:'Source Code Pro',monospace; }
+  .auth-user-bar { background:var(--blue-light); border-bottom:1px solid var(--blue-mid); padding:8px 32px; font-size:13px; font-family:'Source Code Pro',monospace; color:var(--blue-dark); display:flex; align-items:center; justify-content:space-between; }
+  .auth-user-bar.hidden { display:none; }
+  .auth-signout { background:var(--blue); color:#fff; border:none; border-radius:8px; cursor:pointer; font-size:14px; font-weight:700; font-family:'Merriweather Sans',sans-serif; padding:8px 18px; text-decoration:none; }
+  @media(max-width:640px) { .topnav,.main,.module-band { padding-left:18px; padding-right:18px; } .section-pills-wrap { padding-left:14px; } .tab-body { padding:22px 18px; } }
 </style>
 </head>
 <body>
 
-<div class="userbar">
-  <span>Welcome, <span id="userEmail">…</span></span>
-  <button class="signout" onclick="pmSignOut()">Sign out</button>
-</div>
-<div class="crumbs">
-  <a href="course-map.html">Back to course dashboard</a> / Module 2 / Strategic HRM
-</div>
-
-<div class="wrap">
-  <div class="eyebrow">Module 2</div>
-  <h1>Strategic HRM</h1>
-  <div class="tags">
-    <span class="tag">Business Alignment</span>
-    <span class="tag">Talent Management</span>
-    <span class="tag">Change & Governance</span>
-  </div>
-
-  <div class="card">
-    <p class="lead">Strategic HRM is the discipline of making people decisions in service of business strategy — and, increasingly, of shaping that strategy in the first place. It turns the context of Module 1 into a repeatable way of working.</p>
-    <h3>From activity to alignment</h3>
-    <p>Operational HR asks <em>are we running our processes well?</em> Strategic HRM asks <em>are our people decisions moving the business toward its objectives?</em> Frameworks like the SHRM model formalize this: workforce planning, capability building, and rewards are all derived from — and feed back into — the organization's strategy, not run as standalone functions.</p>
-    <h3>The strategic levers</h3>
-    <ul><li><strong>Talent management</strong> — a connected approach to attracting, developing, and retaining the capabilities the strategy requires, rather than filling vacancies reactively.</li><li><strong>Strategic staffing &amp; resource allocation</strong> — deploying the right capacity (including a remote and contractual workforce) against the highest-value work.</li><li><strong>Change management</strong> — most strategy fails in execution; HR owns the human side of making change land.</li><li><strong>Building learning organizations</strong> — institutionalizing the ability to learn faster than competitors as a durable advantage.</li><li><strong>HR in M&amp;A, joint ventures, and internationalization</strong> — culture and talent integration are decisive in whether deals create value.</li><li><strong>Corporate governance</strong> — HR's stewardship of ethics, accountability, and board-level people risk.</li></ul>
-  </div>
-
-  <div class="card">
-    <h3>Scenario</h3>
-    <p>A company is acquiring a smaller competitor to enter a new region. Finance has modeled the synergies; operations has a systems-integration plan. Six months in, the deal is underperforming — key talent from the acquired firm is leaving and the two cultures are openly clashing. Leadership asks why no one flagged this earlier.</p><p><strong>The strategic-HR lens:</strong> talent retention and culture integration are not post-close cleanup — they are value drivers that belong in the deal thesis from the start. Strategic HRM puts the People function in the room <em>before</em> the decision, not after.</p>
-  </div>
-
-  <details class="primer">
-    <summary>Refresh your knowledge?</summary>
-    <div class="primer-body">
-      <p>Strategic HRM (SHRM) is the alignment of people strategy with business strategy — a set of frameworks linking workforce planning, capability, and rewards to organizational objectives.</p>
-      <p>A learning organization is one that has built the capability to continuously acquire, share, and apply knowledge — treated here as a durable source of competitive advantage.</p>
-      <p>In M&amp;A, the human factors (talent retention, culture integration, leadership clarity) are frequently the decisive variable in whether expected synergies actually materialize.</p>
-    </div>
-  </details>
-
-  <div id="questionsWrap" class="card">
-    <div class="eyebrow">Check your understanding</div>
-
-    <div class="q">
-      <div class="stem">Q1. What distinguishes Strategic HRM from operational HR?</div>
-      <label class="opt"><input type="radio" name="q1" value="A">It makes people decisions in service of — and helps shape — business strategy, rather than running HR processes as standalone activities.</label>
-      <label class="opt"><input type="radio" name="q1" value="B">It focuses primarily on payroll, leave tracking, and compliance filings.</label>
-      <label class="opt"><input type="radio" name="q1" value="C">It replaces business strategy with a separate HR strategy that operates independently.</label>
-    </div>
-    <div class="q">
-      <div class="stem">Q2. In the M&A scenario, what is the most strategic correction?</div>
-      <label class="opt"><input type="radio" name="q2" value="A">Bring talent retention and culture integration into the deal thesis from the start, treating them as value drivers rather than post-close cleanup.</label>
-      <label class="opt"><input type="radio" name="q2" value="B">Wait until the next quarter and let attrition stabilize on its own.</label>
-      <label class="opt"><input type="radio" name="q2" value="C">Treat the culture clash purely as an operations and systems-integration issue.</label>
-    </div>
-    <div class="q">
-      <div class="stem">Q3. Why is 'building a learning organization' framed as a strategic lever?</div>
-      <label class="opt"><input type="radio" name="q3" value="A">Because the capability to learn and adapt faster than competitors is a durable source of advantage.</label>
-      <label class="opt"><input type="radio" name="q3" value="B">Because it removes the need for any formal business strategy.</label>
-      <label class="opt"><input type="radio" name="q3" value="C">Because it is mainly a way to reduce the training budget.</label>
-    </div>
-    <button class="submit-btn" id="submitAnswersBtn" disabled>Submit answers</button>
-    <div class="submit-note" id="submitNote">Select an answer for each question to submit.</div>
-  </div>
-
-  <div id="submittedWrap" class="card hidden">
-    <p>Answers submitted. Review complete — mark this module as complete below.</p>
-  </div>
-
-  <div class="complete-bar disabled" id="completeBar">
-    <input type="checkbox" id="completeCb" disabled>
-    <label for="completeCb" id="completeLabel">Answer all questions to unlock</label>
-    <button class="redo-btn" id="redoBtn">&#x21BA; Redo module</button>
-  </div>
-
-  <div class="nav-row">
-    <a class="nav-btn secondary" href="nahrm-module-1-future-workplace.html">← Previous</a>
-    <a class="nav-btn" href="nahrm-module-3-ai-digital-hr.html">Next: Digitalization, AI & Data in HR →</a>
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-box">
+    <div class="auth-logo">&#128188;</div>
+    <div class="auth-title">New-Age HRM Essentials</div>
+    <div class="auth-sub">Sign in with your SourceFuse account to access the course and save your progress.</div>
+    <button class="auth-google-btn" id="googleSignInBtn">
+      <svg viewBox="0 0 48 48"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>
+      Sign in with Google
+    </button>
+    <div class="auth-divider">OR</div>
+    <input type="email" class="auth-input" id="authEmail" placeholder="you@sourcefuse.com" autocomplete="email">
+    <input type="password" class="auth-input" id="authPassword" placeholder="Password" autocomplete="current-password">
+    <button class="auth-email-btn" id="emailSignInBtn">Sign in with Email</button>
+    <div class="auth-error hidden" id="authError"></div>
   </div>
 </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<div class="auth-user-bar hidden" id="authUserBar">
+  <span id="authUserEmail"></span>
+  <button class="auth-signout" id="authSignOutBtn">Sign out</button>
+</div>
+
+<nav class="topnav">
+  <a href="course-map.html">Course map</a>
+  <span class="sep">/</span>
+  <span>Module 2</span>
+  <span class="sep">/</span>
+  <span>Strategic HRM</span>
+</nav>
+
+<div class="module-band">
+  <div class="module-eyebrow">Module 2 of 6</div>
+  <div class="module-title">Strategic HRM</div>
+  <div class="module-progress" id="moduleProgress">0 of 4 sections complete</div>
+</div>
+
+<div class="refresh-wrap">
+  <button class="refresh-toggle" id="refreshToggle" onclick="toggleRefresh()">
+    <span class="rt-icon">&#128161;</span>
+    <span class="rt-text">New to the language of strategic HR?
+      <span class="rt-sub">A quick primer on the core terms before you begin &mdash; open it if the sections feel fast-paced.</span>
+    </span>
+    <span class="rt-chev">&#9660; OPEN</span>
+  </button>
+  <div class="refresh-panel" id="refreshPanel">
+    <h3>A few terms worth knowing</h3>
+    <ul>
+      <li><strong>Strategic HRM (SHRM)</strong> &mdash; aligning people strategy with business strategy so HR decisions serve the organisation&rsquo;s objectives.</li>
+      <li><strong>Talent management</strong> &mdash; a connected approach to attracting, retaining, and developing the capabilities the strategy needs.</li>
+      <li><strong>Change management</strong> &mdash; helping people move from a current way of working to a new one, with engagement and capability.</li>
+      <li><strong>Learning organization</strong> &mdash; one that continuously acquires, shares, and applies knowledge as a routine strength.</li>
+      <li><strong>M&amp;A / joint venture</strong> &mdash; mergers, acquisitions, and partnerships where talent and culture integration drive whether value is created.</li>
+      <li><strong>Corporate governance</strong> &mdash; the system of accountability, ethics, and oversight by which an organisation is directed and controlled.</li>
+    </ul>
+    <button class="refresh-close" onclick="toggleRefresh()">Close primer</button>
+  </div>
+</div>
+
+<div class="section-pills-wrap">
+  <div class="section-pills" id="sectionPills">
+    <button class="section-pill active" data-sec="1" onclick="showSection(1)"><span class="pnum">1</span> New Age HR</button>
+    <button class="section-pill" data-sec="2" onclick="showSection(2)"><span class="pnum">2</span> Digital AI Tools</button>
+    <button class="section-pill" data-sec="3" onclick="showSection(3)"><span class="pnum">3</span> Digital HR</button>
+    <button class="section-pill" data-sec="4" onclick="showSection(4)"><span class="pnum">4</span> Managing Organisation Culture Hybrid Workmode</button>
+  </div>
+</div>
+
+<div class="main" id="sectionsRoot"></div>
+
+<div class="complete-bar" id="completeBar">Complete all 4 sections to finish this module.</div>
+
+<div class="main" style="padding-top:0;">
+  <div class="bottom-nav" style="justify-content:flex-start;">
+    <a class="nav-btn back" href="course-map.html">Course map</a>
+  </div>
+</div>
+
+<footer>
+  New-Age HRM Essentials &middot; SourceFuse L&amp;D &middot; Leads to the SF Certified New-Age HRM Practitioner certification
+</footer>
+
 <script>
-const EXAMPLE_ID = 'nahrm-module-2-strategic-hrm';
-const CORRECT = { q1:'A', q2:'A', q3:'A' };
+window.NAHRM_QUESTION_BANK = {
+  "nahrm_m2": {
+    "s1": [
+      {
+        "q": "What best defines Strategic HRM (SHRM)?",
+        "options": [
+          "Running HR processes in isolation from the business plan",
+          "Replacing business strategy with a separate HR-only plan",
+          "Focusing mainly on payroll accuracy and compliance work",
+          "Making people decisions in service of business strategy"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "Which question characterises a strategic (not operational) HR mindset?",
+        "options": [
+          "Are all our currently open roles filled as fast as possible?",
+          "Is our monthly payroll accurate and processed on time?",
+          "Are our people decisions moving the business toward its goals?",
+          "Are our HR policies documented and stored in one place?"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "Why do SHRM alignment frameworks matter?",
+        "options": [
+          "They replace the business strategy with a set of HR targets",
+          "They remove the need to design rewards or workforce plans",
+          "They keep people systems aimed at the business objective",
+          "They let each HR system run on its own separate priorities"
+        ],
+        "correctIndex": 2
+      }
+    ],
+    "s2": [
+      {
+        "q": "What is talent management, understood strategically?",
+        "options": [
+          "A programme focused solely on external recruitment drives",
+          "A process treating hiring, keeping and growing separately",
+          "A way to fill open vacancies only after someone resigns",
+          "One connected system to attract, retain and develop capability"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "What does strategic staffing and resource allocation involve?",
+        "options": [
+          "Allocating people to roles strictly by their length of tenure",
+          "Matching capability to the highest-value work, flexing capacity",
+          "Avoiding all contractors and keeping every task in-house",
+          "Maximising total headcount regardless of the work's value"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "q": "When using a remote contractual workforce, what matters most?",
+        "options": [
+          "Assuming their knowledge stays once their contracts have ended",
+          "Integrating them, retaining knowledge, and treating them fairly",
+          "Relying on them permanently to avoid hiring any staff at all",
+          "Keeping them fully separate from the team's culture entirely"
+        ],
+        "correctIndex": 1
+      }
+    ],
+    "s3": [
+      {
+        "q": "Where does most strategy fail, making it an HR-owned concern?",
+        "options": [
+          "In timing &mdash; strategies fail purely due to market cycles",
+          "In design &mdash; strategies fail mostly because ideas are poor",
+          "In execution &mdash; the human side of adopting a new way",
+          "In budget &mdash; strategies fail only when funding is short"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "What does managing change as a transition (not an announcement) involve?",
+        "options": [
+          "Treating any resistance as a flaw and removing those people",
+          "Building the case, growing capability, supporting the shift",
+          "Sending a clear announcement and expecting fast compliance",
+          "Assuming people simply adapt on their own without support"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "q": "Why is building a learning organization a strategic asset?",
+        "options": [
+          "It simply increases the size of the annual training budget",
+          "It makes adaptability a continuous, routine capability",
+          "It centralises every decision with senior leadership only",
+          "It removes the need for the organisation to ever change"
+        ],
+        "correctIndex": 1
+      }
+    ],
+    "s4": [
+      {
+        "q": "In mergers and acquisitions, what frequently decides success?",
+        "options": [
+          "The systems plan, with culture treated as largely irrelevant",
+          "The legal paperwork, with people issues handled afterwards",
+          "Whether talent and culture are retained and integrated well",
+          "The choice of new logo and the timing of the announcement"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "What is HR's role in internationalization?",
+        "options": [
+          "Ignoring local labour norms and imposing head-office rules",
+          "Avoiding any expansion abroad until all risk is eliminated",
+          "Applying one identical approach everywhere with no change",
+          "Balancing global consistency with adaptation to local norms"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "What is HR's role in corporate governance?",
+        "options": [
+          "Replacing the board's own oversight with HR-made decisions",
+          "Stewarding accountability, ethics and fairness as it grows",
+          "Managing the office facilities and the supplies budget only",
+          "Setting product pricing and the company marketing strategy"
+        ],
+        "correctIndex": 1
+      }
+    ]
+  }
+};
+</script>
 
+<script>
+const CACHE_VERSION = '2026-06-13-v1';
+const MODULE_ID     = 'nahrm_m2';
+const CP_COURSE_ID  = 'newAgeHrm2026SFCert';
+const CP_MODULE_IDS = ['nahrm_m1','nahrm_m2','nahrm_m3','nahrm_m4','nahrm_m5','nahrm_m6'];
+const BANK_KEY      = 'nahrm_m2';
+
+const SECTION_DATA = [
+  {
+    "title": "Strategic Foundations",
+    "tabs": [
+      {
+        "label": "What is Strategic HRM",
+        "heading": "From HR activity to HR strategy",
+        "html": "<p class=\"prose\">The Intro established that new-age HR is becoming data-informed, AI-augmented, and faster. <strong>Strategic HRM (SHRM)</strong> is what gives that capability direction. It is the discipline of making people decisions in deliberate service of business strategy &mdash; and, increasingly, of helping shape that strategy in the first place.</p><p class=\"prose\">The distinction is one of question. Operational HR asks <em>&ldquo;are we running our processes well?&rdquo;</em> &mdash; is payroll accurate, are roles filled, is compliance met. Strategic HRM asks <em>&ldquo;are our people decisions moving the business toward its objectives?&rdquo;</em> Both matter, but only the second earns the People function a seat where strategy is set.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>A business sets a goal to enter two new markets in eighteen months. Operational HR waits to receive hiring requisitions and fills them. Strategic HR is in the planning room earlier &mdash; modelling the capabilities those markets will demand, deciding build-versus-buy for talent, and flagging that the current structure cannot support the expansion. Same goal; one function executes it, the other helps shape whether it succeeds.</div><div class=\"callout\"><strong>The core idea:</strong> Strategic HRM turns HR from a function that responds to decisions into one that informs them. People strategy and business strategy become two expressions of the same plan.</div>"
+      },
+      {
+        "label": "Aligning Strategy",
+        "heading": "Aligning people strategy with business strategy",
+        "html": "<p class=\"prose\">Alignment is the central thread of SHRM, and frameworks exist to make it systematic rather than aspirational. They share a common logic: start from the business strategy, derive the capabilities and behaviours it requires, then design the HR systems &mdash; workforce planning, talent, rewards, structure &mdash; that produce them, and feed the results back into strategy.</p><p class=\"prose\">Done well, this means no major HR system runs in isolation. Reward design reinforces the behaviours the strategy needs; workforce planning anticipates the capabilities it will require; structure enables the speed it depends on. Misalignment is just as visible &mdash; when, for example, a strategy demands collaboration but rewards still incentivise individual heroics.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario — alignment vs. misalignment</div><strong>The strategy:</strong> a firm wants to shift from selling products to selling long-term service relationships.<br><br><strong>Misaligned HR:</strong> sales incentives still reward one-off deal size, hiring still screens for transactional closers, and training still teaches product features. The strategy is announced but the people systems quietly pull the other way &mdash; and the strategy stalls.<br><br><strong>Aligned HR:</strong> incentives reward retention and account growth, hiring screens for relationship-building, and development builds consultative skills. The people systems make the strategy the path of least resistance. <strong>The point:</strong> strategy is delivered or defeated through HR systems, whether or not anyone designed them to.</div><div class=\"callout callout-good\">SHRM frameworks exist to keep people systems pointed at the same objective as the business &mdash; so the organisation does not, in effect, pay its workforce to work against its own strategy.</div>"
+      }
+    ]
+  },
+  {
+    "title": "Talent & Workforce Strategy",
+    "tabs": [
+      {
+        "label": "Talent Management",
+        "heading": "Talent management: attraction, retention, development",
+        "html": "<p class=\"prose\"><strong>Talent management</strong> is the connected approach to attracting, retaining, and developing the capabilities the strategy requires &mdash; treated as one continuous system rather than three separate activities. Its strategic value is that it makes capability a deliberate outcome rather than a hope.</p><p class=\"prose\"><strong>Attraction</strong> draws the right capability in, supported by the employer brand discussed in the Intro. <strong>Retention</strong> keeps it, recognising that losing a critical person is both a cost and a capability gap. <strong>Development</strong> grows it from within, which is often faster and more sustainable than buying it externally &mdash; the reskilling logic from the Intro applied as a talent strategy.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>A firm dependent on a scarce technical skill does not simply post vacancies when people leave. It builds a pipeline &mdash; an employer brand that attracts that skill, development paths that grow it internally, and retention measures focused on the people hardest to replace &mdash; so capability is managed continuously, not scrambled for in a crisis.</div><div class=\"callout\">Talent management connects attraction, retention, and development into one system &mdash; so the organisation reliably has the capabilities its strategy depends on, rather than discovering gaps when it is too late.</div>"
+      },
+      {
+        "label": "Staffing & Flexible Work",
+        "heading": "Strategic staffing and the flexible workforce",
+        "html": "<p class=\"prose\"><strong>Strategic staffing and resource allocation</strong> is about deploying the right capacity against the highest-value work &mdash; not simply maximising headcount, but matching capability to priority. In a new-age context this increasingly includes a <strong>remote and contractual workforce</strong>: contractors, gig specialists, and distributed teams who extend capacity without permanent headcount.</p><p class=\"prose\">Managing this blended workforce is a strategic skill in itself. It widens access to scarce skills and adds flexibility, but raises real questions &mdash; how to integrate contractors into culture and quality standards, how to retain knowledge that walks out when a contract ends, and how to treat a contingent workforce fairly. The work-from-anywhere themes from the Intro apply directly here.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario — blended workforce</div><strong>The situation:</strong> a firm needs a specialised capability for a 9-month initiative but not permanently.<br><br><strong>The reflexive approach:</strong> hire permanent staff, then face an awkward surplus when the initiative ends.<br><br><strong>The strategic approach:</strong> bring in contract specialists for the initiative, pair them with permanent staff so knowledge transfers before the contract ends, and integrate them into the team's standards and culture so quality holds. Capacity flexes to the work &mdash; without a permanent cost or a knowledge cliff.</div><div class=\"callout callout-warn\">Strategic staffing matches capability to the highest-value work and uses a blended permanent-plus-contingent workforce to flex capacity &mdash; provided contractors are integrated, knowledge is retained, and the contingent workforce is treated fairly.</div>"
+      }
+    ]
+  },
+  {
+    "title": "Leading Change & Learning",
+    "tabs": [
+      {
+        "label": "Change Management",
+        "heading": "Change management: where strategy succeeds or fails",
+        "html": "<p class=\"prose\">Most strategy fails not in design but in <strong>execution</strong> &mdash; and execution is where HR owns the human side. <strong>Change management</strong> is the discipline of helping people move from the current way of working to a new one, with the engagement, capability, and trust the change requires. It is the difference between a strategy that is announced and one that is adopted.</p><p class=\"prose\">Change fails for predictable human reasons: unclear why, fear of loss, insufficient capability for the new way, change fatigue, and leaders who underestimate the emotional reality of transition. Strategic HR anticipates these &mdash; communicating the case for change, building the new capabilities, and supporting people through the shift &mdash; rather than treating change as a memo to be sent.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario — same change, two outcomes</div><strong>The change:</strong> a new operating model that alters how teams work.<br><br><strong>Change as an announcement:</strong> leadership communicates the new model and expects compliance. People are unclear why, unequipped for the new way, and anxious about what they lose; adoption stalls and the model is quietly worked around.<br><br><strong>Change as a managed transition:</strong> HR builds the case for why, equips people with the new capabilities, surfaces and addresses fears, and supports managers through it. The same model lands because the human transition was designed, not assumed. <strong>The point:</strong> strategy is only as good as the organisation's ability to change &mdash; which is an HR-owned capability.</div><div class=\"callout\">Change management is how strategy survives contact with reality. Where it is treated as a communication exercise, good strategies stall; where the human transition is genuinely designed, they take hold.</div>"
+      },
+      {
+        "label": "Learning Organizations",
+        "heading": "Building learning organizations",
+        "html": "<p class=\"prose\">If adaptability is the new basis of advantage &mdash; the Intro's central argument &mdash; then the ability to <strong>learn faster than competitors</strong> is the most durable strategic asset of all. A <strong>learning organization</strong> is one that has built the capability to continuously acquire, share, and apply knowledge, so it improves and adapts as a matter of routine rather than crisis.</p><p class=\"prose\">This is more than a training budget. It is a set of conditions: psychological safety to surface problems and admit mistakes, mechanisms to share knowledge across boundaries rather than hoard it, and leadership that treats reflection and experimentation as work, not overhead. In a fast-moving, AI-augmented environment, an organisation that learns continuously compounds its advantage; one that does not, ages.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>After a failed initiative, a non-learning organisation assigns blame and moves on, repeating the mistake elsewhere. A learning organisation runs an honest review, extracts what it teaches, shares it widely, and adjusts &mdash; turning a single failure into organisation-wide capability. Over time the gap between the two compounds.</div><div class=\"callout callout-good\">Building a learning organization institutionalises adaptability itself &mdash; making the capacity to learn, share, and improve a standing strength rather than an occasional effort. It is the structural answer to a world that keeps changing.</div>"
+      }
+    ]
+  },
+  {
+    "title": "HR in Complex Contexts",
+    "tabs": [
+      {
+        "label": "Global & M&A",
+        "heading": "HR in internationalization, mergers, and joint ventures",
+        "html": "<p class=\"prose\">As organisations grow across borders and through deals, HR's strategic role intensifies &mdash; because the hardest part of these moves is almost always human. In <strong>internationalization</strong>, HR navigates different labour norms, cultures, and expectations, balancing global consistency with local adaptation. In <strong>mergers, acquisitions, and joint ventures</strong>, it is frequently the decisive variable in whether the deal creates value.</p><p class=\"prose\">The financial and operational case for a deal can be sound and still fail on people grounds: key talent leaves, two cultures clash, and the synergies modelled on paper never materialise. Strategic HR brings talent retention and culture integration into the deal thesis from the start &mdash; not as post-close cleanup, but as a value driver considered before the decision.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario — the deal that underdelivered</div><strong>The situation:</strong> an acquisition to enter a new region. Finance modelled the synergies; operations planned the systems integration.<br><br><strong>What went wrong:</strong> six months in, key talent from the acquired firm has left and the two cultures are openly clashing. The synergies depended on people who are now gone. Leadership asks why no one flagged it.<br><br><strong>The strategic-HR correction:</strong> treat talent retention and culture integration as part of the deal thesis from day one &mdash; assess cultural fit in diligence, plan retention for critical people, and lead the integration deliberately. The human factors were the deal's real risk; HR was the function positioned to see it.</div><div class=\"callout callout-warn\">In global moves and deals, the human factors &mdash; talent, culture, leadership clarity &mdash; are usually what determine success or failure. Strategic HR earns its seat by bringing these into the decision early, not cleaning up after it.</div>"
+      },
+      {
+        "label": "Corporate Governance",
+        "heading": "Corporate governance and HR's stewardship",
+        "html": "<p class=\"prose\"><strong>Corporate governance</strong> is the system of rules, accountability, and oversight by which an organisation is directed and controlled &mdash; and HR is a meaningful steward within it. Its remit includes the ethics and conduct framework, board-level people and leadership risk, executive accountability, and ensuring the organisation's values are upheld in practice, not just published.</p><p class=\"prose\">This connects directly to the Responsible AI and human-accountability themes from the Intro. As organisations adopt powerful tools and make consequential people decisions, governance is what keeps speed from outrunning responsibility. HR's stewardship &mdash; clear accountability, ethical guardrails, fair process &mdash; is part of how an organisation stays trustworthy as it grows and accelerates.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>When a sensitive people-risk issue arises &mdash; a leadership conduct concern, a fairness question in how decisions are made &mdash; a governance-minded HR function has the frameworks, independence, and board access to address it properly, rather than letting it be managed away quietly. That stewardship protects both people and the organisation's integrity.</div><div class=\"callout\">Corporate governance is where HR's strategic role meets its ethical one &mdash; stewarding accountability, fairness, and conduct so that as the organisation grows and accelerates, responsibility keeps pace with capability.</div>"
+      }
+    ]
+  }
+];
+
+
+function bankFor(sectionKey) {
+  try { return (window.NAHRM_QUESTION_BANK[BANK_KEY] || {})[sectionKey] || []; }
+  catch(e) { return []; }
+}
+
+function buildSections() {
+  const root = document.getElementById('sectionsRoot');
+  SECTION_DATA.forEach(function(sec, idx) {
+    const secNum = idx + 1;
+    const questions = bankFor('s' + secNum);
+    const panel = document.createElement('section');
+    panel.className = 'section-panel' + (secNum === 1 ? ' active' : '');
+    panel.id = 'section-' + secNum;
+
+    const tabs = sec.tabs;
+    const quizTabNum = tabs.length + 1;
+
+    let tabsBtns = '';
+    tabs.forEach(function(t, ti) {
+      tabsBtns += '<button class="tab-btn' + (ti===0?' active':'') + '" onclick="showTab(' + secNum + ',' + (ti+1) + ')">'
+        + '<span class="num">' + (ti+1) + '</span> ' + t.label + '</button>';
+    });
+    tabsBtns += '<button class="tab-btn" onclick="showTab(' + secNum + ',' + quizTabNum + ')"><span class="num">' + quizTabNum + '</span> Check understanding</button>';
+
+    let panes = '';
+    tabs.forEach(function(t, ti) {
+      const nextTab = ti + 2;
+      panes += '<div class="tab-pane' + (ti===0?' active':'') + '" id="pane-' + secNum + '-' + (ti+1) + '">'
+        + '<div class="tab-label">' + t.label + '</div>'
+        + '<div class="tab-heading">' + t.heading + '</div>'
+        + t.html
+        + '<div class="divider"></div>'
+        + '<div class="tab-nav-row"><span></span><button class="continue-btn" onclick="showTab(' + secNum + ',' + nextTab + ')">Continue &rarr;</button></div>'
+        + '</div>';
+    });
+
+    let qHtml = '';
+    questions.forEach(function(q, qi) {
+      let opts = '';
+      q.options.forEach(function(opt, oi) {
+        opts += '<label class="option"><input type="radio" name="s' + secNum + '_q' + (qi+1) + '" value="' + oi + '"> ' + opt + '</label>';
+      });
+      qHtml += '<div class="question-block">'
+        + '<div class="q-num">Question ' + (qi+1) + ' of ' + questions.length + '</div>'
+        + '<div class="q-text">' + q.q + '</div>'
+        + '<div class="options">' + opts + '</div>'
+        + '</div>';
+    });
+
+    panes += '<div class="tab-pane" id="pane-' + secNum + '-' + quizTabNum + '">'
+      + '<div class="tab-label">Check understanding</div>'
+      + '<div class="tab-heading">Check your understanding</div>'
+      + '<div class="questions-wrap" id="questionsWrap-' + secNum + '">'
+      + '<p class="assessment-sub">Answer all ' + questions.length + ' questions to complete this section. Your answers are saved.</p>'
+      + qHtml
+      + '<button class="submit-btn" id="submitBtn-' + secNum + '" disabled>Submit answers</button>'
+      + '<div class="submit-note" id="submitNote-' + secNum + '">Select an answer for each question to submit.</div>'
+      + '</div>'
+      + '<div class="submitted-wrap hidden" id="submittedWrap-' + secNum + '">'
+      + '<div class="submitted-icon">&#10003;</div><div class="submitted-title">Section complete</div>'
+      + '<div class="submitted-body" id="submittedScore-' + secNum + '">Your answers have been recorded and this section is marked complete.</div>'
+      + '<div class="review-list" id="reviewList-' + secNum + '"></div>'
+      + '<button class="redo-btn" id="redoBtn-' + secNum + '">&#x21BA; Redo section</button>'
+      + '</div>'
+      + '</div>';
+
+    panel.innerHTML = '<div class="tabs-wrap"><div class="tabs">' + tabsBtns + '</div></div>'
+      + '<div class="tab-body">' + panes + '</div>';
+    root.appendChild(panel);
+  });
+}
+
+function toggleRefresh() {
+  var t = document.getElementById('refreshToggle');
+  var p = document.getElementById('refreshPanel');
+  if (!t || !p) return;
+  var open = p.classList.toggle('open');
+  t.classList.toggle('open', open);
+  var chev = t.querySelector('.rt-chev');
+  if (chev) chev.textContent = open ? '\u25B2 CLOSE' : '\u25BC OPEN';
+}
+
+function showSection(n) {
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.section-pill').forEach(b => b.classList.remove('active'));
+  document.getElementById('section-' + n)?.classList.add('active');
+  document.querySelector('.section-pill[data-sec="' + n + '"]')?.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function showTab(sec, t) {
+  const panel = document.getElementById('section-' + sec);
+  if (!panel) return;
+  const paneCount = panel.querySelectorAll('.tab-pane').length;
+  if (t > paneCount) t = paneCount;
+  panel.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  panel.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  panel.querySelector('#pane-' + sec + '-' + t)?.classList.add('active');
+  panel.querySelectorAll('.tab-btn')[t-1]?.classList.add('active');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function loadSec(secNum) {
+  const k = window.nahrmLearnerKey('s' + secNum);
+  try { return JSON.parse(localStorage.getItem(k)) || {}; } catch(e) { return {}; }
+}
+function saveSec(secNum, s) {
+  const k = window.nahrmLearnerKey('s' + secNum);
+  localStorage.setItem(k, JSON.stringify(s));
+}
+function updateModuleProgress() {
+  let done = 0;
+  for (let i = 1; i <= SECTION_DATA.length; i++) {
+    if (loadSec(i).complete) {
+      done++;
+      document.querySelector('.section-pill[data-sec="' + i + '"]')?.classList.add('done');
+    }
+  }
+  const el = document.getElementById('moduleProgress');
+  if (el) el.textContent = done + ' of ' + SECTION_DATA.length + ' sections complete';
+  const bar = document.getElementById('completeBar');
+  if (done >= SECTION_DATA.length) {
+    if (bar) { bar.classList.add('done'); bar.textContent = '\u2713 Module complete \u2014 all ' + SECTION_DATA.length + ' sections finished.'; }
+    cpWriteModuleComplete();
+  } else if (bar) {
+    bar.classList.remove('done');
+    bar.textContent = 'Complete all ' + SECTION_DATA.length + ' sections to finish this module. (' + done + '/' + SECTION_DATA.length + ' done)';
+  }
+}
+
+function wireSection(secNum) {
+  const questions = bankFor('s' + secNum);
+  const qCount = questions.length;
+  const submitBtn = document.getElementById('submitBtn-' + secNum);
+  const note = document.getElementById('submitNote-' + secNum);
+
+  function checkAll() {
+    let answered = 0;
+    for (let i = 1; i <= qCount; i++) {
+      if (document.querySelector('input[name="s' + secNum + '_q' + i + '"]:checked')) answered++;
+    }
+    const all = answered === qCount;
+    if (submitBtn) submitBtn.disabled = !all;
+    if (note) note.textContent = all ? 'Ready to submit.' : 'Select an answer for each question to submit.';
+  }
+  document.querySelectorAll('#questionsWrap-' + secNum + ' input[type="radio"]').forEach(function(r) {
+    r.addEventListener('change', checkAll);
+  });
+
+  function renderReview() {
+    const s = loadSec(secNum);
+    const scoreEl = document.getElementById('submittedScore-' + secNum);
+    const listEl = document.getElementById('reviewList-' + secNum);
+    if (!listEl) return;
+    const answers = s.answers || {};
+    const score = (typeof s.score === 'number') ? s.score : 0;
+    const total = (typeof s.total === 'number') ? s.total : qCount;
+    if (scoreEl) scoreEl.innerHTML = 'Your answers have been recorded and this section is marked complete.<br>You scored <strong>' + score + ' of ' + total + '</strong>. Review the answers below, then redo the section if you&rsquo;d like.';
+    let html = '';
+    questions.forEach(function(q, qi) {
+      const chosen = answers['q' + (qi+1)];
+      const isCorrect = chosen === q.correctIndex;
+      let opts = '';
+      q.options.forEach(function(opt, oi) {
+        let cls = 'review-opt', mark = '';
+        if (oi === q.correctIndex) { cls += ' is-correct'; mark = '&#10003;'; }
+        else if (oi === chosen) { cls += ' is-chosen-wrong'; mark = '&#10007;'; }
+        opts += '<div class="' + cls + '"><span class="mark">' + mark + '</span><span>' + opt
+              + (oi === q.correctIndex ? '  <em>(correct answer)</em>' : (oi === chosen ? '  <em>(your answer)</em>' : '')) + '</span></div>';
+      });
+      html += '<div class="review-item ' + (isCorrect ? 'correct' : 'incorrect') + '">'
+            + '<div class="review-q"><span class="verdict ' + (isCorrect ? 'correct' : 'incorrect') + '">'
+            + (isCorrect ? 'Correct' : 'Incorrect') + '</span>Q' + (qi+1) + '. ' + q.q + '</div>'
+            + opts + '</div>';
+    });
+    listEl.innerHTML = html;
+  }
+
+  function showSubmitted() {
+    document.getElementById('questionsWrap-' + secNum)?.classList.add('hidden');
+    document.getElementById('submittedWrap-' + secNum)?.classList.remove('hidden');
+    renderReview();
+  }
+
+  if (submitBtn) submitBtn.addEventListener('click', function() {
+    const answers = {};
+    for (let i = 1; i <= qCount; i++) {
+      const v = document.querySelector('input[name="s' + secNum + '_q' + i + '"]:checked')?.value;
+      answers['q' + i] = v != null ? parseInt(v, 10) : null;
+    }
+    const correct = {};
+    questions.forEach(function(q, qi) { correct['q' + (qi+1)] = q.correctIndex; });
+    let score = 0;
+    for (let i = 1; i <= qCount; i++) { if (answers['q'+i] === correct['q'+i]) score++; }
+    const s = loadSec(secNum);
+    s.sectionId='s'+secNum; s.answers=answers; s.correct=correct; s.score=score; s.total=qCount;
+    s.submittedAt=new Date().toISOString(); s.complete=true;
+    saveSec(secNum, s);
+    showSubmitted();
+    document.querySelector('.section-pill[data-sec="' + secNum + '"]')?.classList.add('done');
+    updateModuleProgress();
+  });
+
+  const redo = document.getElementById('redoBtn-' + secNum);
+  if (redo) redo.addEventListener('click', function() {
+    localStorage.removeItem(window.nahrmLearnerKey('s' + secNum));
+    document.getElementById('questionsWrap-' + secNum)?.classList.remove('hidden');
+    document.getElementById('submittedWrap-' + secNum)?.classList.add('hidden');
+    document.querySelectorAll('#questionsWrap-' + secNum + ' input[type="radio"]').forEach(function(r){ r.checked = false; });
+    if (submitBtn) submitBtn.disabled = true;
+    if (note) note.textContent = 'Select an answer for each question to submit.';
+    document.querySelector('.section-pill[data-sec="' + secNum + '"]')?.classList.remove('done');
+    updateModuleProgress();
+  });
+
+  if (loadSec(secNum).submittedAt) showSubmitted();
+}
+
+document.addEventListener('learnerReady', function() {
+  cpEnsureModuleStarted();
+  for (let i = 1; i <= SECTION_DATA.length; i++) wireSection(i);
+  updateModuleProgress();
+});
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
 const _FB_CONFIG = {
   apiKey: "AIzaSyC-I-IOCq2fCwa471fsD5xOn6SYQSBDp7Q",
   authDomain: "sfcertification-grafana.firebaseapp.com",
@@ -152,138 +675,78 @@ const _FB_CONFIG = {
   messagingSenderId: "227322696511",
   appId: "1:227322696511:web:12e7ced7dd3d45fa06798a"
 };
-if (!window._fbApp) window._fbApp = firebase.initializeApp(_FB_CONFIG);
+if (!window._fbApp) { window._fbApp = firebase.initializeApp(_FB_CONFIG); }
 const _auth = firebase.auth(window._fbApp);
-window._learnerUid = 'anon'; window._learnerEmail = null;
+const _provider = new firebase.auth.GoogleAuthProvider();
+_provider.setCustomParameters({ hd: 'sourcefuse.com' });
 
-window.pmLearnerKey = function(exampleId){ return 'pm_learner_' + window._learnerUid + '_' + exampleId; };
-function loadState(){ try { return JSON.parse(localStorage.getItem(window.pmLearnerKey(EXAMPLE_ID))) || {}; } catch(e){ return {}; } }
-function saveState(s){ localStorage.setItem(window.pmLearnerKey(EXAMPLE_ID), JSON.stringify(s)); }
+window.nahrmLearnerKey = function(sectionId) {
+  const uid = window._learnerUid || 'anon';
+  return 'nahrm_learner_' + uid + '_' + MODULE_ID + '_' + sectionId;
+};
 
-window.pmSignOut = function(){ _auth.signOut(); };
+function showOverlay() { document.getElementById('authOverlay')?.classList.remove('hidden'); }
+function hideOverlay() { document.getElementById('authOverlay')?.classList.add('hidden'); }
+function showUserBar(email) {
+  const bar = document.getElementById('authUserBar'); const em = document.getElementById('authUserEmail');
+  if (bar) bar.classList.remove('hidden'); if (em) em.textContent = 'Welcome, ' + email;
+}
 
-_auth.onAuthStateChanged(function(user){
-  if (user && user.email && user.email.endsWith('@sourcefuse.com')) {
-    window._learnerUid = user.uid; window._learnerEmail = user.email;
-    document.getElementById('userEmail').textContent = user.email;
+_auth.onAuthStateChanged(function(user) {
+  if (user) {
+    const email = user.email || '';
+    if (!email.endsWith('@sourcefuse.com')) {
+      const errEl = document.getElementById('authError');
+      if (errEl) { errEl.textContent = 'Please use your @sourcefuse.com account.'; errEl.classList.remove('hidden'); }
+      _auth.signOut(); showOverlay(); return;
+    }
+    window._learnerUid = user.uid; window._learnerEmail = email;
+    hideOverlay(); showUserBar(email);
     document.dispatchEvent(new Event('learnerReady'));
-  } else if (user && user.email && !user.email.endsWith('@sourcefuse.com')) {
-    _auth.signOut();
   } else {
-    window.location.href = 'course-map.html';
+    window._learnerUid = null; window._learnerEmail = null;
+    showOverlay();
   }
 });
 
-document.addEventListener('learnerReady', function() {
-  const state = loadState();
-  cpEnsureModuleStarted();
-
-  const completeCb = document.getElementById('completeCb');
-  if (completeCb) {
-    completeCb.addEventListener('change', function() {
-      if (!completeCb.checked) return;
-      const s = loadState(); s.complete = true; saveState(s);
-      activateCompleteBar(true);
-    });
-  }
-  const redoBtn = document.getElementById('redoBtn');
-  if (redoBtn) redoBtn.addEventListener('click', function() {
-    localStorage.removeItem(window.pmLearnerKey(EXAMPLE_ID));
-    document.getElementById('questionsWrap').classList.remove('hidden');
-    document.getElementById('submittedWrap').classList.add('hidden');
-    document.querySelectorAll('.opt input[type="radio"]').forEach(function(r){ r.checked = false; });
-    document.getElementById('submitAnswersBtn').disabled = true;
-    document.getElementById('submitNote').textContent = 'Select an answer for each question to submit.';
-    activateCompleteBar(false);
+document.getElementById('googleSignInBtn')?.addEventListener('click', function() {
+  _auth.signInWithPopup(_provider).catch(function(err) {
+    const el = document.getElementById('authError');
+    if (el) { el.textContent = err.message; el.classList.remove('hidden'); }
   });
-
-  if (state.complete) { showSubmittedState(); activateCompleteBar(true); return; }
-  if (state.submittedAt) { showSubmittedState(); activateCompleteBar(false); return; }
-
-  document.querySelectorAll('.opt input[type="radio"]').forEach(function(radio){
-    radio.addEventListener('change', checkAllAnswered);
-  });
-  document.getElementById('submitAnswersBtn').addEventListener('click', submitAnswers);
 });
 
-function checkAllAnswered() {
-  const all = ['q1','q2','q3'].every(n => document.querySelector('input[name="'+n+'"]:checked'));
-  document.getElementById('submitAnswersBtn').disabled = !all;
-  document.getElementById('submitNote').textContent = all ? 'Ready to submit.' : 'Select an answer for each question to submit.';
-}
-
-function submitAnswers() {
-  const answers = {};
-  ['q1','q2','q3'].forEach(function(n){
-    const v = document.querySelector('input[name="'+n+'"]:checked'); if (v) answers[n] = v.value;
+function nahrmEmailSignIn() {
+  const email = (document.getElementById('authEmail')?.value || '').trim().toLowerCase();
+  const pwd = document.getElementById('authPassword')?.value || '';
+  const el = document.getElementById('authError');
+  function fail(msg){ if(el){ el.textContent = msg; el.classList.remove('hidden'); } }
+  if (el) el.classList.add('hidden');
+  if (!email || !pwd) { fail('Please enter your email and password.'); return; }
+  if (!email.endsWith('@sourcefuse.com')) { fail('Only @sourcefuse.com accounts are allowed.'); return; }
+  _auth.signInWithEmailAndPassword(email, pwd).catch(function(err) {
+    const m = (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') ? 'Incorrect password.'
+            : (err.code === 'auth/user-not-found') ? 'No account found for this email.' : err.message;
+    fail(m);
   });
-  let correct = 0;
-  Object.keys(CORRECT).forEach(function(n){ if (answers[n] === CORRECT[n]) correct++; });
-  const s = loadState();
-  s.exampleId = EXAMPLE_ID; s.answers = answers; s.correct = correct;
-  s.submittedAt = new Date().toISOString();
-  saveState(s);
-  showSubmittedState();
-  activateCompleteBar(false);
 }
+document.getElementById('emailSignInBtn')?.addEventListener('click', nahrmEmailSignIn);
+document.getElementById('authPassword')?.addEventListener('keydown', function(e){ if(e.key==='Enter') nahrmEmailSignIn(); });
+document.getElementById('authSignOutBtn')?.addEventListener('click', function() { _auth.signOut(); });
 
-function showSubmittedState() {
-  document.getElementById('questionsWrap').classList.add('hidden');
-  document.getElementById('submittedWrap').classList.remove('hidden');
-}
-
-function activateCompleteBar(isDone) {
-  const bar = document.getElementById('completeBar');
-  const cb = document.getElementById('completeCb');
-  const label = document.getElementById('completeLabel');
-  const redo = document.getElementById('redoBtn');
-  if (!bar) return;
-  if (isDone) {
-    bar.className = 'complete-bar done';
-    cb.disabled = true; cb.checked = true;
-    label.textContent = '\u2713 Module complete';
-    if (redo) redo.classList.add('visible');
-    cpWriteModuleComplete();
-  } else {
-    bar.className = 'complete-bar';
-    cb.disabled = false; cb.checked = false;
-    label.textContent = 'Mark module as complete';
-    if (redo) redo.classList.remove('visible');
-  }
-}
-</script>
-
-<script>
-var CP_COURSE_ID = 'newAgeHrm2026SFCert';
-var THIS_MODULE_KEY = EXAMPLE_ID;
-var CP_MODULE_IDS = [
-  'nahrm-module-1-future-workplace',
-  'nahrm-module-2-strategic-hrm',
-  'nahrm-module-3-ai-digital-hr',
-  'nahrm-module-4-next-gen-talent',
-  'nahrm-module-5-wellness',
-  'nahrm-module-6-dei'
-];
-
+// ── courseProgress (uid-keyed; module map) ──
 function cpNow() {
-  var d = new Date();
-  var pad = function(n){ return String(n).padStart(2,'0'); };
-  return {
-    date: d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()),
-    time: pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds()),
-    ms:   d.getTime()
-  };
+  var d = new Date(); var pad = function(n){ return String(n).padStart(2,'0'); };
+  return { date: d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()), time: pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds()), ms: d.getTime() };
 }
 function cpFmtDuration(ms) {
   if (ms == null || ms < 0) return null;
   var s = Math.floor(ms/1000), h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
-  if (h > 0) return h+'h '+m+'m '+sec+'s';
-  if (m > 0) return m+'m '+sec+'s';
-  return sec+'s';
+  if (h > 0) return h+'h '+m+'m '+sec+'s'; if (m > 0) return m+'m '+sec+'s'; return sec+'s';
 }
 function cpDb() { return firebase.firestore(window._fbApp); }
 function cpDocRef() { return cpDb().collection('courseProgress').doc(window._learnerUid); }
-function cpReady() { return window._fbApp && window._learnerUid && window._learnerUid !== 'anon'; }
+function cpReady() { return window._fbApp && window._learnerUid && window._learnerUid !== 'anon' && window._learnerUid != null; }
 
 function cpEnsureModuleStarted() {
   if (!cpReady()) return;
@@ -294,13 +757,12 @@ function cpEnsureModuleStarted() {
     var mods = course.modules || {};
     var t = cpNow();
     var update = { email: window._learnerEmail || null, name: window._learnerEmail || null, courses: {} };
-    update.courses[CP_COURSE_ID] = { moduleInProgress: THIS_MODULE_KEY, modules: {} };
-    if (!mods[THIS_MODULE_KEY] || !mods[THIS_MODULE_KEY].startedOn) {
-      update.courses[CP_COURSE_ID].modules[THIS_MODULE_KEY] = { startedOn: t.date, startedAt: t.time };
-    }
+    update.courses[CP_COURSE_ID] = { moduleInProgress: MODULE_ID, modules: {} };
     if (!course.courseStartedOn) { update.courses[CP_COURSE_ID].courseStartedOn = t.date; update.courses[CP_COURSE_ID].courseStartedAt = t.time; }
-    ref.set(update, { merge: true })
-       .catch(function(e){ console.warn('[courseProgress] start write failed:', e.message); });
+    if (!mods[MODULE_ID] || !mods[MODULE_ID].startedOn) {
+      update.courses[CP_COURSE_ID].modules[MODULE_ID] = { startedOn: t.date, startedAt: t.time };
+    }
+    ref.set(update, { merge: true }).catch(function(e){ console.warn('[courseProgress] start write failed:', e.message); });
   }).catch(function(e){ console.warn('[courseProgress] start read failed:', e.message); });
 }
 
@@ -312,30 +774,24 @@ function cpWriteModuleComplete() {
     var course = (data.courses && data.courses[CP_COURSE_ID]) || {};
     var mods = course.modules || {};
     var t = cpNow();
-    var startMs = null;
-    var mEntry = mods[THIS_MODULE_KEY];
-    if (mEntry && mEntry.startedOn && mEntry.startedAt) {
-      startMs = new Date(mEntry.startedOn + 'T' + mEntry.startedAt).getTime();
-    }
+    var startMs = null; var mEntry = mods[MODULE_ID];
+    if (mEntry && mEntry.startedOn && mEntry.startedAt) { startMs = new Date(mEntry.startedOn + 'T' + mEntry.startedAt).getTime(); }
     var moduleTimeTaken = startMs != null ? cpFmtDuration(t.ms - startMs) : null;
-
+    var existing = mods[MODULE_ID] || {};
     var courseUpdate = { modules: {} };
-    var existing = mods[THIS_MODULE_KEY] || {};
-    courseUpdate.modules[THIS_MODULE_KEY] = {
+    courseUpdate.modules[MODULE_ID] = {
       completedOn: existing.completedOn || t.date,
       completedAt: existing.completedAt || t.time,
-      timeTaken:   existing.timeTaken   || moduleTimeTaken
+      timeTaken: existing.timeTaken || moduleTimeTaken
     };
-    if (course.moduleInProgress === THIS_MODULE_KEY) courseUpdate.moduleInProgress = null;
-
+    if (course.moduleInProgress === MODULE_ID) courseUpdate.moduleInProgress = null;
     var completedCount = 0;
     CP_MODULE_IDS.forEach(function(id){
-      if (id === THIS_MODULE_KEY) { completedCount++; return; }
+      if (id === MODULE_ID) { completedCount++; return; }
       if (mods[id] && mods[id].completedOn) completedCount++;
     });
     if (completedCount >= CP_MODULE_IDS.length && !course.courseCompletedOn) {
-      courseUpdate.courseCompletedOn = t.date;
-      courseUpdate.courseCompletedAt = t.time;
+      courseUpdate.courseCompletedOn = t.date; courseUpdate.courseCompletedAt = t.time;
       if (course.courseStartedOn && course.courseStartedAt) {
         var cStart = new Date(course.courseStartedOn + 'T' + course.courseStartedAt).getTime();
         courseUpdate.timeTaken = cpFmtDuration(t.ms - cStart);
@@ -343,11 +799,23 @@ function cpWriteModuleComplete() {
     }
     var update = { email: window._learnerEmail || null, name: window._learnerEmail || null, courses: {} };
     update.courses[CP_COURSE_ID] = courseUpdate;
-    ref.set(update, { merge: true })
-       .catch(function(e){ console.warn('[courseProgress] complete write failed:', e.message); });
+    ref.set(update, { merge: true }).catch(function(e){ console.warn('[courseProgress] complete write failed:', e.message); });
   }).catch(function(e){ console.warn('[courseProgress] complete read failed:', e.message); });
 }
 
+(function() {
+  function addVersion(url) {
+    if (!url || url.startsWith('http') || url.startsWith('#') || url.startsWith('mailto')) return url;
+    if (!url.endsWith('.html') && !url.includes('.html?')) return url;
+    const sep = url.includes('?') ? '&' : '?';
+    if (url.includes('v=' + CACHE_VERSION)) return url;
+    return url + sep + 'v=' + CACHE_VERSION;
+  }
+  document.querySelectorAll('a[href]').forEach(a => { a.href = addVersion(a.getAttribute('href')); });
+})();
+
+buildSections();
 </script>
+
 </body>
 </html>
