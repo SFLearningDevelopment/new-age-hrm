@@ -72,37 +72,37 @@
   <div class="progress" id="progressLine">0 of 6 complete</div>
 
   <div class="modules" id="moduleGrid">
-    <a class="mod-card" href="nahrm-module-1-future-workplace.html" data-example="nahrm-module-1-future-workplace">
+    <a class="mod-card" href="nahrm-module-1-intro-new-age-hr.html" data-module="nahrm_m1">
       <div class="mod-num">Module 1</div>
-      <div class="mod-title">Future Workplace &amp; New-Age HRM</div>
-      <div class="mod-desc">Digital change, Industry 4.0, hybrid work, and HR's evolving strategic mandate.</div>
+      <div class="mod-title">Introduction to New-Age HR</div>
+      <div class="mod-desc">Digital HR, AI tools and prompt engineering, responsible AI, employer branding, and hybrid culture.</div>
       <span class="status">Not started</span>
     </a>
-    <a class="mod-card" href="nahrm-module-2-strategic-hrm.html" data-example="nahrm-module-2-strategic-hrm">
+    <a class="mod-card" href="nahrm-module-2-strategic-hrm.html" data-module="nahrm_m2">
       <div class="mod-num">Module 2</div>
       <div class="mod-title">Strategic HRM</div>
-      <div class="mod-desc">Aligning HR with business strategy: talent, change, learning organizations, governance.</div>
+      <div class="mod-desc">Aligning HR with business strategy: talent, staffing, change, learning organizations, governance.</div>
       <span class="status">Not started</span>
     </a>
-    <a class="mod-card" href="nahrm-module-3-ai-digital-hr.html" data-example="nahrm-module-3-ai-digital-hr">
+    <a class="mod-card" href="nahrm-module-3-ai-digital-hr.html" data-module="nahrm_m3">
       <div class="mod-num">Module 3</div>
       <div class="mod-title">Digitalization, AI &amp; Data in HR</div>
       <div class="mod-desc">Analytics, predictive modeling, and GenAI across the HR lifecycle — with ethics.</div>
       <span class="status">Not started</span>
     </a>
-    <a class="mod-card" href="nahrm-module-4-next-gen-talent.html" data-example="nahrm-module-4-next-gen-talent">
+    <a class="mod-card" href="nahrm-module-4-next-gen-talent.html" data-module="nahrm_m4">
       <div class="mod-num">Module 4</div>
       <div class="mod-title">Motivating &amp; Managing Next-Gen Talent</div>
       <div class="mod-desc">Modern careers, succession, performance management, and rewards for next-gen employees.</div>
       <span class="status">Not started</span>
     </a>
-    <a class="mod-card" href="nahrm-module-5-wellness.html" data-example="nahrm-module-5-wellness">
+    <a class="mod-card" href="nahrm-module-5-wellness.html" data-module="nahrm_m5">
       <div class="mod-num">Module 5</div>
       <div class="mod-title">Employee Wellness &amp; Mental Well-Being</div>
       <div class="mod-desc">Post-pandemic realities, workplace stress, and mental health as a strategic priority.</div>
       <span class="status">Not started</span>
     </a>
-    <a class="mod-card" href="nahrm-module-6-dei.html" data-example="nahrm-module-6-dei">
+    <a class="mod-card" href="nahrm-module-6-dei.html" data-module="nahrm_m6">
       <div class="mod-num">Module 6</div>
       <div class="mod-title">Diversity, Equity &amp; Inclusion</div>
       <div class="mod-desc">The business case, dimensions of diversity, psychological foundations, leading inclusively.</div>
@@ -131,15 +131,18 @@ if (!window._fbApp) window._fbApp = firebase.initializeApp(_FB_CONFIG);
 const _auth = firebase.auth(window._fbApp);
 window._learnerUid='anon'; window._learnerEmail=null;
 
-// Ordered list — each = filename minus .html. Mirrors CP_MODULE_IDS.
-const EXAMPLE_IDS = [
-  'nahrm-module-1-future-workplace',
-  'nahrm-module-2-strategic-hrm',
-  'nahrm-module-3-ai-digital-hr',
-  'nahrm-module-4-next-gen-talent',
-  'nahrm-module-5-wellness',
-  'nahrm-module-6-dei'
+// Course + ordered module-id list (matches each module page's MODULE_ID).
+const CP_COURSE_ID = 'newAgeHrm2026SFCert';
+const MODULE_IDS = [
+  'nahrm_m1',
+  'nahrm_m2',
+  'nahrm_m3',
+  'nahrm_m4',
+  'nahrm_m5',
+  'nahrm_m6'
 ];
+// Section counts per module — used by the localStorage fallback to decide completion.
+const MODULE_SECTION_COUNT = { nahrm_m1:4, nahrm_m2:4, nahrm_m3:4, nahrm_m4:4, nahrm_m5:4, nahrm_m6:4 };
 
 window.pmSignOut = function(){ _auth.signOut(); };
 window.pmGoogleSignIn = function(){
@@ -167,20 +170,50 @@ _auth.onAuthStateChanged(function(user){
   else { document.getElementById('authPanel').classList.remove('hidden'); document.getElementById('courseWrap').classList.add('hidden'); }
 });
 
-function exComplete(id){
-  try { const s=JSON.parse(localStorage.getItem('pm_learner_'+window._learnerUid+'_'+id)); return !!(s && s.complete===true); }
-  catch(e){ return false; }
+// localStorage fallback: a module is complete when all its sections are marked complete.
+function moduleCompleteLocal(moduleId){
+  try {
+    const n = MODULE_SECTION_COUNT[moduleId] || 0;
+    if (!n) return false;
+    for (let i=1; i<=n; i++){
+      const s = JSON.parse(localStorage.getItem('nahrm_learner_'+window._learnerUid+'_'+moduleId+'_s'+i));
+      if (!(s && s.complete===true)) return false;
+    }
+    return true;
+  } catch(e){ return false; }
 }
-function renderProgress(){
+
+// Read durable completion from Firestore courseProgress, fall back to localStorage.
+async function fetchCompletedModules(){
+  const completed = {};
+  try {
+    const snap = await firebase.firestore(window._fbApp)
+      .collection('courseProgress').doc(window._learnerUid).get();
+    const data = snap.exists ? (snap.data()||{}) : {};
+    const course = (data.courses && data.courses[CP_COURSE_ID]) || {};
+    const mods = course.modules || {};
+    MODULE_IDS.forEach(function(id){
+      if (mods[id] && mods[id].completedOn) completed[id] = true;
+    });
+  } catch(e){ /* fall through to localStorage */ }
+  // localStorage fallback for anything not yet confirmed by Firestore
+  MODULE_IDS.forEach(function(id){
+    if (!completed[id] && moduleCompleteLocal(id)) completed[id] = true;
+  });
+  return completed;
+}
+
+async function renderProgress(){
+  const completed = await fetchCompletedModules();
   let done=0;
   document.querySelectorAll('.mod-card').forEach(function(card){
-    const id=card.getAttribute('data-example');
+    const id=card.getAttribute('data-module');
     const st=card.querySelector('.status');
-    if (exComplete(id)) { st.textContent='✓ Complete'; st.classList.add('done'); done++; }
+    if (completed[id]) { st.textContent='✓ Complete'; st.classList.add('done'); done++; }
     else { st.textContent='Not started'; st.classList.remove('done'); }
   });
-  document.getElementById('progressLine').textContent = done+' of '+EXAMPLE_IDS.length+' complete';
-  const allDone = done>=EXAMPLE_IDS.length && EXAMPLE_IDS.length>0;
+  document.getElementById('progressLine').textContent = done+' of '+MODULE_IDS.length+' complete';
+  const allDone = done>=MODULE_IDS.length && MODULE_IDS.length>0;
   const card=document.getElementById('certCard'), link=document.getElementById('certLink');
   if (allDone){ card.classList.add('unlocked'); link.style.pointerEvents='auto'; }
   else { card.classList.remove('unlocked'); link.style.pointerEvents='none'; }
