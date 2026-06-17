@@ -1,167 +1,825 @@
 <!DOCTYPE html>
-<!-- ============================================================================
-     NEW-AGE HRM ESSENTIALS — MODULE 1  (TYPE 1 practice example page)
-     EXAMPLE_ID = nahrm-module-1-future-workplace  (= filename minus .html)
-     courseId   = newAgeHrm2026SFCert
-     Completion gated on the "Mark module as complete" checkbox (complete===true).
-     ============================================================================ -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 1 · Future Workplace &amp; New-Age HRM — New-Age HRM Essentials</title>
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@400;600&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+<title>Module 1 — Introduction to New-Age HR &middot; New-Age HRM Essentials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --blue:#1a6eb5; --blue-dark:#0f4c81; --ink:#1f2933; --muted:#647687;
-    --bg:#eef2f8; --card:#ffffff; --border:#d6e0ee; --green:#16a34a; --coral:#c0392b;
+  :root {
+    --bg:#eef2f7; --bg2:#ffffff; --bg3:#f0f4f9; --border:#d0dae8;
+    --text:#1a2332; --text-dim:#4a5568; --text-dimmer:#8fa3bc;
+    --blue:#1a6eb5; --blue-light:#e8f1fb; --blue-mid:#b8d0ed; --blue-dark:#0f4a7a;
+    --coral:#c0392b; --coral-light:#fdf0ee; --coral-mid:#f0b8b2;
+    --green:#1a6b3a; --green-light:#e8f5ed; --green-mid:#a3d4b8;
+    --amber:#92600a; --amber-light:#fdf3e3;
+    --radius:12px;
   }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:'Source Sans 3',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
-  .userbar{display:flex;justify-content:space-between;align-items:center;padding:12px 24px;background:var(--card);border-bottom:1px solid var(--border);font-size:14px}
-  .signout{padding:8px 16px;border:none;border-radius:6px;background:var(--blue);color:#fff;cursor:pointer;font-family:inherit}
-  .crumbs{padding:14px 24px;color:var(--muted);font-size:13px}
-  .crumbs a{color:var(--blue);text-decoration:none}
-  .wrap{max-width:860px;margin:0 auto;padding:8px 24px 80px}
-  h1{font-family:'Source Serif 4',Georgia,serif;font-size:30px;margin:8px 0 4px}
-  h3{margin:18px 0 4px}
-  .eyebrow{font-family:'Source Code Pro',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
-  .tags{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
-  .tag{font-family:'Source Code Pro',monospace;font-size:12px;background:#e3edf9;color:var(--blue-dark);padding:5px 10px;border-radius:14px}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin:18px 0}
-  .card ul{margin:6px 0 0;padding-left:20px}
-  .card li{margin:4px 0}
-  .lead{font-size:17px}
-  .primer{border:1px solid var(--border);border-radius:12px;margin:18px 0;overflow:hidden}
-  .primer summary{cursor:pointer;padding:14px 18px;background:#f4f8fd;font-weight:600;color:var(--blue-dark);list-style:none}
-  .primer summary::-webkit-details-marker{display:none}
-  .primer summary::before{content:'+ ';font-family:'Source Code Pro',monospace}
-  .primer[open] summary::before{content:'– '}
-  .primer .primer-body{padding:0 18px 16px}
-  .q{margin:16px 0}
-  .q .stem{font-weight:600;margin-bottom:8px}
-  .opt{display:block;border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin:8px 0;cursor:pointer}
-  .opt input{margin-right:10px}
-  .submit-btn{padding:11px 20px;border:none;border-radius:8px;background:var(--blue);color:#fff;font-family:inherit;font-size:15px;cursor:pointer}
-  .submit-btn:disabled{background:#c3d3e6;cursor:not-allowed}
-  .submit-note{font-family:'Source Code Pro',monospace;font-size:13px;color:var(--muted);margin-top:8px}
-  .hidden{display:none}
-  .complete-bar{display:flex;align-items:center;gap:12px;border-top:1px solid var(--border);margin-top:22px;padding-top:18px}
-  .complete-bar.disabled{opacity:.5}
-  .complete-bar .redo-btn{margin-left:auto;display:none;border:1px solid var(--border);background:#fff;border-radius:8px;padding:8px 14px;cursor:pointer;font-family:inherit}
-  .complete-bar .redo-btn.visible{display:inline-block}
-  .complete-bar.done{color:var(--green)}
-  .nav-row{display:flex;justify-content:space-between;margin-top:30px}
-  .nav-btn{padding:12px 18px;border-radius:8px;background:var(--blue);color:#fff;text-decoration:none;font-weight:600}
-  .nav-btn.secondary{background:#fff;color:var(--blue);border:1px solid var(--border)}
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Merriweather Sans',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+  .topnav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 32px; height:52px; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:700; color:var(--text-dim); }
+  .topnav a { color:var(--blue); text-decoration:none; }
+  .topnav a:hover { text-decoration:underline; }
+  .sep { opacity:.4; }
+  .module-band { background:var(--bg2); border-bottom:1px solid var(--border); padding:24px 40px; }
+  .module-eyebrow { font-size:13px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); margin-bottom:6px; }
+  .module-title { font-size:26px; font-weight:700; color:var(--text); }
+  .module-progress { font-size:13px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); margin-top:10px; }
+  .refresh-wrap { max-width:1100px; margin:18px auto 0; padding:0 32px; }
+  .refresh-toggle { width:100%; display:flex; align-items:center; gap:12px; padding:16px 20px; background:var(--blue-light); border:1.5px solid var(--blue-mid); border-left:3px solid var(--blue); border-radius:var(--radius); cursor:pointer; font-family:'Merriweather Sans',sans-serif; font-size:15.5px; font-weight:700; color:var(--blue-dark); text-align:left; transition:background .15s; }
+  .refresh-toggle:hover { border-color:var(--blue); }
+  .refresh-toggle .rt-icon { font-size:20px; flex-shrink:0; }
+  .refresh-toggle .rt-text { flex:1; }
+  .refresh-toggle .rt-sub { display:block; font-weight:400; font-size:13px; color:var(--text-dim); margin-top:3px; }
+  .refresh-toggle .rt-chev { font-size:13px; font-family:'Source Code Pro',monospace; transition:transform .2s; flex-shrink:0; }
+  .refresh-panel { display:none; margin-top:14px; background:var(--bg2); border:1.5px solid var(--border); border-radius:var(--radius); padding:30px 34px; animation:fadeIn .25s ease; }
+  .refresh-panel.open { display:block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+  .refresh-panel h3 { font-size:20px; font-weight:700; color:var(--text); margin:0 0 10px; }
+  .refresh-panel p { font-size:16px; color:var(--text-dim); line-height:1.8; margin-bottom:12px; }
+  .refresh-panel p strong { color:var(--text); font-weight:600; }
+  .refresh-panel ul { margin:0 0 14px; padding-left:22px; }
+  .refresh-panel li { font-size:15.5px; color:var(--text-dim); line-height:1.75; margin-bottom:8px; }
+  .refresh-close { margin-top:20px; padding:10px 20px; background:var(--bg2); color:var(--text-dim); border:1.5px solid var(--border); border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .refresh-close:hover { background:var(--bg3); }
+  .section-pills-wrap { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 40px; overflow-x:auto; }
+  .section-pills { display:flex; gap:0; }
+  .section-pill { display:flex; align-items:center; gap:8px; padding:14px 18px; font-size:15px; font-weight:700; color:var(--text-dimmer); border-bottom:2px solid transparent; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; white-space:nowrap; transition:color .15s; font-family:'Merriweather Sans',sans-serif; }
+  .section-pill .pnum { width:26px; height:26px; border-radius:50%; background:var(--bg3); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; font-family:'Source Code Pro',monospace; flex-shrink:0; transition:all .15s; }
+  .section-pill.active { color:var(--blue); border-bottom-color:var(--blue); }
+  .section-pill.active .pnum { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .section-pill.done .pnum { background:var(--green); border-color:var(--green); color:#fff; }
+  .main { max-width:1100px; margin:0 auto; padding:32px; }
+  .section-panel { display:none; }
+  .section-panel.active { display:block; }
+  .tabs-wrap { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius) var(--radius) 0 0; padding:0 8px; overflow-x:auto; }
+  .tabs { display:flex; gap:0; }
+  .tab-btn { display:flex; align-items:center; gap:8px; padding:14px 16px; font-size:14.5px; font-weight:700; color:var(--text-dimmer); border-bottom:2px solid transparent; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; white-space:nowrap; transition:color .15s; font-family:'Merriweather Sans',sans-serif; }
+  .tab-btn .num { width:24px; height:24px; border-radius:50%; background:var(--bg3); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-family:'Source Code Pro',monospace; flex-shrink:0; transition:all .15s; }
+  .tab-btn.active { color:var(--blue); border-bottom-color:var(--blue); }
+  .tab-btn.active .num { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .tab-body { background:var(--bg2); border:1px solid var(--border); border-top:none; border-radius:0 0 var(--radius) var(--radius); padding:32px; }
+  .tab-pane { display:none; }
+  .tab-pane.active { display:block; }
+  .tab-label { font-size:13px; font-family:'Source Code Pro',monospace; font-weight:700; color:var(--blue); letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px; }
+  .tab-heading { font-size:23px; font-weight:700; margin-bottom:18px; }
+  .prose { font-size:16.5px; color:var(--text-dim); line-height:1.85; margin-bottom:18px; }
+  .prose strong { color:var(--text); font-weight:600; }
+  .callout { border-left:3px solid var(--blue); background:var(--blue-light); padding:14px 18px; border-radius:0 8px 8px 0; margin:18px 0; font-size:14.5px; line-height:1.7; color:var(--text-dim); }
+  .callout-warn { border-left-color:var(--amber); background:var(--amber-light); }
+  .callout-bad  { border-left-color:var(--coral); background:var(--coral-light); }
+  .callout-good { border-left-color:var(--green); background:var(--green-light); }
+  .callout strong { color:var(--text); }
+  .example-block { background:var(--bg3); border:1.5px solid var(--border); border-radius:var(--radius); padding:18px 22px; margin:18px 0; font-size:15.5px; line-height:1.8; color:var(--text-dim); }
+  .example-block .ex-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin-bottom:10px; }
+  .lab-block { background:var(--blue-light); border:1.5px solid var(--blue-mid); border-radius:var(--radius); padding:18px 22px; margin:18px 0; }
+  .lab-block .lab-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+  .lab-steps { margin:0; padding-left:22px; }
+  .lab-steps li { font-size:15px; color:var(--text-dim); line-height:1.7; margin-bottom:8px; }
+  .prompt-ex { border:1.5px solid var(--border); border-left:3px solid var(--blue); border-radius:0 8px 8px 0; background:var(--bg3); padding:14px 18px; margin:14px 0; }
+  .prompt-ex .prompt-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-bottom:8px; }
+  .prompt-ex .prompt-text { font-family:'Source Code Pro',monospace; font-size:13.5px; line-height:1.7; color:var(--text); white-space:pre-wrap; }
+  .callout ul { margin:8px 0 0; padding-left:20px; }
+  .callout li { margin:5px 0; }
+  .divider { height:1px; background:var(--border); margin:26px 0; }
+  .tab-nav-row { display:flex; justify-content:space-between; margin-top:24px; }
+  .continue-btn { padding:11px 22px; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:14.5px; font-weight:700; cursor:pointer; font-family:'Merriweather Sans',sans-serif; transition:background .15s; }
+  .continue-btn:hover { background:var(--blue-dark); }
+  .assessment-sub { font-size:14.5px; color:var(--text-dim); line-height:1.7; margin-bottom:22px; }
+  .question-block { margin-bottom:26px; padding-bottom:22px; border-bottom:1px solid var(--border); }
+  .question-block:last-of-type { border-bottom:none; }
+  .q-num { font-size:11px; font-family:'Source Code Pro',monospace; color:var(--blue); letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; font-weight:600; }
+  .q-text { font-size:15.5px; font-weight:600; color:var(--text); line-height:1.5; margin-bottom:14px; }
+  .options { display:flex; flex-direction:column; gap:10px; }
+  .option { display:flex; align-items:flex-start; gap:10px; padding:12px 16px; border-radius:8px; border:1.5px solid var(--border); cursor:pointer; font-size:14.5px; color:var(--text-dim); line-height:1.5; transition:border-color .15s, background .15s; }
+  .option:hover { border-color:var(--blue-mid); background:var(--blue-light); }
+  .option input[type="radio"] { margin-top:3px; flex-shrink:0; accent-color:var(--blue); }
+  .submit-btn { margin-top:18px; padding:12px 28px; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:15px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .submit-btn:disabled { background:var(--border); color:var(--text-dimmer); cursor:not-allowed; }
+  .submit-btn:not(:disabled):hover { background:var(--blue-dark); }
+  .submit-note { font-size:13px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); margin-top:8px; }
+  .submitted-wrap { text-align:center; padding:16px 0; }
+  .submitted-icon { font-size:34px; color:var(--green); margin-bottom:6px; }
+  .submitted-title { font-size:17px; font-weight:700; color:var(--green); margin-bottom:8px; }
+  .submitted-body { font-size:14.5px; color:var(--text-dim); line-height:1.7; }
+  .review-list { text-align:left; margin:18px auto 4px; max-width:760px; }
+  .review-item { border:1.5px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:12px; background:var(--bg2); }
+  .review-item.correct { border-left:3px solid var(--green); }
+  .review-item.incorrect { border-left:3px solid var(--coral); }
+  .review-q { font-size:14.5px; font-weight:600; color:var(--text); line-height:1.5; margin-bottom:10px; }
+  .review-q .verdict { font-family:'Source Code Pro',monospace; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:2px 8px; border-radius:6px; margin-right:8px; }
+  .review-q .verdict.correct { background:var(--green-light); color:var(--green); }
+  .review-q .verdict.incorrect { background:var(--coral-light); color:var(--coral); }
+  .review-opt { font-size:13.5px; line-height:1.6; padding:6px 10px; border-radius:6px; margin:4px 0; color:var(--text-dim); display:flex; gap:8px; align-items:flex-start; }
+  .review-opt .mark { font-family:'Source Code Pro',monospace; font-weight:700; flex-shrink:0; width:16px; }
+  .review-opt.is-correct { background:var(--green-light); color:var(--green); }
+  .review-opt.is-chosen-wrong { background:var(--coral-light); color:var(--coral); }
+  .redo-btn { display:inline-block; margin-top:14px; padding:8px 18px; background:var(--bg2); color:var(--coral); border:1.5px solid var(--coral-mid); border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .redo-btn:hover { background:var(--coral-light); }
+  .complete-bar { display:flex; align-items:center; gap:12px; padding:16px 20px; border-radius:8px; margin:28px auto 8px; max-width:1100px; font-size:14px; font-family:'Source Code Pro',monospace; font-weight:600; border:1.5px solid var(--border); background:var(--bg3); color:var(--text-dimmer); }
+  .complete-bar.done { background:var(--green-light); border-color:var(--green-mid); border-left:3px solid var(--green); color:var(--green); }
+  .bottom-nav { display:flex; justify-content:space-between; padding:28px 0 0; border-top:1px solid var(--border); margin-top:32px; }
+  .nav-btn { padding:12px 20px; border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; text-decoration:none; font-family:'Merriweather Sans',sans-serif; background:var(--blue); color:#fff; border:none; }
+  .nav-btn:hover { background:var(--blue-dark); }
+  .nav-btn.back { background:var(--bg2); color:var(--text-dim); border:1.5px solid var(--border); }
+  footer { text-align:center; padding:26px 32px; font-size:11px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); border-top:1px solid var(--border); line-height:1.7; }
+  .hidden { display:none !important; }
+  .auth-overlay { position:fixed; inset:0; background:rgba(15,30,60,.7); display:flex; align-items:center; justify-content:center; z-index:9999; backdrop-filter:blur(4px); }
+  .auth-overlay.hidden { display:none; }
+  .auth-box { background:#fff; border-radius:16px; padding:48px 40px; max-width:420px; width:90%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.2); }
+  .auth-logo { font-size:32px; margin-bottom:16px; }
+  .auth-title { font-size:22px; font-weight:700; color:var(--text); margin-bottom:8px; }
+  .auth-sub { font-size:15px; color:var(--text-dim); line-height:1.6; margin-bottom:28px; }
+  .auth-google-btn { display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:14px 20px; border-radius:8px; background:var(--blue); color:#fff; border:none; font-size:16px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .auth-google-btn:hover { background:var(--blue-dark); }
+  .auth-google-btn svg { width:20px; height:20px; flex-shrink:0; }
+  .auth-divider { display:flex; align-items:center; gap:10px; margin:16px 0 14px; color:var(--text-dimmer); font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+  .auth-divider::before, .auth-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+  .auth-input { width:100%; padding:12px 14px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; margin-bottom:10px; outline:none; font-family:'Merriweather Sans',sans-serif; color:var(--text); background:#fff; display:block; }
+  .auth-input:focus { border-color:var(--blue); }
+  .auth-email-btn { display:block; width:100%; padding:14px 20px; border-radius:8px; background:var(--blue); color:#fff; border:none; font-size:16px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; margin-top:2px; }
+  .auth-email-btn:hover { background:var(--blue-dark); }
+  .auth-error { font-size:13px; color:var(--coral); margin-top:12px; font-family:'Source Code Pro',monospace; }
+  .auth-user-bar { background:var(--blue-light); border-bottom:1px solid var(--blue-mid); padding:8px 32px; font-size:13px; font-family:'Source Code Pro',monospace; color:var(--blue-dark); display:flex; align-items:center; justify-content:space-between; }
+  .auth-user-bar.hidden { display:none; }
+  .auth-signout { background:var(--blue); color:#fff; border:none; border-radius:8px; cursor:pointer; font-size:14px; font-weight:700; font-family:'Merriweather Sans',sans-serif; padding:8px 18px; text-decoration:none; }
+  @media(max-width:640px) { .topnav,.main,.module-band { padding-left:18px; padding-right:18px; } .section-pills-wrap { padding-left:14px; } .tab-body { padding:22px 18px; } }
 </style>
 </head>
 <body>
 
-<div class="userbar">
-  <span>Welcome, <span id="userEmail">…</span></span>
-  <button class="signout" onclick="pmSignOut()">Sign out</button>
-</div>
-<div class="crumbs">
-  <a href="course-map.html">Back to course dashboard</a> / Module 1 / Future Workplace &amp; New-Age HRM
-</div>
-
-<div class="wrap">
-  <div class="eyebrow">Module 1</div>
-  <h1>Future Workplace &amp; New-Age HRM</h1>
-  <div class="tags">
-    <span class="tag">Industry 4.0</span>
-    <span class="tag">Hybrid Work</span>
-    <span class="tag">HR Strategy</span>
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-box">
+    <div class="auth-logo">&#128188;</div>
+    <div class="auth-title">New-Age HRM Essentials</div>
+    <div class="auth-sub">Sign in with your SourceFuse account to access the course and save your progress.</div>
+    <button class="auth-google-btn" id="googleSignInBtn">
+      <svg viewBox="0 0 48 48"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>
+      Sign in with Google
+    </button>
+    <div class="auth-divider">OR</div>
+    <input type="email" class="auth-input" id="authEmail" placeholder="you@sourcefuse.com" autocomplete="email">
+    <input type="password" class="auth-input" id="authPassword" placeholder="Password" autocomplete="current-password">
+    <button class="auth-email-btn" id="emailSignInBtn">Sign in with Email</button>
+    <div class="auth-error hidden" id="authError"></div>
   </div>
+</div>
 
-  <!-- CONCEPT PRIMER (worked content) -->
-  <div class="card">
-    <p class="lead">The workplace has shifted faster in the last five years than in the previous fifty. New-Age HRM is the response: HR moving from an administrative support function to a strategic shaper of how organizations are designed, staffed, and led.</p>
+<div class="auth-user-bar hidden" id="authUserBar">
+  <span id="authUserEmail"></span>
+  <button class="auth-signout" id="authSignOutBtn">Sign out</button>
+</div>
 
-    <h3>Why the workplace changed</h3>
+<nav class="topnav">
+  <span>Module 1</span>
+  <span class="sep">/</span>
+  <span>Introduction to New-Age HR</span>
+</nav>
+
+<div class="module-band">
+  <div class="module-eyebrow">Module 1 of 6</div>
+  <div class="module-title">Introduction to New-Age HR</div>
+  <div class="module-progress" id="moduleProgress">0 of 4 sections complete</div>
+</div>
+
+<div class="refresh-wrap">
+  <button class="refresh-toggle" id="refreshToggle" onclick="toggleRefresh()">
+    <span class="rt-icon">&#128161;</span>
+    <span class="rt-text">New to the language of digital HR?
+      <span class="rt-sub">A quick primer on the core terms before you begin &mdash; open it if the sections feel fast-paced.</span>
+    </span>
+    <span class="rt-chev">&#9660; OPEN</span>
+  </button>
+  <div class="refresh-panel" id="refreshPanel">
+    <h3>A few terms worth knowing</h3>
     <ul>
-      <li><strong>Digital change &amp; Industry 4.0.</strong> Automation, AI, and connected systems are reshaping which skills matter — and how fast they go stale. Continuous reskilling is now a core HR responsibility, not an occasional project.</li>
-      <li><strong>Work-from-anywhere &amp; hybrid models.</strong> Talent is no longer bound by geography. HR must manage culture, performance, and belonging across distributed teams rather than a single office.</li>
-      <li><strong>New-age organization design.</strong> Rigid hierarchies are giving way to flatter, networked, project-based structures. HR co-owns the org-design conversation with business leaders.</li>
-      <li><strong>Employer brand in a social world.</strong> How an organization treats people is now public. Employer branding and candidate experience directly affect talent attraction.</li>
+      <li><strong>Digital HR</strong> &mdash; using technology and data to run and improve people processes, and to make HR a faster, more evidence-based partner to the business.</li>
+      <li><strong>Industry 4.0</strong> &mdash; the current wave of automation, AI, data, and connected systems reshaping work and the skills it requires.</li>
+      <li><strong>Reskilling / upskilling</strong> &mdash; helping people learn new capabilities (reskilling) or deepen existing ones (upskilling) as roles evolve.</li>
+      <li><strong>Employer branding</strong> &mdash; an organisation&rsquo;s reputation as a place to work, increasingly shaped in public and by employees themselves.</li>
+      <li><strong>Hybrid / work-from-anywhere</strong> &mdash; work models that combine or remove fixed-location constraints, changing how culture is sustained.</li>
+      <li><strong>Generative AI assistant</strong> &mdash; a tool (such as Claude, Gemini, or ChatGPT) that produces text and other content to support &mdash; not replace &mdash; human work.</li>
     </ul>
-
-    <h3>What "New-Age HRM" actually means</h3>
-    <p>It is the deliberate repositioning of HR as a strategic partner that anticipates change ("looking into the future"), designs adaptive organizations, and builds the workforce capabilities a digital business needs — rather than simply processing transactions after decisions are made elsewhere.</p>
-  </div>
-
-  <!-- SCENARIO -->
-  <div class="card">
-    <h3>Scenario</h3>
-    <p>A 1,200-person services firm has just adopted a permanent hybrid model. Engineering wants to hire from three new cities; managers are worried about maintaining culture and fair performance reviews across locations; and leadership is asking HR to "make the future of work work." The CHRO asks the HR team where to focus first.</p>
-    <p><strong>The new-age lens:</strong> rather than treating this as a policy-writing task, HR frames it as an organization-design and capability question — what structures, norms, and skills let a distributed workforce perform and belong? That reframing is the essence of Module 1.</p>
-  </div>
-
-  <!-- OPTIONAL PRIMER -->
-  <details class="primer">
-    <summary>Refresh your knowledge?</summary>
-    <div class="primer-body">
-      <p><strong>Industry 4.0</strong> — the current wave of automation and data exchange in work and manufacturing (AI, IoT, cyber-physical systems), driving rapid skill churn.</p>
-      <p><strong>Work-from-anywhere (WFA)</strong> — a model where employees can work from any location, distinct from remote-from-a-fixed-home; raises questions of equity, culture, and coordination.</p>
-      <p><strong>Strategic HR partner</strong> — HR that shapes business decisions up front (org design, workforce planning) rather than executing them afterward.</p>
-    </div>
-  </details>
-
-  <!-- CHECK YOUR UNDERSTANDING -->
-  <div id="questionsWrap" class="card">
-    <div class="eyebrow">Check your understanding</div>
-
-    <div class="q">
-      <div class="stem">Q1. Which best captures the core shift behind "New-Age HRM"?</div>
-      <label class="opt"><input type="radio" name="q1" value="A">HR moving from an administrative support function to a strategic shaper of organization design, talent, and the future of work.</label>
-      <label class="opt"><input type="radio" name="q1" value="B">HR focusing primarily on payroll accuracy and statutory compliance.</label>
-      <label class="opt"><input type="radio" name="q1" value="C">HR outsourcing recruitment to reduce headcount cost.</label>
-    </div>
-    <div class="q">
-      <div class="stem">Q2. In the hybrid-firm scenario, what is the most "new-age" way for HR to frame the problem?</div>
-      <label class="opt"><input type="radio" name="q2" value="A">As an organization-design and capability question — what structures, norms, and skills let a distributed workforce perform and belong.</label>
-      <label class="opt"><input type="radio" name="q2" value="B">As a one-time task of writing a remote-work policy document.</label>
-      <label class="opt"><input type="radio" name="q2" value="C">As a reason to require everyone back in the office full-time.</label>
-    </div>
-    <div class="q">
-      <div class="stem">Q3. Why does Industry 4.0 make continuous reskilling an HR priority?</div>
-      <label class="opt"><input type="radio" name="q3" value="A">Because automation and AI rapidly change which skills matter, so workforce capabilities must be refreshed continuously.</label>
-      <label class="opt"><input type="radio" name="q3" value="B">Because it eliminates the need for any human workers.</label>
-      <label class="opt"><input type="radio" name="q3" value="C">Because it makes employer branding irrelevant.</label>
-    </div>
-
-    <button class="submit-btn" id="submitAnswersBtn" disabled>Submit answers</button>
-    <div class="submit-note" id="submitNote">Select an answer for each question to submit.</div>
-  </div>
-
-  <div id="submittedWrap" class="card hidden">
-    <p>Answers submitted. Review complete — mark this module as complete below.</p>
-  </div>
-
-  <!-- COMPLETE BAR -->
-  <div class="complete-bar disabled" id="completeBar">
-    <input type="checkbox" id="completeCb" disabled>
-    <label for="completeCb" id="completeLabel">Answer all questions to unlock</label>
-    <button class="redo-btn" id="redoBtn">&#x21BA; Redo module</button>
-  </div>
-
-  <div class="nav-row">
-    <a class="nav-btn secondary" href="course-map.html">← Course map</a>
-    <a class="nav-btn" href="nahrm-module-2-strategic-hrm.html">Next: Strategic HRM →</a>
+    <button class="refresh-close" onclick="toggleRefresh()">Close primer</button>
   </div>
 </div>
 
-<!-- Firebase compat SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-<script>
-/* ===== IDENTIFIERS — set at creation ====================================== */
-const EXAMPLE_ID = 'nahrm-module-1-future-workplace';   // = filename minus .html
-const CORRECT = { q1:'A', q2:'A', q3:'A' };  // answer key (scoring only; not gating)
+<div class="section-pills-wrap">
+  <div class="section-pills" id="sectionPills">
+    <button class="section-pill active" data-sec="1" onclick="showSection(1)"><span class="pnum">1</span> New Age HR</button>
+    <button class="section-pill" data-sec="2" onclick="showSection(2)"><span class="pnum">2</span> Digital AI Tools</button>
+    <button class="section-pill" data-sec="3" onclick="showSection(3)"><span class="pnum">3</span> Digital HR</button>
+    <button class="section-pill" data-sec="4" onclick="showSection(4)"><span class="pnum">4</span> Managing Organisation Culture Hybrid Workmode</button>
+  </div>
+</div>
 
-/* ===== Firebase init ====================================================== */
+<div class="main" id="sectionsRoot"></div>
+
+<div class="complete-bar" id="completeBar">Complete all 4 sections to finish this module.</div>
+
+<div class="main" style="padding-top:0;">
+  <div class="bottom-nav" style="justify-content:flex-end;">
+    <a class="nav-btn" href="haix-talent-acquisition.html">Module 2 &mdash; Talent Acquisition &rarr;</a>
+  </div>
+</div>
+
+<footer>
+  New-Age HRM Essentials &middot; SourceFuse L&amp;D &middot; Leads to the SF Certified New-Age HRM Practitioner certification
+</footer>
+
+<script>
+window.NAHRM_QUESTION_BANK = {
+  "nahrm_m1": {
+    "s1": [
+      {
+        "q": "What best describes &lsquo;digital change in HR&rsquo;?",
+        "options": [
+          "Limiting HR to payroll and compliance only",
+          "Removing technology from HR processes",
+          "Repositioning HR toward a data-informed, anticipatory partner to the business",
+          "Replacing all HR staff with software"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "&lsquo;Digital capability&rsquo; in HR consists of four parts working together. Which list captures them?",
+        "options": [
+          "Replacing managers with dashboards",
+          "Buying the newest software and nothing more",
+          "Collecting as much data as possible and storing it",
+          "Connected data, analytics that surface signals, the literacy to interpret them, and a process to act in time"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "Why is building digital capability described as a sequenced investment (connect, analyse, interpret, act)?",
+        "options": [
+          "Because the tool is the hardest and most important part",
+          "Each layer depends on the one beneath it, so skipping or reordering layers makes the investment underdeliver",
+          "Because the order of investment makes no difference",
+          "Because only the final step matters"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "q": "Why does Industry 4.0 make continuous reskilling a core HR responsibility?",
+        "options": [
+          "Because it eliminates the need for any workforce",
+          "Because the half-life of skills is shrinking as automation and AI change which skills retain value",
+          "Because skills never change once learned",
+          "Because training budgets must always be reduced"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "q": "New-age organization design tends to favour:",
+        "options": [
+          "Eliminating all reporting lines",
+          "Taller hierarchies with more approval layers",
+          "Flatter, networked, project-based structures that increase adaptability",
+          "Permanent fixed departments with no cross-function work"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "When AI (generative, agentic, ML) is built into a team, what does a sustainable and productive design do?",
+        "options": [
+          "Treat AI only as a headcount-reduction lever",
+          "Remove all human oversight so the AI can run unsupervised",
+          "Reskill people into higher-judgement, AI-directing roles with clear human accountability, rather than using AI purely to cut headcount",
+          "Cut the team as far as possible and expect the same output faster"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "In a new-age, AI-augmented workplace, why does prompt engineering matter for the workforce?",
+        "options": [
+          "It is a one-off setup task that rarely needs any practice",
+          "It removes the need for human oversight of AI outputs",
+          "It matters only to software engineers, not to HR professionals",
+          "It is becoming a core workplace skill for directing AI tools well"
+        ],
+        "correctIndex": 3
+      }
+    ],
+    "s2": [
+      {
+        "q": "In prompt engineering, what does the R-C-T-C-F structure stand for?",
+        "options": [
+          "Request, Capture, Track, Confirm, Forward",
+          "Role, Context, Task, Constraints, Format",
+          "Review, Confirm, Test, Check, Finalise",
+          "Read, Compose, Translate, Convert, File"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "q": "Why does a well-engineered prompt matter when using Claude, Gemini, or ChatGPT?",
+        "options": [
+          "It changes which company actually owns and operates the AI model",
+          "It removes the need to fact-check or verify any of the output",
+          "It makes confidential employee data safe to paste into any tool",
+          "The same tool gives a vague or a sharp answer depending on framing"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "What is the constant principle across all the AI tools discussed?",
+        "options": [
+          "Whichever tool launched most recently should always be adopted",
+          "Employee data may be entered freely into any consumer AI tool",
+          "AI augments HR judgement; it does not replace human accountability",
+          "Using AI removes the need for HR to apply its own judgement"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "Why is &lsquo;durable judgement&rsquo; emphasised over picking a single tool?",
+        "options": [
+          "All AI tools are effectively identical in what they can do",
+          "HR should avoid AI entirely until the market fully settles",
+          "Tools change fast, but responsible-use principles persist",
+          "Only one AI vendor will realistically exist in the long run"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "A recruiter prompts: <em>&ldquo;Write a job description for a project manager.&rdquo;</em> The result is generic. What is the best single improvement?",
+        "options": [
+          "Shorten the prompt so the AI has more creative freedom",
+          "Add seniority, team, industry, key skills and tone",
+          "Just tell the AI to &lsquo;be creative and make it good&rsquo;",
+          "Resend the same prompt until a better version appears"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "q": "An HR partner pastes a policy and writes: <em>&ldquo;Make this better.&rdquo;</em> Why does it underperform, and the fix?",
+        "options": [
+          "It is already optimal; the AI should infer the intent",
+          "Delete the document and rely on the AI&rsquo;s general knowledge",
+          "Attach several more documents so it has more to use",
+          "&lsquo;Better&rsquo; is vague &mdash; say what to change, and for whom"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "A manager prompts: <em>&ldquo;Give me interview questions.&rdquo;</em> and gets a generic list. Which refinement helps most?",
+        "options": [
+          "Request them in another language to appear more thorough",
+          "Ask for as many questions as possible, relevant or not",
+          "Specify the role, the competencies and the count",
+          "Tell the AI the content is irrelevant, only the count matters"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "An L&amp;D specialist asks for a whole leadership course in one prompt and it comes out shallow. The issue and fix?",
+        "options": [
+          "Ask for the course, slides and exam in one longer line",
+          "The AI simply cannot do it, so abandon the attempt",
+          "The task is too broad &mdash; break it into sequenced steps",
+          "Send the identical prompt again in a fresh chat window"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "A user writes: <em>&ldquo;Summarise this and make it sound professional.&rdquo;</em> The tone is inconsistent. What improves it?",
+        "options": [
+          "Submit it without the source text and let it improvise",
+          "Let the AI freely choose any length and tone it prefers",
+          "Add the word &lsquo;professional&rsquo; several more times",
+          "Define the audience, the length and the tone concretely"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "After a first draft, a user restarts a brand-new prompt for every change. The more effective approach?",
+        "options": [
+          "Accept the first draft as final regardless of quality",
+          "Have the AI save the draft for next week instead of editing",
+          "Always restart, since earlier context is of no use",
+          "Iterate &mdash; ask for specific edits to the existing draft"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "Why does responsible AI carry a special duty in HR specifically?",
+        "options": [
+          "AI in HR is risk-free once a tool has been formally purchased",
+          "HR is the only function that is ever allowed to use AI tools",
+          "Responsible AI applies only to engineering, never to HR work",
+          "AI decisions scale across many people, so harm spreads fast"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "An AI tool auto-ranks candidates from historical hiring data. The responsible approach is to:",
+        "options": [
+          "Hide the ranking criteria so candidates cannot question them",
+          "Hire straight from the ranking to save the most time possible",
+          "Use it to shortlist for human review and audit it for bias",
+          "Trust it fully, since models are more objective than any person"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "Which statement best reflects human accountability in AI-supported HR decisions?",
+        "options": [
+          "The system decides, so no individual needs to be accountable",
+          "AI advises, but a named person decides and owns the outcome",
+          "Accountability transfers entirely to the tool&rsquo;s software vendor",
+          "Once AI is involved, the decision no longer needs an owner"
+        ],
+        "correctIndex": 1
+      }
+    ],
+    "s3": [
+      {
+        "q": "In a connected world, employer brand is best described as:",
+        "options": [
+          "Fully controlled by the HR marketing team alone",
+          "Set once and never changing",
+          "Co-authored by every employee's lived experience, shaped publicly and continuously",
+          "Irrelevant to talent attraction"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "Why does authenticity matter most in employer branding?",
+        "options": [
+          "Because employees never share their experiences",
+          "Because candidates do not research employers",
+          "Because branding has no effect on hiring",
+          "Because a gap between marketing claims and real employee experience is quickly exposed and deters candidates"
+        ],
+        "correctIndex": 3
+      }
+    ],
+    "s4": [
+      {
+        "q": "What is the central challenge of managing culture in a hybrid work mode?",
+        "options": [
+          "Forcing everyone back to the office permanently",
+          "Sustaining a coherent, inclusive culture when the informal mechanisms of a shared space are absent",
+          "Ignoring culture because it maintains itself",
+          "Eliminating all remote work"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "q": "&lsquo;Proximity bias&rsquo; in a hybrid model refers to:",
+        "options": [
+          "The cost of office space",
+          "A preference for remote workers over office workers",
+          "A type of scheduling software",
+          "Those physically present getting more visibility, feedback, and opportunity than distributed colleagues"
+        ],
+        "correctIndex": 3
+      }
+    ]
+  }
+};
+</script>
+
+<script>
+const CACHE_VERSION = '2026-06-17-v2';
+const MODULE_ID     = 'nahrm_m1';
+const CP_COURSE_ID  = 'newAgeHrm2026SFCert';
+const CP_MODULE_IDS = ['nahrm_m1','nahrm_m2','nahrm_m3','nahrm_m4','nahrm_m5','nahrm_m6'];
+const BANK_KEY      = 'nahrm_m1';
+
+const SECTION_DATA = [
+  {
+    "title": "New Age HR",
+    "tabs": [
+      {
+        "label": "Setting Context",
+        "heading": "Setting the context: digital change in HR",
+        "html": "<p class=\"prose\">Human resource management is being reshaped by the same digital forces transforming every other part of the enterprise. <strong>Digital change in HR</strong> is the move from HR as a record-keeping and compliance function toward HR as a digitally-enabled, data-informed partner that helps the business anticipate and absorb change.</p><p class=\"prose\">The shift has three drivers. <strong>Technology</strong> has made workforce data abundant and decisions faster &mdash; what once required a manual survey now surfaces continuously from systems the organisation already runs. <strong>Expectations</strong> have risen: employees and candidates expect the same seamless, personalised experience at work that they get as consumers, and they judge an employer by it. And the <strong>pace of change</strong> itself has compressed, so the ability to re-skill and re-organise quickly has become a competitive necessity rather than a periodic project.</p><p class=\"prose\">The clearest way to see the change is in <strong>posture</strong> &mdash; the difference between a function that reacts to events after they happen and one that anticipates them. What follows builds that idea step by step: first the contrast in posture, then what &ldquo;digital capability&rdquo; actually consists of, and finally how to build it as a sequenced investment.</p><div class=\"callout\"><strong>The leadership point:</strong> digital change in HR is not about buying tools. It is about repositioning the function so that people decisions are made with evidence, early enough to matter, at the speed the business now moves.</div>"
+      },
+      {
+        "label": "Reactive vs. Anticipatory",
+        "heading": "Reactive vs. anticipatory: the same situation, two postures",
+        "html": "<p class=\"prose\">The defining difference a digital, data-informed approach makes is <strong>posture</strong> &mdash; whether HR reacts to events after they have happened or anticipates them while there is still time to act. The scenario below makes that contrast concrete using a problem every HR team recognises: quiet attrition.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; reactive vs. anticipatory</div><strong>The situation:</strong> A 600-person business unit is quietly losing good people. Over one quarter, eleven mid-level engineers resign.<br><br><strong>The reactive HR team:</strong> learns of the problem only as the resignations land. Exit interviews pile up, each describing the same themes &mdash; unclear growth, a disengaged manager, heavier workload after an earlier round of departures. By the time the pattern is visible, the people are already gone; HR is now running emergency backfill recruitment at premium cost, and the remaining engineers &mdash; watching peers leave &mdash; are themselves starting to look. HR is responding to a fire that has already spread.<br><br><strong>The anticipatory HR team:</strong> sees the same situation forming weeks earlier in signals it already has &mdash; a steady drop in engagement-survey scores for one manager&rsquo;s team, falling participation in optional activities, declining internal-tool login frequency, and a rise in that team&rsquo;s overtime. None of these is a resignation, but together they form an early-warning pattern. HR raises it with the manager, addresses the workload and growth concerns, and has a retention conversation with two flight-risk engineers <em>before</em> any of them update their CV. The same eleven-person loss is largely prevented.<br><br><strong>The point:</strong> same function, same data sources, fundamentally different posture. Reactive HR explains attrition after the fact; anticipatory HR intervenes while the outcome can still be changed. Digital capability is what moves a team from the first posture to the second &mdash; and it is worth breaking down exactly what that capability is.</div><div class=\"callout\">Reactive HR measures the cost of problems. Anticipatory HR reduces the number of problems that ever reach that stage. The data is often already there; the difference is whether the function is set up to see and act on it in time.</div>"
+      },
+      {
+        "label": "Digital Capability",
+        "heading": "What &ldquo;digital capability&rdquo; actually consists of",
+        "html": "<p class=\"prose\">It is easy to mistake digital capability for simply owning software. It is really four things working together &mdash; tools are only the first, and the least decisive.</p><div class=\"example-block\"><div class=\"ex-label\">The four parts</div><strong>1. Data and the systems that hold it.</strong> The raw material already exists in tools the organisation runs &mdash; HRIS records, engagement-survey results, learning-platform activity, collaboration-tool usage, overtime and leave data. Capability begins with bringing these together so signals can be seen in one place rather than trapped in separate systems.<br><br><strong>2. Analytics that turn data into a signal.</strong> Data alone is noise. Capability means being able to spot a meaningful pattern &mdash; a sustained drop in one team&rsquo;s engagement, a cluster of flight-risk indicators &mdash; and distinguish it from ordinary fluctuation. This ranges from simple dashboards and trend lines to predictive models that flag risk early.<br><br><strong>3. The skills and literacy to interpret it.</strong> A signal is only useful if someone can read it correctly and resist over-reading it. Capability includes the data literacy to ask &ldquo;what is this actually telling us, and what is it not?&rdquo; &mdash; and the judgement to treat an indicator as a prompt to investigate, not a verdict.<br><br><strong>4. The process to act in time.</strong> The final and most-often-missing piece: a defined way for an early signal to reach the person who can do something, fast enough to matter. A perfect prediction that lands in a quarterly report instead of with the manager this week changes nothing.</div><p class=\"prose\">Mapping this back to the scenario: the anticipatory team was not simply &ldquo;using a tool.&rdquo; It had the <strong>data</strong> joined up, <strong>analytics</strong> surfacing the falling-engagement pattern, the <strong>literacy</strong> to read it as a retention risk rather than dismiss it, and a <strong>process</strong> that put it in front of the manager while there was still time to act. Remove any one of the four and the team slides back toward the reactive posture &mdash; tools without literacy produce ignored dashboards; insight without process produces reports no one acts on. Digital capability is the combination, not any single part.</p><div class=\"callout callout-good\">The tool is the easy part. Data joined up, analytics that surface a signal, the literacy to read it, and the process to act on it &mdash; that combination is what actually changes HR&rsquo;s posture.</div>"
+      },
+      {
+        "label": "Building It: The Sequence",
+        "heading": "Building digital capability: a sequenced investment",
+        "html": "<p class=\"prose\">Because the tool is the easy part, the real work is in the other three layers &mdash; and they are best built <strong>in sequence</strong>, because each one depends on the layer beneath it. Adding analytics before the data is connected, or chasing predictions before anyone can interpret them, is how organisations spend heavily and change little. The four parts of digital capability become four ordered investments.</p><div class=\"divider\"></div><p class=\"prose\"><strong>1. Connect the data &mdash; create a single, trustworthy view.</strong> The first investment is plumbing, not analytics. Workforce signals sit scattered across the HRIS, the survey tool, the learning platform, payroll, and collaboration tools, each telling part of the story. Connecting them &mdash; and cleaning them so the same person, team, and date mean the same thing everywhere &mdash; creates one reliable view. <em>Why it comes first:</em> every later layer is only as good as the data beneath it; analytics on fragmented or dirty data produce confident-looking nonsense. <em>What &ldquo;good&rdquo; looks like:</em> a manager&rsquo;s engagement, attrition, and workload data can be seen together rather than requested from three teams.</p><div class=\"divider\"></div><p class=\"prose\"><strong>2. Add analytics &mdash; turn the connected data into signals.</strong> With a trustworthy view in place, the second investment makes patterns visible: trends, comparisons, thresholds, and &mdash; over time &mdash; predictive indicators that flag risk early. The goal is not a wall of dashboards but a small number of signals that reliably mean something. <em>Why it comes second:</em> analytics is only meaningful once the underlying data is connected and clean. <em>What &ldquo;good&rdquo; looks like:</em> a falling-engagement pattern in one team surfaces automatically as an early-warning signal rather than being noticed by accident.</p><div class=\"divider\"></div><p class=\"prose\"><strong>3. Build the literacy &mdash; equip people to read signals well.</strong> A signal acted on by someone who misreads it is worse than no signal at all. The third investment is in people: giving HR teams and managers the data literacy to interpret an indicator soundly, understand its limits, and resist both ignoring it and over-reacting to it. This is also where the ethics live &mdash; reading a signal as a prompt to support someone, not to penalise them. <em>Why it comes third:</em> literacy has nothing to work on until signals exist, but it must be in place before signals drive decisions. <em>What &ldquo;good&rdquo; looks like:</em> a manager who sees a flight-risk flag asks &ldquo;what&rsquo;s driving this and how do I help?&rdquo; rather than jumping to conclusions.</p><div class=\"divider\"></div><p class=\"prose\"><strong>4. Design the process &mdash; turn a signal into a timely action.</strong> The most-often-missing investment, and the one that converts all the others into value: a defined route by which an early signal reaches the person who can act, fast enough to matter, with a clear next step. Without it, insight dies in a report. <em>Why it comes last:</em> there is no point routing signals for action until they exist and can be interpreted &mdash; but once they can, the process is what closes the loop. <em>What &ldquo;good&rdquo; looks like:</em> a flight-risk signal triggers a defined response &mdash; manager notified this week, a check-in conversation held, support offered &mdash; not a line item in next quarter&rsquo;s review.</p><div class=\"divider\"></div><div class=\"example-block\"><div class=\"ex-label\">The sequence as a whole</div>Each layer multiplies the value of the one before and is undermined without it. <strong>Data without analytics</strong> is a warehouse no one reads. <strong>Analytics without literacy</strong> produces dashboards that are ignored or misused. <strong>Literacy without process</strong> produces sound judgement that arrives too late to act on. Built in order &mdash; connect, analyse, interpret, act &mdash; the four compound into a function that anticipates rather than reacts. Built out of order, or with a layer skipped, the investment underdelivers.</div><div class=\"callout callout-good\">The advantage is won not by buying the most advanced tool, but by building all four layers in sequence &mdash; so that a signal reliably becomes a timely, well-judged action. That sequence is what separates an HR function that anticipates from one that merely reports.</div>"
+      },
+      {
+        "label": "Digital: Future HR",
+        "heading": "Digital: the future of HR",
+        "html": "<p class=\"prose\">If &ldquo;setting context&rdquo; describes the shift underway, the <strong>future of HR</strong> describes where it leads: a function defined by data fluency, employee experience, and continuous adaptation rather than annual cycles. Three characteristics stand out &mdash; HR becomes predictive, experience-led, and continuous.</p><p class=\"prose\"><strong>Predictive.</strong> Instead of reporting on what already happened, HR uses workforce data to anticipate what is coming &mdash; which teams are at risk of attrition, where capability gaps will open as the business grows, and how many hires of which type will be needed and when. The value is lead time: a predicted problem can be prevented; a reported one can only be managed.</p><p class=\"prose\"><strong>Experience-led.</strong> The future-ready function designs the employee journey with the same care a product team designs a customer journey &mdash; mapping the key moments (joining, first 90 days, promotion, returning from leave) and removing friction from each. Experience is treated as something deliberately designed, not whatever happens to result from the existing processes.</p><p class=\"prose\"><strong>Continuous.</strong> Feedback, learning, and performance conversations run year-round instead of being compressed into one annual event. The annual cycle made sense when information moved slowly; when it moves continuously, so should the conversations that act on it.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; annual vs. continuous</div><strong>The old way:</strong> A capable analyst has a frustrating year &mdash; a project stalls, her manager is stretched thin, and her development goals go untouched. None of it surfaces until the annual review in month eleven, by which point she has already mentally checked out and lines up an exit. The review documents a problem that is now too late to fix.<br><br><strong>The future-HR way:</strong> lightweight monthly check-ins flag the stalled project in month two and the neglected development goals in month three. Her manager re-scopes the work and arranges a stretch assignment while she is still engaged. The same eleven months produce a retained, growing employee instead of a documented loss &mdash; because the conversation was continuous rather than annual.</div><div class=\"callout callout-good\">Digital HR is a direction of travel, not a destination. The future-ready function is the one that keeps adapting &mdash; predictive, experience-led, and continuous &mdash; not the one that declares a transformation programme finished.</div>"
+      },
+      {
+        "label": "Industry 4.0 Skilling",
+        "heading": "Industry 4.0 and the skilling challenge",
+        "html": "<p class=\"prose\"><strong>Industry 4.0</strong> &mdash; the convergence of automation, AI, data, and connected systems &mdash; changes not just <em>how</em> work is done but <em>which skills</em> retain value. The defining HR challenge it creates is the shrinking <strong>half-life of skills</strong>: capabilities that were current a few years ago age out faster than ever, so a one-time qualification no longer carries a career.</p><p class=\"prose\">This makes <strong>continuous reskilling and upskilling</strong> a core, ongoing HR responsibility rather than an occasional training initiative. The distinction matters: <strong>upskilling</strong> deepens what someone already does (a data analyst learning advanced techniques), while <strong>reskilling</strong> moves someone into a substantially different role (a support specialist becoming a data analyst). The task is twofold &mdash; identify which capabilities the business will need next, and build credible pathways for the existing workforce to reach them, because hiring alone cannot close a gap that keeps moving.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; replace vs. reskill</div><strong>The situation:</strong> Automation absorbs much of the routine work done by a 40-person operations team. The roles as they exist today are shrinking; the organisation now needs people who can oversee, exception-handle, and improve the automated processes &mdash; a different skill set.<br><br><strong>The replace approach:</strong> treat the 40 as redundant, exit them, and hire 25 new people with the target skills. The visible cost is severance and recruitment; the hidden cost is the loss of deep institutional and customer knowledge those 40 carried, a hit to the morale and trust of everyone who remains, and a public signal to candidates about how the organisation treats its people.<br><br><strong>The reskill approach:</strong> map the adjacent skills the team already has &mdash; process knowledge, judgement, customer context &mdash; and build structured paths into the new roles for those who can make the move, with honest support for those who genuinely cannot. The organisation retains hard-won knowledge, keeps the trust of the workforce, and closes most of the capability gap from within, hiring externally only for what reskilling cannot cover.<br><br><strong>The point:</strong> Industry 4.0 does not simply destroy jobs; it shifts the skills they require. Whether that shift becomes a costly purge or a managed transition is an HR design choice.</div><div class=\"callout callout-warn\"><strong>The risk if ignored:</strong> a widening gap between the skills the business needs and the skills it has &mdash; felt as stalled initiatives, over-reliance on expensive external hiring, and disengagement among employees who sense they are being left behind rather than brought along.</div>"
+      },
+      {
+        "label": "New-Age Org Design",
+        "heading": "New-age organization design structures",
+        "html": "<p class=\"prose\">The rigid, multi-layer hierarchy was built for stability and control. <strong>New-age organization design</strong> responds to a different need &mdash; speed, adaptability, and cross-functional collaboration &mdash; and so favours flatter, more networked, and more project-based structures. Structure is not a neutral backdrop; it directly determines how quickly an organisation can sense a change and act on it.</p><p class=\"prose\">Three patterns recur. <strong>Networked teams</strong> form around outcomes rather than fixed departments, so the right people assemble for the work at hand and disband when it is done. <strong>Flatter hierarchies</strong> remove approval layers and shorten the path between a decision being needed and being made. <strong>Fluid roles</strong> let people contribute across boundaries rather than being confined to a single function. HR co-owns these choices, because each one reshapes reporting lines, rewards, and how performance is judged.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; functional silo vs. cross-functional squad</div><strong>The situation:</strong> A product needs a fix that touches engineering, design, and customer support. The market is moving and speed matters.<br><br><strong>The traditional structure:</strong> the request travels up the engineering hierarchy, across to design&rsquo;s leadership, across again to support&rsquo;s, and back down &mdash; each hand-off adding a queue and a re-explanation. Three departments optimise for their own priorities, and the fix that needed two weeks takes two months. No individual did anything wrong; the structure imposed the delay.<br><br><strong>The new-age structure:</strong> a single cross-functional squad &mdash; one engineer, one designer, one support specialist &mdash; owns the outcome end to end, decides together, and ships in days. HR&rsquo;s work made this possible: it redesigned reporting so squad members answer to the outcome, adjusted rewards so collaboration is recognised rather than only functional output, and redefined how their performance is assessed.<br><br><strong>The point:</strong> the two teams had the same talent; the structure was the variable. Organisation design decides whether capability turns into speed or gets trapped in hand-offs.</div><div class=\"callout\">Structure either accelerates or throttles an organisation&rsquo;s ability to adapt &mdash; which is why organisation design now sits firmly within HR&rsquo;s strategic remit, not adjacent to it.</div><div class=\"divider\"></div><p class=\"prose\"><strong>How AI is reshaping the structure itself.</strong> The technologies behind new-age work &mdash; generative AI, large language models (LLMs), and increasingly <em>agentic</em> AI &mdash; are not just tools people use within a structure; they change what the structure needs to look like. When routine drafting, analysis, and coordination can be assisted or automated, the organisation needs fewer layers whose main role was moving information up and down, and more roles focused on judgement, direction, and oversight. Design follows capability.</p><div class=\"example-block\"><div class=\"ex-label\">The technologies, briefly &mdash; and why they matter to design</div><strong>Generative AI &amp; LLMs.</strong> Models that produce text, summaries, code, and analysis on demand. They compress the time between a question and a usable first answer, which means small, capable teams can now cover ground that once required larger ones &mdash; favouring leaner, flatter structures.<br><br><strong>Machine learning more broadly.</strong> Systems that find patterns in data and improve with use &mdash; powering the predictive signals discussed earlier. Structurally, this pushes decision-relevant insight outward to the teams doing the work, rather than concentrating it in a central analysis function.<br><br><strong>Agentic AI.</strong> AI that does not just answer but takes multi-step actions toward a goal &mdash; carrying out a workflow, not just a prompt. This is the most design-altering of the three: when an &ldquo;agent&rdquo; can execute a process, the human role shifts from <em>doing the steps</em> to <em>setting the goal, supervising, and handling exceptions</em>. Teams begin to include capable AI agents alongside people, and the org chart has to account for who directs and is accountable for that work.<br><br><strong>Prompt engineering.</strong> The skill that connects people to all of the above. As work increasingly involves directing AI &mdash; framing the task, the context, and the constraints &mdash; the ability to instruct these systems well becomes a core workplace competency, not a niche technical one. It is the interface between the new-age workforce and the new-age tools.</div><p class=\"prose\"><strong>Shaping the workforce &mdash; sustainably and productively.</strong> The productivity gains are real, but a structure built only for short-term output is not sustainable. New-age org design has to hold two goals together. <em>Productive:</em> redesign roles and teams around what humans and AI each do best &mdash; AI for scale, speed, and pattern-finding; people for judgement, relationships, ethics, and ambiguity. <em>Sustainable:</em> invest in the reskilling that lets the existing workforce move into these higher-judgement, AI-directing roles rather than being displaced by them; guard against the always-on intensification that AI-accelerated work can create; and keep clear human accountability so that speed never outruns responsibility.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; designing an AI-augmented team</div><strong>The shift:</strong> A reporting team of eight spends most of its time gathering data and producing routine analyses. Generative AI and agentic tools can now do much of that drafting and first-pass analysis.<br><br><strong>The unsustainable design:</strong> cut the team to three, expect the same output faster, and treat the AI purely as a headcount-reduction lever. Output rises briefly, then institutional knowledge thins, the remaining three burn out directing tools with no slack, and trust across the function drops.<br><br><strong>The sustainable design:</strong> keep the people, change the work. The team reskills to <em>direct</em> the AI &mdash; framing the right questions through good prompting, supervising agentic workflows, and spending their freed-up time on the judgement-heavy work AI cannot do: interpreting results for the business, advising stakeholders, and spotting what the data does not say. Roles are redefined around oversight and insight; the structure flattens because fewer hand-offs are needed; and accountability for every AI-produced output stays clearly with a named person.<br><br><strong>The point:</strong> the same technology produced either a hollowed-out team or an elevated one &mdash; the difference was a design choice about how to shape the workforce around it.</div><div class=\"callout callout-good\">New-age org design is increasingly the work of designing <strong>human + AI</strong> structures: leaner and faster because AI handles scale, but sustainable and trustworthy because people are reskilled into higher-judgement, AI-directing roles with clear accountability. The skill that makes this human&ndash;AI partnership work in practice is prompt engineering &mdash; which is exactly what comes next.</div>"
+      }
+    ]
+  },
+  {
+    "title": "Digital AI Tools",
+    "tabs": [
+      {
+        "label": "Prompt Engineering",
+        "heading": "Prompt engineering: the skill that unlocks every AI assistant",
+        "html": "<p class=\"prose\"><strong>Prompt engineering</strong> is the practice of writing clear, well-structured instructions that get an AI assistant to produce genuinely useful output. The same tool &mdash; Claude, Gemini, or ChatGPT &mdash; can return a vague, generic answer or a sharp, usable one depending almost entirely on how the request is framed. The tool supplies the capability; the prompt decides how much of that capability you actually get.</p><p class=\"prose\">For HR work this matters more than it first appears. A weak prompt (&ldquo;write a leave policy&rdquo;) produces something bland and generic that needs heavy rework. A well-engineered prompt &mdash; one that supplies <strong>role, context, task, constraints, and format</strong> &mdash; produces a draft that is close to fit-for-purpose on the first pass. The difference is often an hour of editing versus five minutes.</p><p class=\"prose\">A reliable structure to keep in mind, sometimes shortened to <strong>R-C-T-C-F</strong>:</p><div class=\"example-block\"><div class=\"ex-label\">The anatomy of a strong prompt</div><strong>Role</strong> &mdash; who you want the assistant to act as (&ldquo;You are an experienced HR business partner&hellip;&rdquo;).<br><strong>Context</strong> &mdash; the situation and audience (&ldquo;&hellip;for a 600-person services firm rolling out a hybrid-work policy to mostly first-time remote employees&rdquo;).<br><strong>Task</strong> &mdash; the specific thing to produce (&ldquo;Draft a one-page policy summary&rdquo;).<br><strong>Constraints</strong> &mdash; tone, length, what to include or avoid (&ldquo;plain English, under 400 words, no legal jargon, neutral and inclusive&rdquo;).<br><strong>Format</strong> &mdash; how to lay it out (&ldquo;use short sections with clear headings and a 3-point summary at the top&rdquo;).</div><p class=\"prose\">Prompting is also <strong>iterative</strong>. The first answer is a starting point; you refine it by telling the assistant what to change (&ldquo;make it warmer,&rdquo; &ldquo;shorten the second section,&rdquo; &ldquo;add an example&rdquo;). Treating it as a conversation, not a one-shot command, is the single biggest habit that separates frustrated users from effective ones.</p><div class=\"prompt-ex\"><div class=\"prompt-label\">Weak prompt</div><div class=\"prompt-text\">Write a hybrid work policy.</div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Engineered prompt (R-C-T-C-F)</div><div class=\"prompt-text\">You are an experienced HR business partner. We are a 600-person services firm rolling out a hybrid-work policy for employees who are mostly working remotely for the first time. Draft a one-page policy summary they can actually understand. Keep it under 400 words, in plain English with no legal jargon, warm and inclusive in tone. Lay it out as short sections with clear headings, and put a 3-point &lsquo;what this means for you&rsquo; summary at the top.</div></div><div class=\"callout callout-warn\"><strong>Common mistakes</strong><ul><li>Being vague &mdash; &ldquo;make it good&rdquo; gives the assistant nothing to work with.</li><li>Asking for too much in one prompt, so every part comes out shallow.</li><li>Omitting the audience, so the tone and level are wrong.</li><li>Accepting the first draft instead of iterating to refine it.</li><li>Assuming the output is factually correct &mdash; always verify claims, figures, and names.</li></ul></div><div class=\"callout callout-good\"><strong>Best practices to refine your prompt</strong><ul><li>State the role and audience explicitly.</li><li>Give one clear task per prompt; chain follow-ups for the rest.</li><li>Specify length, tone, and format up front.</li><li>Provide an example of what &lsquo;good&rsquo; looks like when you can.</li><li>Iterate: ask for specific changes rather than starting over.</li></ul></div><div class=\"callout\">These skills transfer across every tool. Master prompt engineering once, and Claude, Gemini, and ChatGPT all become markedly more useful.</div>"
+      },
+      {
+        "label": "Claude",
+        "heading": "Claude (Anthropic)",
+        "html": "<p class=\"prose\"><strong>Claude</strong> is a family of AI assistants from Anthropic, designed with a strong emphasis on safety, helpfulness, and handling long, nuanced documents. Its strengths show up in tasks that involve careful reasoning over text &mdash; drafting and refining policies, summarising long documents, structuring frameworks, and working through situations where tone and judgement matter.</p><div class=\"example-block\"><div class=\"ex-label\">How can Claude help you?</div>In an HR and L&amp;D context, Claude is often used to <strong>draft first versions of learning content</strong>, <strong>structure frameworks</strong> (competency models, onboarding plans, policy outlines), and act as a <strong>thinking partner on complex people questions</strong> &mdash; talking through a tricky restructure, a sensitive conversation, or the trade-offs in a new policy. A person always reviews and owns the final output.</div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; learning content (R-C-T-C-F applied)</div><div class=\"prompt-text\">You are an instructional designer. I&rsquo;m building a 20-minute micro-learning for new people-managers at a tech services firm on giving constructive feedback. Draft a module outline with 4&ndash;5 short sections, a one-line learning objective for each, and one realistic workplace example per section. Keep the tone practical and encouraging, and end with a 3-question knowledge check.</div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; thinking partner</div><div class=\"prompt-text\">You are an experienced HR business partner. Help me think through a sensitive situation: a high performer is unhappy that a peer was promoted ahead of them. Lay out the likely concerns from their perspective, 3&ndash;4 options for how I could handle the conversation, and the trade-offs of each. Don&rsquo;t pick one for me &mdash; help me reason it through.</div></div><div class=\"lab-block\"><div class=\"lab-label\">Try it &mdash; lab steps</div><ol class=\"lab-steps\"><li>Open Claude and sign in.</li><li>Start a new chat and paste one of the example prompts above.</li><li>Read the first draft, then refine it conversationally &mdash; e.g. &ldquo;make section 3 shorter&rdquo; or &ldquo;add a manager-perspective example.&rdquo;</li><li>Ask Claude to adjust tone or format until it fits (&ldquo;rewrite the knowledge check as scenario questions&rdquo;).</li><li>Copy the result into your own document and review every claim and example for accuracy before using it.</li></ol></div><div class=\"callout callout-warn\"><strong>Common mistakes</strong><ul><li>Pasting confidential employee data into any chat without a clear organisational policy.</li><li>Asking for the whole course in one prompt instead of building it section by section.</li><li>Treating the draft as final &mdash; Claude&rsquo;s output is a strong start, not a sign-off.</li></ul></div><div class=\"callout callout-good\"><strong>Best practices to refine your prompt</strong><ul><li>Give Claude the role and the audience; it uses both well.</li><li>Lean on its strength with long context &mdash; paste the source document and ask it to work from that.</li><li>Use it iteratively as a thinking partner, asking it to lay out options and trade-offs rather than a single answer.</li></ul></div><div class=\"callout callout-warn\">As with any AI tool, the output is a starting point, not a decision. HR judgement, accuracy checks, and confidentiality safeguards remain essential.</div>"
+      },
+      {
+        "label": "Google Gemini",
+        "heading": "Google Gemini",
+        "html": "<p class=\"prose\"><strong>Gemini</strong> is Google&rsquo;s family of multimodal AI models, able to work across text, images, and other formats, and integrated across Google&rsquo;s ecosystem. Its tight integration with workspace and productivity tools makes it convenient where an organisation already works inside that environment.</p><div class=\"example-block\"><div class=\"ex-label\">How can Gemini help you?</div>For HR teams, Gemini can <strong>draft and summarise inside the tools you already use</strong> &mdash; condensing a long email thread about a policy change, drafting an announcement in your document editor, or pulling the key points out of a meeting summary &mdash; reducing the friction of switching between applications. Its multimodal ability also lets it work from an image or a screenshot of a chart, not just text.</div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; summarise (R-C-T-C-F applied)</div><div class=\"prompt-text\">You are an HR coordinator. Summarise the email thread below about our updated leave policy into a clear 5-point briefing for managers, in plain English, flagging anything that needs a manager decision. Keep it under 150 words. [paste thread]</div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; draft in context</div><div class=\"prompt-text\">You are writing on behalf of the People team. Draft a warm, concise all-staff announcement (under 200 words) introducing our new hybrid-work guidelines, linking to the full policy, and reassuring first-time remote employees that support is available.</div></div><div class=\"lab-block\"><div class=\"lab-label\">Try it &mdash; lab steps</div><ol class=\"lab-steps\"><li>Open Gemini (or invoke it inside your Google workspace tool).</li><li>Paste the example prompt, including the source content it should work from.</li><li>Review the draft and refine it &mdash; &ldquo;make it shorter,&rdquo; &ldquo;more formal,&rdquo; or &ldquo;add a line about who to contact.&rdquo;</li><li>If using an image or screenshot, attach it and ask Gemini to extract or summarise the key points.</li><li>Move the result into your final document and check accuracy and tone before sending.</li></ol></div><div class=\"callout callout-warn\"><strong>Common mistakes</strong><ul><li>Relying on the integration&rsquo;s convenience and skipping the accuracy check.</li><li>Forgetting to give the audience and tone, so the draft lands wrong.</li><li>Entering confidential personnel data without checking organisational policy first.</li></ul></div><div class=\"callout callout-good\"><strong>Best practices to refine your prompt</strong><ul><li>Use its in-workspace integration to keep drafting and summarising in one place.</li><li>Be explicit about length and tone &mdash; concise constraints produce concise output.</li><li>Use its multimodal ability when your source is an image or chart, not only text.</li></ul></div><div class=\"callout\">Convenience of integration is a real benefit &mdash; but the same care over accuracy, bias, and the privacy of employee data applies regardless of which vendor&rsquo;s tool is used.</div>"
+      },
+      {
+        "label": "ChatGPT",
+        "heading": "ChatGPT (OpenAI)",
+        "html": "<p class=\"prose\"><strong>ChatGPT</strong>, built on OpenAI&rsquo;s models, is among the most widely adopted general-purpose AI assistants. Its broad capability and large ecosystem of integrations make it a flexible option for a wide range of drafting, brainstorming, and information tasks.</p><div class=\"example-block\"><div class=\"ex-label\">How can ChatGPT help you?</div>In HR, ChatGPT is commonly used for <strong>first-draft generation, ideation, and quick reformatting</strong> &mdash; brainstorming interview questions, producing several alternative phrasings of an announcement, or turning rough notes into a structured document. Its breadth makes it a useful all-rounder for getting from a blank page to a working draft quickly.</div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; brainstorm (R-C-T-C-F applied)</div><div class=\"prompt-text\">You are a hiring manager&rsquo;s HR partner. Generate 10 behavioural interview questions for a mid-level project manager role, mapped to four competencies: stakeholder management, prioritisation, handling conflict, and delivery under pressure. For each question, add one line on what a strong answer would show.</div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; reformat / alternatives</div><div class=\"prompt-text\">Here are my rough notes for an internal announcement about a new recognition programme. Turn them into a clear, upbeat 180-word message, then give me two alternative versions &mdash; one more formal, one more casual &mdash; so I can choose. [paste notes]</div></div><div class=\"lab-block\"><div class=\"lab-label\">Try it &mdash; lab steps</div><ol class=\"lab-steps\"><li>Open ChatGPT and start a new chat.</li><li>Paste the example prompt with any source notes it should use.</li><li>Review the output; if you asked for alternatives, compare them and pick a direction.</li><li>Refine with specific follow-ups &mdash; &ldquo;tighten question 7&rdquo; or &ldquo;make the formal version warmer.&rdquo;</li><li>Copy the chosen version into your document and verify all details before publishing.</li></ol></div><div class=\"callout callout-warn\"><strong>Common mistakes</strong><ul><li>Entering confidential employee data into a general consumer tool without clear policy.</li><li>Accepting plausible-sounding but unverified facts &mdash; check anything factual.</li><li>Over-broad prompts that produce generic output; narrow the task and competencies.</li></ul></div><div class=\"callout callout-good\"><strong>Best practices to refine your prompt</strong><ul><li>Use it to get from blank page to draft fast, then refine.</li><li>Ask for several variants when tone is uncertain, then choose.</li><li>Map requests to explicit criteria (e.g. competencies) so output is structured, not generic.</li></ul></div><div class=\"callout callout-warn\">Wide adoption does not remove the need for governance: confidential employee data should not be entered into general consumer tools without clear organisational policy.</div>"
+      },
+      {
+        "label": "Responsible AI",
+        "heading": "Responsible AI: using these tools well in HR",
+        "html": "<p class=\"prose\">These AI tools are powerful, and in HR that power touches people&rsquo;s careers, livelihoods, and dignity directly &mdash; hiring, promotion, performance, pay, and exit. <strong>Responsible AI</strong> is the set of principles and habits that make sure these tools help people fairly and safely, rather than causing harm at scale. For a new-age HR function, it is not an optional add-on; it is the condition that makes AI adoption trustworthy enough to use at all.</p><p class=\"prose\">The reason HR carries a special duty here is leverage. A biased decision by one manager affects one process; a biased <em>model</em> applied across thousands of candidates or employees scales that harm instantly and invisibly. Responsible AI is how HR keeps the speed and reach of these tools from outrunning fairness and accountability.</p><div class=\"example-block\"><div class=\"ex-label\">The principles, applied to HR</div><strong>Fairness.</strong> Watch for bias. A model trained on past decisions can inherit and scale historical bias &mdash; so AI-supported hiring, promotion, or performance outputs must be checked for disparate impact across groups.<br><br><strong>Transparency &amp; explainability.</strong> People affected by a decision deserve to understand how it was reached. Avoid &ldquo;black-box&rdquo; outputs that no one can explain to a candidate or employee.<br><br><strong>Privacy &amp; data protection.</strong> Employee and candidate data is sensitive and often regulated. Do not paste confidential personal data into consumer tools, and follow the organisation&rsquo;s data-handling policy.<br><br><strong>Human accountability.</strong> AI advises; a person decides and owns the outcome. There should always be a named human accountable for any AI-influenced people decision &mdash; never &ldquo;the system decided.&rdquo;<br><br><strong>Human oversight.</strong> Keep a human in the loop, especially for high-stakes decisions. AI is a decision-support tool, not an autonomous decision-maker, in matters that affect someone&rsquo;s job.</div><p class=\"prose\"><strong>How this ties back to new-age HR.</strong> New-age HR is becoming data-informed, AI-augmented, and faster. Responsible AI is what keeps that direction <em>sustainable and trustworthy</em>. The same principle that shaped the org-design discussion applies here: AI handles scale and pattern-finding, but people retain judgement, ethics, and accountability. Without that guardrail, AI adoption erodes the very trust the people function depends on; with it, HR can adopt these tools confidently and lead the rest of the organisation in using them well.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; the same tool, responsibly vs. carelessly</div><strong>Carelessly:</strong> a team lets an AI tool auto-rank candidates and hires straight from the ranking, pastes CVs containing personal data into a consumer chatbot, and tells rejected candidates only that &ldquo;the system scored them low.&rdquo; Bias goes unchecked, data is exposed, and no one can explain or stand behind the decision.<br><br><strong>Responsibly:</strong> the same tool is used to <em>shortlist for human review</em>, its recommendations are audited for disparate impact, personal data is handled per policy, and a named recruiter owns each decision and can explain it. Same speed gain &mdash; without the harm.<br><br><strong>The point:</strong> responsible AI is rarely about whether to use the tool, and almost always about <em>how</em>.</div><div class=\"callout callout-good\">Responsible AI is the bridge between capability and trust. It lets new-age HR move fast with AI while protecting the fairness, privacy, and accountability that people decisions demand &mdash; and it is HR&rsquo;s role to model this for the whole organisation.</div>"
+      },
+      {
+        "label": "Others",
+        "heading": "Other tools and the bigger picture",
+        "html": "<p class=\"prose\">Beyond the major general assistants, a growing set of <strong>specialised tools</strong> targets specific HR workflows &mdash; recruitment screening, learning experience platforms, sentiment and engagement analysis, and skills-mapping. New entrants appear constantly, and capabilities overlap and shift quickly.</p><p class=\"prose\">The leadership takeaway is to focus less on any single product and more on building <strong>durable judgement</strong>: how to evaluate a tool&rsquo;s fit, govern its use, protect employee data, and keep a human accountable for decisions. Tools will change; the principles for using them responsibly &mdash; and the prompt-engineering skill itself &mdash; do not.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>Rather than standardising permanently on one assistant, a mature HR function defines clear principles &mdash; data handling, human oversight, bias checks &mdash; and applies them to whichever tools it adopts as the market evolves.</div><div class=\"callout callout-good\">The constant across every tool: AI augments HR judgement, it does not replace accountability. A person always owns the decision.</div>"
+      }
+    ]
+  },
+  {
+    "title": "Digital HR",
+    "tabs": [
+      {
+        "label": "Social Media & Employer Branding",
+        "heading": "Social media and employer branding",
+        "html": "<p class=\"prose\"><strong>Employer branding</strong> is the reputation an organisation holds as a place to work, and in a connected world that reputation is shaped publicly and continuously. <strong>Social media</strong> has turned employer brand from a recruitment-marketing exercise into a live, two-way signal that candidates and employees both read and contribute to.</p><p class=\"prose\">This matters because candidates research an employer's brand before they ever apply, and current employees broadcast their experience — positively or negatively — to wide networks. A strong, authentic employer brand widens and improves the talent pool; a weak or inauthentic one narrows it. The key word is <strong>authentic</strong>: a brand that promises an experience the organisation does not actually deliver is quickly exposed.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>Employees sharing genuine, positive experiences of their work do more for talent attraction than any paid campaign — while a visible gap between an employer's marketing claims and real employee reviews actively deters strong candidates.</div><div class=\"callout\">Employer brand is no longer controlled by HR alone — it is co-authored by every employee's experience. The strategic task is to make the lived experience worth talking about, then enable people to share it.</div>"
+      }
+    ]
+  },
+  {
+    "title": "Managing Organisation Culture Hybrid Workmode",
+    "tabs": [
+      {
+        "label": "Impact: Work From Anywhere",
+        "heading": "Managing culture in a hybrid work mode: the impact of work-from-anywhere",
+        "html": "<p class=\"prose\"><strong>Work-from-anywhere</strong> decouples work from a fixed location, and with it many of the informal mechanisms that traditionally carried culture — hallway conversations, shared spaces, and visible day-to-day norms. The central challenge of a <strong>hybrid work mode</strong> is sustaining a coherent, inclusive culture when people are distributed across locations and schedules.</p><p class=\"prose\">The impact runs in two directions. The opportunity is access to wider talent, greater flexibility, and often higher individual focus. The risk is weakened belonging, uneven access to visibility and opportunity (a &ldquo;proximity bias&rdquo; favouring those physically present), and the slow erosion of shared norms. Managing culture in this mode means being <strong>deliberate</strong> about what once happened by accident — intentionally designing connection, communication, and fairness rather than assuming the office will supply them.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>An organisation that codifies its norms explicitly, designs rituals that include remote and in-office people equally, and checks that promotions and high-visibility work are not skewed toward those in the building, sustains culture far better than one that lets hybrid &ldquo;just happen.&rdquo;</div><div class=\"callout callout-warn\"><strong>Proximity bias</strong> is the most common hidden failure of hybrid: when those physically present get more visibility, feedback, and opportunity, distributed colleagues are quietly disadvantaged — an equity issue leaders must actively manage.</div><div class=\"callout callout-good\">In a hybrid world, culture shifts from something absorbed in a shared space to something deliberately designed and communicated. That design responsibility sits with leadership and HR.</div>"
+      }
+    ]
+  }
+];
+
+
+function bankFor(sectionKey) {
+  try { return (window.NAHRM_QUESTION_BANK[BANK_KEY] || {})[sectionKey] || []; }
+  catch(e) { return []; }
+}
+
+function buildSections() {
+  const root = document.getElementById('sectionsRoot');
+  SECTION_DATA.forEach(function(sec, idx) {
+    const secNum = idx + 1;
+    const questions = bankFor('s' + secNum);
+    const panel = document.createElement('section');
+    panel.className = 'section-panel' + (secNum === 1 ? ' active' : '');
+    panel.id = 'section-' + secNum;
+
+    const tabs = sec.tabs;
+    const quizTabNum = tabs.length + 1;
+
+    let tabsBtns = '';
+    tabs.forEach(function(t, ti) {
+      tabsBtns += '<button class="tab-btn' + (ti===0?' active':'') + '" onclick="showTab(' + secNum + ',' + (ti+1) + ')">'
+        + '<span class="num">' + (ti+1) + '</span> ' + t.label + '</button>';
+    });
+    tabsBtns += '<button class="tab-btn" onclick="showTab(' + secNum + ',' + quizTabNum + ')"><span class="num">' + quizTabNum + '</span> Check understanding</button>';
+
+    let panes = '';
+    tabs.forEach(function(t, ti) {
+      const nextTab = ti + 2;
+      panes += '<div class="tab-pane' + (ti===0?' active':'') + '" id="pane-' + secNum + '-' + (ti+1) + '">'
+        + '<div class="tab-label">' + t.label + '</div>'
+        + '<div class="tab-heading">' + t.heading + '</div>'
+        + t.html
+        + '<div class="divider"></div>'
+        + '<div class="tab-nav-row"><span></span><button class="continue-btn" onclick="showTab(' + secNum + ',' + nextTab + ')">Continue &rarr;</button></div>'
+        + '</div>';
+    });
+
+    let qHtml = '';
+    questions.forEach(function(q, qi) {
+      let opts = '';
+      q.options.forEach(function(opt, oi) {
+        opts += '<label class="option"><input type="radio" name="s' + secNum + '_q' + (qi+1) + '" value="' + oi + '"> ' + opt + '</label>';
+      });
+      qHtml += '<div class="question-block">'
+        + '<div class="q-num">Question ' + (qi+1) + ' of ' + questions.length + '</div>'
+        + '<div class="q-text">' + q.q + '</div>'
+        + '<div class="options">' + opts + '</div>'
+        + '</div>';
+    });
+
+    panes += '<div class="tab-pane" id="pane-' + secNum + '-' + quizTabNum + '">'
+      + '<div class="tab-label">Check understanding</div>'
+      + '<div class="tab-heading">Check your understanding</div>'
+      + '<div class="questions-wrap" id="questionsWrap-' + secNum + '">'
+      + '<p class="assessment-sub">Answer all ' + questions.length + ' questions to complete this section. Your answers are saved.</p>'
+      + qHtml
+      + '<button class="submit-btn" id="submitBtn-' + secNum + '" disabled>Submit answers</button>'
+      + '<div class="submit-note" id="submitNote-' + secNum + '">Select an answer for each question to submit.</div>'
+      + '</div>'
+      + '<div class="submitted-wrap hidden" id="submittedWrap-' + secNum + '">'
+      + '<div class="submitted-icon">&#10003;</div><div class="submitted-title">Section complete</div>'
+      + '<div class="submitted-body" id="submittedScore-' + secNum + '">Your answers have been recorded and this section is marked complete.</div>'
+      + '<div class="review-list" id="reviewList-' + secNum + '"></div>'
+      + '<button class="redo-btn" id="redoBtn-' + secNum + '">&#x21BA; Redo section</button>'
+      + '</div>'
+      + '</div>';
+
+    panel.innerHTML = '<div class="tabs-wrap"><div class="tabs">' + tabsBtns + '</div></div>'
+      + '<div class="tab-body">' + panes + '</div>';
+    root.appendChild(panel);
+  });
+}
+
+function toggleRefresh() {
+  var t = document.getElementById('refreshToggle');
+  var p = document.getElementById('refreshPanel');
+  if (!t || !p) return;
+  var open = p.classList.toggle('open');
+  t.classList.toggle('open', open);
+  var chev = t.querySelector('.rt-chev');
+  if (chev) chev.textContent = open ? '\u25B2 CLOSE' : '\u25BC OPEN';
+}
+
+function showSection(n) {
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.section-pill').forEach(b => b.classList.remove('active'));
+  document.getElementById('section-' + n)?.classList.add('active');
+  document.querySelector('.section-pill[data-sec="' + n + '"]')?.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function showTab(sec, t) {
+  const panel = document.getElementById('section-' + sec);
+  if (!panel) return;
+  const paneCount = panel.querySelectorAll('.tab-pane').length;
+  if (t > paneCount) t = paneCount;
+  panel.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  panel.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  panel.querySelector('#pane-' + sec + '-' + t)?.classList.add('active');
+  panel.querySelectorAll('.tab-btn')[t-1]?.classList.add('active');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function loadSec(secNum) {
+  const k = window.nahrmLearnerKey('s' + secNum);
+  try { return JSON.parse(localStorage.getItem(k)) || {}; } catch(e) { return {}; }
+}
+function saveSec(secNum, s) {
+  const k = window.nahrmLearnerKey('s' + secNum);
+  localStorage.setItem(k, JSON.stringify(s));
+}
+function updateModuleProgress() {
+  let done = 0;
+  for (let i = 1; i <= SECTION_DATA.length; i++) {
+    if (loadSec(i).complete) {
+      done++;
+      document.querySelector('.section-pill[data-sec="' + i + '"]')?.classList.add('done');
+    }
+  }
+  const el = document.getElementById('moduleProgress');
+  if (el) el.textContent = done + ' of ' + SECTION_DATA.length + ' sections complete';
+  const bar = document.getElementById('completeBar');
+  if (done >= SECTION_DATA.length) {
+    if (bar) { bar.classList.add('done'); bar.textContent = '\u2713 Module complete \u2014 all ' + SECTION_DATA.length + ' sections finished.'; }
+    cpWriteModuleComplete();
+  } else if (bar) {
+    bar.classList.remove('done');
+    bar.textContent = 'Complete all ' + SECTION_DATA.length + ' sections to finish this module. (' + done + '/' + SECTION_DATA.length + ' done)';
+  }
+}
+
+function wireSection(secNum) {
+  const questions = bankFor('s' + secNum);
+  const qCount = questions.length;
+  const submitBtn = document.getElementById('submitBtn-' + secNum);
+  const note = document.getElementById('submitNote-' + secNum);
+
+  function checkAll() {
+    let answered = 0;
+    for (let i = 1; i <= qCount; i++) {
+      if (document.querySelector('input[name="s' + secNum + '_q' + i + '"]:checked')) answered++;
+    }
+    const all = answered === qCount;
+    if (submitBtn) submitBtn.disabled = !all;
+    if (note) note.textContent = all ? 'Ready to submit.' : 'Select an answer for each question to submit.';
+  }
+  document.querySelectorAll('#questionsWrap-' + secNum + ' input[type="radio"]').forEach(function(r) {
+    r.addEventListener('change', checkAll);
+  });
+
+  function renderReview() {
+    const s = loadSec(secNum);
+    const scoreEl = document.getElementById('submittedScore-' + secNum);
+    const listEl = document.getElementById('reviewList-' + secNum);
+    if (!listEl) return;
+    const answers = s.answers || {};
+    const score = (typeof s.score === 'number') ? s.score : 0;
+    const total = (typeof s.total === 'number') ? s.total : qCount;
+    if (scoreEl) scoreEl.innerHTML = 'Your answers have been recorded and this section is marked complete.<br>You scored <strong>' + score + ' of ' + total + '</strong>. Review the answers below, then redo the section if you&rsquo;d like.';
+    let html = '';
+    questions.forEach(function(q, qi) {
+      const chosen = answers['q' + (qi+1)];
+      const isCorrect = chosen === q.correctIndex;
+      let opts = '';
+      q.options.forEach(function(opt, oi) {
+        let cls = 'review-opt', mark = '';
+        if (oi === q.correctIndex) { cls += ' is-correct'; mark = '&#10003;'; }
+        else if (oi === chosen) { cls += ' is-chosen-wrong'; mark = '&#10007;'; }
+        opts += '<div class="' + cls + '"><span class="mark">' + mark + '</span><span>' + opt
+              + (oi === q.correctIndex ? '  <em>(correct answer)</em>' : (oi === chosen ? '  <em>(your answer)</em>' : '')) + '</span></div>';
+      });
+      html += '<div class="review-item ' + (isCorrect ? 'correct' : 'incorrect') + '">'
+            + '<div class="review-q"><span class="verdict ' + (isCorrect ? 'correct' : 'incorrect') + '">'
+            + (isCorrect ? 'Correct' : 'Incorrect') + '</span>Q' + (qi+1) + '. ' + q.q + '</div>'
+            + opts + '</div>';
+    });
+    listEl.innerHTML = html;
+  }
+
+  function showSubmitted() {
+    document.getElementById('questionsWrap-' + secNum)?.classList.add('hidden');
+    document.getElementById('submittedWrap-' + secNum)?.classList.remove('hidden');
+    renderReview();
+  }
+
+  if (submitBtn) submitBtn.addEventListener('click', function() {
+    const answers = {};
+    for (let i = 1; i <= qCount; i++) {
+      const v = document.querySelector('input[name="s' + secNum + '_q' + i + '"]:checked')?.value;
+      answers['q' + i] = v != null ? parseInt(v, 10) : null;
+    }
+    const correct = {};
+    questions.forEach(function(q, qi) { correct['q' + (qi+1)] = q.correctIndex; });
+    let score = 0;
+    for (let i = 1; i <= qCount; i++) { if (answers['q'+i] === correct['q'+i]) score++; }
+    const s = loadSec(secNum);
+    s.sectionId='s'+secNum; s.answers=answers; s.correct=correct; s.score=score; s.total=qCount;
+    s.submittedAt=new Date().toISOString(); s.complete=true;
+    saveSec(secNum, s);
+    showSubmitted();
+    document.querySelector('.section-pill[data-sec="' + secNum + '"]')?.classList.add('done');
+    updateModuleProgress();
+  });
+
+  const redo = document.getElementById('redoBtn-' + secNum);
+  if (redo) redo.addEventListener('click', function() {
+    localStorage.removeItem(window.nahrmLearnerKey('s' + secNum));
+    document.getElementById('questionsWrap-' + secNum)?.classList.remove('hidden');
+    document.getElementById('submittedWrap-' + secNum)?.classList.add('hidden');
+    document.querySelectorAll('#questionsWrap-' + secNum + ' input[type="radio"]').forEach(function(r){ r.checked = false; });
+    if (submitBtn) submitBtn.disabled = true;
+    if (note) note.textContent = 'Select an answer for each question to submit.';
+    document.querySelector('.section-pill[data-sec="' + secNum + '"]')?.classList.remove('done');
+    updateModuleProgress();
+  });
+
+  if (loadSec(secNum).submittedAt) showSubmitted();
+}
+
+document.addEventListener('learnerReady', function() {
+  cpEnsureModuleStarted();
+  for (let i = 1; i <= SECTION_DATA.length; i++) wireSection(i);
+  updateModuleProgress();
+});
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
 const _FB_CONFIG = {
   apiKey: "AIzaSyC-I-IOCq2fCwa471fsD5xOn6SYQSBDp7Q",
   authDomain: "sfcertification-grafana.firebaseapp.com",
@@ -170,142 +828,78 @@ const _FB_CONFIG = {
   messagingSenderId: "227322696511",
   appId: "1:227322696511:web:12e7ced7dd3d45fa06798a"
 };
-if (!window._fbApp) window._fbApp = firebase.initializeApp(_FB_CONFIG);
+if (!window._fbApp) { window._fbApp = firebase.initializeApp(_FB_CONFIG); }
 const _auth = firebase.auth(window._fbApp);
-window._learnerUid = 'anon'; window._learnerEmail = null;
+const _provider = new firebase.auth.GoogleAuthProvider();
+_provider.setCustomParameters({ hd: 'sourcefuse.com' });
 
-window.pmLearnerKey = function(exampleId){ return 'pm_learner_' + window._learnerUid + '_' + exampleId; };
-function loadState(){ try { return JSON.parse(localStorage.getItem(window.pmLearnerKey(EXAMPLE_ID))) || {}; } catch(e){ return {}; } }
-function saveState(s){ localStorage.setItem(window.pmLearnerKey(EXAMPLE_ID), JSON.stringify(s)); }
+window.nahrmLearnerKey = function(sectionId) {
+  const uid = window._learnerUid || 'anon';
+  return 'nahrm_learner_' + uid + '_' + MODULE_ID + '_' + sectionId;
+};
 
-window.pmSignOut = function(){ _auth.signOut(); };
+function showOverlay() { document.getElementById('authOverlay')?.classList.remove('hidden'); }
+function hideOverlay() { document.getElementById('authOverlay')?.classList.add('hidden'); }
+function showUserBar(email) {
+  const bar = document.getElementById('authUserBar'); const em = document.getElementById('authUserEmail');
+  if (bar) bar.classList.remove('hidden'); if (em) em.textContent = 'Welcome, ' + email;
+}
 
-_auth.onAuthStateChanged(function(user){
-  if (user && user.email && user.email.endsWith('@sourcefuse.com')) {
-    window._learnerUid = user.uid; window._learnerEmail = user.email;
-    document.getElementById('userEmail').textContent = user.email;
+_auth.onAuthStateChanged(function(user) {
+  if (user) {
+    const email = user.email || '';
+    if (!email.endsWith('@sourcefuse.com')) {
+      const errEl = document.getElementById('authError');
+      if (errEl) { errEl.textContent = 'Please use your @sourcefuse.com account.'; errEl.classList.remove('hidden'); }
+      _auth.signOut(); showOverlay(); return;
+    }
+    window._learnerUid = user.uid; window._learnerEmail = email;
+    hideOverlay(); showUserBar(email);
     document.dispatchEvent(new Event('learnerReady'));
-  } else if (user && user.email && !user.email.endsWith('@sourcefuse.com')) {
-    _auth.signOut();    // enforce domain
   } else {
-    window.location.href = 'course-map.html';
+    window._learnerUid = null; window._learnerEmail = null;
+    showOverlay();
   }
 });
 
-/* ===== Page init — bind complete handler BEFORE early returns ============= */
-document.addEventListener('learnerReady', function() {
-  const state = loadState();
-  cpEnsureModuleStarted();   // courseProgress: set module start once
-
-  const completeCb = document.getElementById('completeCb');
-  if (completeCb) {
-    completeCb.addEventListener('change', function() {
-      if (!completeCb.checked) return;
-      const s = loadState(); s.complete = true; saveState(s);
-      activateCompleteBar(true);
-    });
-  }
-  const redoBtn = document.getElementById('redoBtn');
-  if (redoBtn) redoBtn.addEventListener('click', function() {
-    localStorage.removeItem(window.pmLearnerKey(EXAMPLE_ID));
-    document.getElementById('questionsWrap').classList.remove('hidden');
-    document.getElementById('submittedWrap').classList.add('hidden');
-    document.querySelectorAll('.opt input[type="radio"]').forEach(function(r){ r.checked = false; });
-    document.getElementById('submitAnswersBtn').disabled = true;
-    document.getElementById('submitNote').textContent = 'Select an answer for each question to submit.';
-    activateCompleteBar(false);
+document.getElementById('googleSignInBtn')?.addEventListener('click', function() {
+  _auth.signInWithPopup(_provider).catch(function(err) {
+    const el = document.getElementById('authError');
+    if (el) { el.textContent = err.message; el.classList.remove('hidden'); }
   });
-
-  if (state.complete) { showSubmittedState(); activateCompleteBar(true); return; }
-  if (state.submittedAt) { showSubmittedState(); activateCompleteBar(false); return; }
-
-  document.querySelectorAll('.opt input[type="radio"]').forEach(function(radio){
-    radio.addEventListener('change', checkAllAnswered);
-  });
-  document.getElementById('submitAnswersBtn').addEventListener('click', submitAnswers);
 });
 
-function checkAllAnswered() {
-  const all = ['q1','q2','q3'].every(n => document.querySelector('input[name="'+n+'"]:checked'));
-  document.getElementById('submitAnswersBtn').disabled = !all;
-  document.getElementById('submitNote').textContent = all ? 'Ready to submit.' : 'Select an answer for each question to submit.';
-}
-
-function submitAnswers() {
-  const answers = {};
-  ['q1','q2','q3'].forEach(function(n){
-    const v = document.querySelector('input[name="'+n+'"]:checked'); if (v) answers[n] = v.value;
+function nahrmEmailSignIn() {
+  const email = (document.getElementById('authEmail')?.value || '').trim().toLowerCase();
+  const pwd = document.getElementById('authPassword')?.value || '';
+  const el = document.getElementById('authError');
+  function fail(msg){ if(el){ el.textContent = msg; el.classList.remove('hidden'); } }
+  if (el) el.classList.add('hidden');
+  if (!email || !pwd) { fail('Please enter your email and password.'); return; }
+  if (!email.endsWith('@sourcefuse.com')) { fail('Only @sourcefuse.com accounts are allowed.'); return; }
+  _auth.signInWithEmailAndPassword(email, pwd).catch(function(err) {
+    const m = (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') ? 'Incorrect password.'
+            : (err.code === 'auth/user-not-found') ? 'No account found for this email.' : err.message;
+    fail(m);
   });
-  let correct = 0;
-  Object.keys(CORRECT).forEach(function(n){ if (answers[n] === CORRECT[n]) correct++; });
-  const s = loadState();
-  s.exampleId = EXAMPLE_ID; s.answers = answers; s.correct = correct;
-  s.submittedAt = new Date().toISOString();
-  saveState(s);
-  showSubmittedState();
-  activateCompleteBar(false);
 }
+document.getElementById('emailSignInBtn')?.addEventListener('click', nahrmEmailSignIn);
+document.getElementById('authPassword')?.addEventListener('keydown', function(e){ if(e.key==='Enter') nahrmEmailSignIn(); });
+document.getElementById('authSignOutBtn')?.addEventListener('click', function() { _auth.signOut(); });
 
-function showSubmittedState() {
-  document.getElementById('questionsWrap').classList.add('hidden');
-  document.getElementById('submittedWrap').classList.remove('hidden');
-}
-
-function activateCompleteBar(isDone) {
-  const bar = document.getElementById('completeBar');
-  const cb = document.getElementById('completeCb');
-  const label = document.getElementById('completeLabel');
-  const redo = document.getElementById('redoBtn');
-  if (!bar) return;
-  if (isDone) {
-    bar.className = 'complete-bar done';
-    cb.disabled = true; cb.checked = true;
-    label.textContent = '✓ Module complete';
-    if (redo) redo.classList.add('visible');
-    cpWriteModuleComplete();        // courseProgress write
-  } else {
-    bar.className = 'complete-bar';
-    cb.disabled = false; cb.checked = false;
-    label.textContent = 'Mark module as complete';
-    if (redo) redo.classList.remove('visible');
-  }
-}
-</script>
-
-<!-- ===== SHARED courseProgress v2 wiring ==================================== -->
-<script>
-/* --- CONFIG --- */
-var CP_COURSE_ID = 'newAgeHrm2026SFCert';
-var THIS_MODULE_KEY = EXAMPLE_ID;
-var CP_MODULE_IDS = [
-  'nahrm-module-1-future-workplace',
-  'nahrm-module-2-strategic-hrm',
-  'nahrm-module-3-ai-digital-hr',
-  'nahrm-module-4-next-gen-talent',
-  'nahrm-module-5-wellness',
-  'nahrm-module-6-dei'
-];
-
-/* --- function bodies (verbatim from courseProgress-v2.js) --- */
+// ── courseProgress (uid-keyed; module map) ──
 function cpNow() {
-  var d = new Date();
-  var pad = function(n){ return String(n).padStart(2,'0'); };
-  return {
-    date: d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()),
-    time: pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds()),
-    ms:   d.getTime()
-  };
+  var d = new Date(); var pad = function(n){ return String(n).padStart(2,'0'); };
+  return { date: d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()), time: pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds()), ms: d.getTime() };
 }
 function cpFmtDuration(ms) {
   if (ms == null || ms < 0) return null;
   var s = Math.floor(ms/1000), h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
-  if (h > 0) return h+'h '+m+'m '+sec+'s';
-  if (m > 0) return m+'m '+sec+'s';
-  return sec+'s';
+  if (h > 0) return h+'h '+m+'m '+sec+'s'; if (m > 0) return m+'m '+sec+'s'; return sec+'s';
 }
 function cpDb() { return firebase.firestore(window._fbApp); }
 function cpDocRef() { return cpDb().collection('courseProgress').doc(window._learnerUid); }
-function cpReady() { return window._fbApp && window._learnerUid && window._learnerUid !== 'anon'; }
+function cpReady() { return window._fbApp && window._learnerUid && window._learnerUid !== 'anon' && window._learnerUid != null; }
 
 function cpEnsureModuleStarted() {
   if (!cpReady()) return;
@@ -316,13 +910,12 @@ function cpEnsureModuleStarted() {
     var mods = course.modules || {};
     var t = cpNow();
     var update = { email: window._learnerEmail || null, name: window._learnerEmail || null, courses: {} };
-    update.courses[CP_COURSE_ID] = { moduleInProgress: THIS_MODULE_KEY, modules: {} };
-    if (!mods[THIS_MODULE_KEY] || !mods[THIS_MODULE_KEY].startedOn) {
-      update.courses[CP_COURSE_ID].modules[THIS_MODULE_KEY] = { startedOn: t.date, startedAt: t.time };
-    }
+    update.courses[CP_COURSE_ID] = { moduleInProgress: MODULE_ID, modules: {} };
     if (!course.courseStartedOn) { update.courses[CP_COURSE_ID].courseStartedOn = t.date; update.courses[CP_COURSE_ID].courseStartedAt = t.time; }
-    ref.set(update, { merge: true })
-       .catch(function(e){ console.warn('[courseProgress] start write failed:', e.message); });
+    if (!mods[MODULE_ID] || !mods[MODULE_ID].startedOn) {
+      update.courses[CP_COURSE_ID].modules[MODULE_ID] = { startedOn: t.date, startedAt: t.time };
+    }
+    ref.set(update, { merge: true }).catch(function(e){ console.warn('[courseProgress] start write failed:', e.message); });
   }).catch(function(e){ console.warn('[courseProgress] start read failed:', e.message); });
 }
 
@@ -334,30 +927,24 @@ function cpWriteModuleComplete() {
     var course = (data.courses && data.courses[CP_COURSE_ID]) || {};
     var mods = course.modules || {};
     var t = cpNow();
-    var startMs = null;
-    var mEntry = mods[THIS_MODULE_KEY];
-    if (mEntry && mEntry.startedOn && mEntry.startedAt) {
-      startMs = new Date(mEntry.startedOn + 'T' + mEntry.startedAt).getTime();
-    }
+    var startMs = null; var mEntry = mods[MODULE_ID];
+    if (mEntry && mEntry.startedOn && mEntry.startedAt) { startMs = new Date(mEntry.startedOn + 'T' + mEntry.startedAt).getTime(); }
     var moduleTimeTaken = startMs != null ? cpFmtDuration(t.ms - startMs) : null;
-
+    var existing = mods[MODULE_ID] || {};
     var courseUpdate = { modules: {} };
-    var existing = mods[THIS_MODULE_KEY] || {};
-    courseUpdate.modules[THIS_MODULE_KEY] = {
+    courseUpdate.modules[MODULE_ID] = {
       completedOn: existing.completedOn || t.date,
       completedAt: existing.completedAt || t.time,
-      timeTaken:   existing.timeTaken   || moduleTimeTaken
+      timeTaken: existing.timeTaken || moduleTimeTaken
     };
-    if (course.moduleInProgress === THIS_MODULE_KEY) courseUpdate.moduleInProgress = null;
-
+    if (course.moduleInProgress === MODULE_ID) courseUpdate.moduleInProgress = null;
     var completedCount = 0;
     CP_MODULE_IDS.forEach(function(id){
-      if (id === THIS_MODULE_KEY) { completedCount++; return; }
+      if (id === MODULE_ID) { completedCount++; return; }
       if (mods[id] && mods[id].completedOn) completedCount++;
     });
     if (completedCount >= CP_MODULE_IDS.length && !course.courseCompletedOn) {
-      courseUpdate.courseCompletedOn = t.date;
-      courseUpdate.courseCompletedAt = t.time;
+      courseUpdate.courseCompletedOn = t.date; courseUpdate.courseCompletedAt = t.time;
       if (course.courseStartedOn && course.courseStartedAt) {
         var cStart = new Date(course.courseStartedOn + 'T' + course.courseStartedAt).getTime();
         courseUpdate.timeTaken = cpFmtDuration(t.ms - cStart);
@@ -365,10 +952,23 @@ function cpWriteModuleComplete() {
     }
     var update = { email: window._learnerEmail || null, name: window._learnerEmail || null, courses: {} };
     update.courses[CP_COURSE_ID] = courseUpdate;
-    ref.set(update, { merge: true })
-       .catch(function(e){ console.warn('[courseProgress] complete write failed:', e.message); });
+    ref.set(update, { merge: true }).catch(function(e){ console.warn('[courseProgress] complete write failed:', e.message); });
   }).catch(function(e){ console.warn('[courseProgress] complete read failed:', e.message); });
 }
+
+(function() {
+  function addVersion(url) {
+    if (!url || url.startsWith('http') || url.startsWith('#') || url.startsWith('mailto')) return url;
+    if (!url.endsWith('.html') && !url.includes('.html?')) return url;
+    const sep = url.includes('?') ? '&' : '?';
+    if (url.includes('v=' + CACHE_VERSION)) return url;
+    return url + sep + 'v=' + CACHE_VERSION;
+  }
+  document.querySelectorAll('a[href]').forEach(a => { a.href = addVersion(a.getAttribute('href')); });
+})();
+
+buildSections();
 </script>
+
 </body>
 </html>
