@@ -487,7 +487,7 @@ window.NAHRM_QUESTION_BANK = {
 </script>
 
 <script>
-const CACHE_VERSION = '2026-06-17-v3';
+const CACHE_VERSION = '2026-06-17-v4';
 const MODULE_ID     = 'nahrm_m1';
 const CP_COURSE_ID  = 'newAgeHrm2026SFCert';
 const CP_MODULE_IDS = ['nahrm_m1','nahrm_m2','nahrm_m3','nahrm_m4','nahrm_m5','nahrm_m6'];
@@ -957,6 +957,7 @@ function cpWriteModuleComplete() {
 }
 
 (function() {
+  console.log('%c[SF Knowledge Hub] nahrm-module-1-intro-new-age-hr.html — CACHE_VERSION = ' + CACHE_VERSION, 'color:#1a6eb5;font-weight:bold;');
   function addVersion(url) {
     if (!url || url.startsWith('http') || url.startsWith('#') || url.startsWith('mailto')) return url;
     if (!url.endsWith('.html') && !url.includes('.html?')) return url;
