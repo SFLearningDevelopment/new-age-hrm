@@ -487,11 +487,12 @@ window.NAHRM_QUESTION_BANK = {
 </script>
 
 <script>
-const CACHE_VERSION = '2026-06-17-v4';
+const CACHE_VERSION = '2026-06-17-v5';
 const MODULE_ID     = 'nahrm_m1';
 const CP_COURSE_ID  = 'newAgeHrm2026SFCert';
 const CP_MODULE_IDS = ['nahrm_m1','nahrm_m2','nahrm_m3','nahrm_m4','nahrm_m5','nahrm_m6'];
 const BANK_KEY      = 'nahrm_m1';
+const CP_MODULE_NAME = 'Introduction to New-Age HR';
 
 const SECTION_DATA = [
   {
@@ -789,6 +790,7 @@ function wireSection(secNum) {
     s.sectionId='s'+secNum; s.answers=answers; s.correct=correct; s.score=score; s.total=qCount;
     s.submittedAt=new Date().toISOString(); s.complete=true;
     saveSec(secNum, s);
+    arSaveAssessment(secNum, s, questions);
     showSubmitted();
     document.querySelector('.section-pill[data-sec="' + secNum + '"]')?.classList.add('done');
     updateModuleProgress();
@@ -886,6 +888,33 @@ function nahrmEmailSignIn() {
 document.getElementById('emailSignInBtn')?.addEventListener('click', nahrmEmailSignIn);
 document.getElementById('authPassword')?.addEventListener('keydown', function(e){ if(e.key==='Enter') nahrmEmailSignIn(); });
 document.getElementById('authSignOutBtn')?.addEventListener('click', function() { _auth.signOut(); });
+
+// ── assessmentResponses (uid-keyed; separate collection; Check-understanding) ──
+function arDb() { return firebase.firestore(window._fbApp); }
+function arDocRef() { return arDb().collection('assessmentResponses').doc(window._learnerUid); }
+function arReady() { return window._fbApp && window._learnerUid && window._learnerUid !== 'anon' && window._learnerUid != null; }
+function arSaveAssessment(secNum, s, questions) {
+  if (!arReady()) return;
+  var sectionTitle = '';
+  try { sectionTitle = (SECTION_DATA[secNum-1] && SECTION_DATA[secNum-1].title) || ('Section ' + secNum); } catch(e) { sectionTitle = 'Section ' + secNum; }
+  var t = (function(){ var d=new Date(), pad=function(n){return String(n).padStart(2,'0');};
+    return { date:d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()), time:pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds()) }; })();
+  var key = CP_COURSE_ID + '__' + MODULE_ID + '__s' + secNum;
+  var update = { email: window._learnerEmail || null, responses: {} };
+  update.responses[key] = {
+    moduleId: MODULE_ID,
+    moduleName: CP_MODULE_NAME,
+    sectionId: 's' + secNum,
+    sectionTitle: sectionTitle,
+    answers: s.answers || {},
+    correct: s.correct || {},
+    score: (typeof s.score === 'number') ? s.score : null,
+    total: (typeof s.total === 'number') ? s.total : (questions ? questions.length : null),
+    submittedOn: t.date,
+    submittedAt: t.time
+  };
+  arDocRef().set(update, { merge: true }).catch(function(e){ console.warn('[assessmentResponses] save failed:', e.message); });
+}
 
 // ── courseProgress (uid-keyed; module map) ──
 function cpNow() {
