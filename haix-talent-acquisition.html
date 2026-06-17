@@ -324,7 +324,7 @@ window.NAHRM_QUESTION_BANK = {
 </script>
 
 <script>
-const CACHE_VERSION = '2026-06-17-v3';
+const CACHE_VERSION = '2026-06-17-v4';
 const MODULE_ID     = 'haix_ta';
 const CP_COURSE_ID  = 'aiExpertiseHr2026SFCert';
 const CP_MODULE_IDS = ['nahrm_m1','haix_ta'];
@@ -740,6 +740,7 @@ function cpWriteModuleComplete() {
 
 // ── challengeResponses (uid-keyed; separate collection) ──
 const CHALLENGE_ID = CP_COURSE_ID + '__' + MODULE_ID + '__keepwarm';
+const CP_MODULE_NAME = 'Talent Acquisition';
 function crDb() { return firebase.firestore(window._fbApp); }
 function crDocRef() { return crDb().collection('challengeResponses').doc(window._learnerUid); }
 function crReady() { return window._fbApp && window._learnerUid && window._learnerUid !== 'anon' && window._learnerUid != null; }
@@ -771,7 +772,7 @@ function crSaveResponse() {
   if (!crReady()) { crSetNote('Sign in to save your response.', false); return; }
   var t = crNow();
   var update = { email: window._learnerEmail || null, challenges: {} };
-  update.challenges[CHALLENGE_ID] = { response: ta.value || '', savedOn: t.date, savedAt: t.time };
+  update.challenges[CHALLENGE_ID] = { moduleId: MODULE_ID, moduleName: CP_MODULE_NAME, response: ta.value || '', savedOn: t.date, savedAt: t.time };
   crSetNote('Saving…', false);
   crDocRef().set(update, { merge: true }).then(function(){
     crSetNote('Response saved (' + t.date + ' ' + t.time + ').', true);
