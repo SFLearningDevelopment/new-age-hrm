@@ -6,7 +6,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 1 — Introduction to New-Age HR &middot; New-Age HRM Essentials</title>
+<title>First Step toward AI Expertise — AI Expertise for HR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -148,6 +148,28 @@
   .auth-user-bar.hidden { display:none; }
   .auth-signout { background:var(--blue); color:#fff; border:none; border-radius:8px; cursor:pointer; font-size:14px; font-weight:700; font-family:'Merriweather Sans',sans-serif; padding:8px 18px; text-decoration:none; }
   @media(max-width:640px) { .topnav,.main,.module-band { padding-left:18px; padding-right:18px; } .section-pills-wrap { padding-left:14px; } .tab-body { padding:22px 18px; } }
+
+  .tech-badges { display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 0; }
+  .tech-badge { font-family:'Source Code Pro',monospace; font-size:11px; font-weight:600; letter-spacing:.03em; background:var(--blue); color:#fff; padding:3px 9px; border-radius:12px; }
+  .tech-row { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:16px 0 6px; }
+  .tech-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); }
+  .minicase { border:1.5px solid var(--amber); background:var(--amber-light); border-left:3px solid var(--amber); border-radius:0 10px 10px 0; padding:14px 18px; margin:18px 0; font-size:14.5px; line-height:1.7; color:var(--text-dim); }
+  .minicase .mc-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); margin-bottom:8px; }
+  .deepdive { border:1.5px solid var(--border); border-left:3px solid var(--blue-dark); background:var(--bg2); border-radius:0 10px 10px 0; padding:16px 20px; margin:18px 0; }
+  .deepdive .dd-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--blue-dark); margin-bottom:12px; }
+  .deepdive .dd-item { margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .deepdive .dd-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+  .deepdive .dd-name { font-weight:700; font-size:14.5px; color:var(--text); margin-bottom:3px; }
+  .deepdive .dd-body { font-size:14px; line-height:1.7; color:var(--text-dim); }
+  .step { border:1.5px solid var(--border); border-radius:12px; padding:16px 20px; margin:14px 0; background:var(--bg2); }
+  .step-h { display:flex; align-items:center; gap:10px; font-weight:700; font-size:16px; margin-bottom:10px; }
+  .step-n { width:26px; height:26px; border-radius:50%; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-family:'Source Code Pro',monospace; }
+  .challenge { border:1.5px solid var(--blue-mid); background:var(--blue-light); border-radius:12px; padding:20px 22px; margin:16px 0; }
+  .challenge-input { width:100%; min-height:120px; border:1.5px solid var(--border); border-radius:8px; padding:12px 14px; font-family:'Source Code Pro',monospace; font-size:13.5px; line-height:1.6; resize:vertical; margin:6px 0 12px; }
+  .reveal-btn { padding:11px 20px; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:14.5px; font-weight:700; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .reveal-btn:hover { background:var(--blue-dark); }
+  .reveal-body { margin-top:16px; }
+  .reveal-check { border-left:3px solid var(--green); background:var(--green-light); padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; line-height:1.7; color:var(--text-dim); margin-top:12px; }
 </style>
 </head>
 <body>
@@ -175,21 +197,21 @@
 </div>
 
 <nav class="topnav">
-  <span>Module 1</span>
+  <span>AI Expertise for HR</span>
   <span class="sep">/</span>
-  <span>Introduction to New-Age HR</span>
+  <span>First Step toward AI Expertise</span>
 </nav>
 
 <div class="module-band">
-  <div class="module-eyebrow">Module 1 of 6</div>
-  <div class="module-title">Introduction to New-Age HR</div>
-  <div class="module-progress" id="moduleProgress">0 of 4 sections complete</div>
+  <div class="module-eyebrow">Section 1 (pilot)</div>
+  <div class="module-title">First Step toward AI Expertise</div>
+  <div class="module-progress" id="moduleProgress">0 of 1 sections complete</div>
 </div>
 
 <div class="refresh-wrap">
   <button class="refresh-toggle" id="refreshToggle" onclick="toggleRefresh()">
     <span class="rt-icon">&#128161;</span>
-    <span class="rt-text">New to the language of digital HR?
+    <span class="rt-text">New to prompting techniques?
       <span class="rt-sub">A quick primer on the core terms before you begin &mdash; open it if the sections feel fast-paced.</span>
     </span>
     <span class="rt-chev">&#9660; OPEN</span>
@@ -197,33 +219,28 @@
   <div class="refresh-panel" id="refreshPanel">
     <h3>A few terms worth knowing</h3>
     <ul>
-      <li><strong>Digital HR</strong> &mdash; using technology and data to run and improve people processes, and to make HR a faster, more evidence-based partner to the business.</li>
-      <li><strong>Industry 4.0</strong> &mdash; the current wave of automation, AI, data, and connected systems reshaping work and the skills it requires.</li>
-      <li><strong>Reskilling / upskilling</strong> &mdash; helping people learn new capabilities (reskilling) or deepen existing ones (upskilling) as roles evolve.</li>
-      <li><strong>Employer branding</strong> &mdash; an organisation&rsquo;s reputation as a place to work, increasingly shaped in public and by employees themselves.</li>
-      <li><strong>Hybrid / work-from-anywhere</strong> &mdash; work models that combine or remove fixed-location constraints, changing how culture is sustained.</li>
-      <li><strong>Generative AI assistant</strong> &mdash; a tool (such as Claude, Gemini, or ChatGPT) that produces text and other content to support &mdash; not replace &mdash; human work.</li>
+      <li><strong>Role priming</strong> &mdash; telling the AI who to act as, to set the right lens.</li>
+      <li><strong>Context loading (R-C-T-C-F)</strong> &mdash; supplying role, context, task, constraints, and format.</li>
+      <li><strong>Few-shot</strong> &mdash; giving examples or explicit criteria so the AI follows your standard.</li>
+      <li><strong>Chain-of-thought</strong> &mdash; asking the AI to show its reasoning step by step.</li>
+      <li><strong>Structured output</strong> &mdash; requesting a table, template, or fixed layout.</li>
+      <li><strong>Guardrail prompting</strong> &mdash; constraints like &ldquo;flag if unsure&rdquo; to curb fabrication and bias.</li>
     </ul>
     <button class="refresh-close" onclick="toggleRefresh()">Close primer</button>
   </div>
 </div>
 
 <div class="section-pills-wrap">
-  <div class="section-pills" id="sectionPills">
-    <button class="section-pill active" data-sec="1" onclick="showSection(1)"><span class="pnum">1</span> New Age HR</button>
-    <button class="section-pill" data-sec="2" onclick="showSection(2)"><span class="pnum">2</span> Digital AI Tools</button>
-    <button class="section-pill" data-sec="3" onclick="showSection(3)"><span class="pnum">3</span> Digital HR</button>
-    <button class="section-pill" data-sec="4" onclick="showSection(4)"><span class="pnum">4</span> Managing Organisation Culture Hybrid Workmode</button>
-  </div>
+  <div class="section-pills" id="sectionPills"></div>
 </div>
 
 <div class="main" id="sectionsRoot"></div>
 
-<div class="complete-bar" id="completeBar">Complete all 4 sections to finish this module.</div>
+<div class="complete-bar" id="completeBar">Complete the section to finish this pilot.</div>
 
 <div class="main" style="padding-top:0;">
-  <div class="bottom-nav" style="justify-content:flex-end;">
-    <a class="nav-btn" href="haix-talent-acquisition.html">Module 2 &mdash; Talent Acquisition &rarr;</a>
+  <div class="bottom-nav" style="justify-content:flex-start;">
+    <a class="nav-btn back" href="nahrm-module-1-intro-new-age-hr.html">&larr; Module 1 &mdash; Introduction</a>
   </div>
 </div>
 
@@ -233,253 +250,67 @@
 
 <script>
 window.NAHRM_QUESTION_BANK = {
-  "nahrm_m1": {
+  "haix_ta": {
     "s1": [
       {
-        "q": "What best describes &lsquo;digital change in HR&rsquo;?",
+        "q": "A recruiter writes &lsquo;Write a job description for a DevOps engineer.&rsquo; What stack of techniques most improves it?",
         "options": [
-          "Limiting HR to payroll and compliance only",
-          "Removing technology from HR processes",
-          "Repositioning HR toward a data-informed, anticipatory partner to the business",
-          "Replacing all HR staff with software"
-        ],
-        "correctIndex": 2
-      },
-      {
-        "q": "&lsquo;Digital capability&rsquo; in HR consists of four parts working together. Which list captures them?",
-        "options": [
-          "Replacing managers with dashboards",
-          "Buying the newest software and nothing more",
-          "Collecting as much data as possible and storing it",
-          "Connected data, analytics that surface signals, the literacy to interpret them, and a process to act in time"
-        ],
-        "correctIndex": 3
-      },
-      {
-        "q": "Why is building digital capability described as a sequenced investment (connect, analyse, interpret, act)?",
-        "options": [
-          "Because the tool is the hardest and most important part",
-          "Each layer depends on the one beneath it, so skipping or reordering layers makes the investment underdeliver",
-          "Because the order of investment makes no difference",
-          "Because only the final step matters"
+          "Repeating the same prompt until a better draft appears",
+          "Role priming, context loading, and structured output",
+          "Making the prompt as short as possible for more freedom",
+          "Asking the AI to be creative and to make it sound good"
         ],
         "correctIndex": 1
       },
       {
-        "q": "Why does Industry 4.0 make continuous reskilling a core HR responsibility?",
+        "q": "When screening CVs with AI, why require per-criterion reasoning that quotes the CV?",
         "options": [
-          "Because it eliminates the need for any workforce",
-          "Because the half-life of skills is shrinking as automation and AI change which skills retain value",
-          "Because skills never change once learned",
-          "Because training budgets must always be reduced"
+          "It guarantees the AI is completely free of any hidden bias",
+          "It makes the AI decide the hire so people need not review",
+          "It lets you skip checking the CVs against the role at all",
+          "It makes the shortlist auditable and helps catch misreads"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "Which guardrail best reduces fabrication when AI screens candidates?",
+        "options": [
+          "Tell it the count matters more than the actual content",
+          "Tell it to flag ambiguous evidence instead of guessing",
+          "Tell it to infer background details to fill in any gaps",
+          "Tell it to always pick a winner no matter the evidence"
         ],
         "correctIndex": 1
       },
       {
-        "q": "New-age organization design tends to favour:",
+        "q": "For an interview kit, what does mapping questions to competencies achieve?",
         "options": [
-          "Eliminating all reporting lines",
-          "Taller hierarchies with more approval layers",
-          "Flatter, networked, project-based structures that increase adaptability",
-          "Permanent fixed departments with no cross-function work"
-        ],
-        "correctIndex": 2
-      },
-      {
-        "q": "When AI (generative, agentic, ML) is built into a team, what does a sustainable and productive design do?",
-        "options": [
-          "Treat AI only as a headcount-reduction lever",
-          "Remove all human oversight so the AI can run unsupervised",
-          "Reskill people into higher-judgement, AI-directing roles with clear human accountability, rather than using AI purely to cut headcount",
-          "Cut the team as far as possible and expect the same output faster"
-        ],
-        "correctIndex": 2
-      },
-      {
-        "q": "In a new-age, AI-augmented workplace, why does prompt engineering matter for the workforce?",
-        "options": [
-          "It is a one-off setup task that rarely needs any practice",
-          "It removes the need for human oversight of AI outputs",
-          "It matters only to software engineers, not to HR professionals",
-          "It is becoming a core workplace skill for directing AI tools well"
-        ],
-        "correctIndex": 3
-      }
-    ],
-    "s2": [
-      {
-        "q": "In prompt engineering, what does the R-C-T-C-F structure stand for?",
-        "options": [
-          "Request, Capture, Track, Confirm, Forward",
-          "Role, Context, Task, Constraints, Format",
-          "Review, Confirm, Test, Check, Finalise",
-          "Read, Compose, Translate, Convert, File"
-        ],
-        "correctIndex": 1
-      },
-      {
-        "q": "Why does a well-engineered prompt matter when using Claude, Gemini, or ChatGPT?",
-        "options": [
-          "It changes which company actually owns and operates the AI model",
-          "It removes the need to fact-check or verify any of the output",
-          "It makes confidential employee data safe to paste into any tool",
-          "The same tool gives a vague or a sharp answer depending on framing"
+          "Questions the panel can each interpret in their own way",
+          "A kit that removes the need for interviewer judgement",
+          "A longer list of trivia questions to test broad recall",
+          "Consistent, scorable questions that align the panel"
         ],
         "correctIndex": 3
       },
       {
-        "q": "What is the constant principle across all the AI tools discussed?",
+        "q": "Why does a final-round rejection deserve role priming and context, not a generic prompt?",
         "options": [
-          "Whichever tool launched most recently should always be adopted",
-          "Employee data may be entered freely into any consumer AI tool",
-          "AI augments HR judgement; it does not replace human accountability",
-          "Using AI removes the need for HR to apply its own judgement"
+          "The candidate&rsquo;s experience has no effect on employer brand",
+          "A template avoids the need to review the message at all",
+          "A specific, warm message protects the candidate and the brand",
+          "Generic rejections always read as warm and personal enough"
         ],
         "correctIndex": 2
       },
       {
-        "q": "Why is &lsquo;durable judgement&rsquo; emphasised over picking a single tool?",
+        "q": "What is the through-line of the capstone&rsquo;s end-to-end hire?",
         "options": [
-          "All AI tools are effectively identical in what they can do",
-          "HR should avoid AI entirely until the market fully settles",
-          "Tools change fast, but responsible-use principles persist",
-          "Only one AI vendor will realistically exist in the long run"
+          "Avoid giving context so the AI can be more creative",
+          "Let the AI own each decision to move through it faster",
+          "Stack techniques, supply context, keep a human accountable",
+          "Use one technique only and trust the first output fully"
         ],
         "correctIndex": 2
-      },
-      {
-        "q": "A recruiter prompts: <em>&ldquo;Write a job description for a project manager.&rdquo;</em> The result is generic. What is the best single improvement?",
-        "options": [
-          "Shorten the prompt so the AI has more creative freedom",
-          "Add seniority, team, industry, key skills and tone",
-          "Just tell the AI to &lsquo;be creative and make it good&rsquo;",
-          "Resend the same prompt until a better version appears"
-        ],
-        "correctIndex": 1
-      },
-      {
-        "q": "An HR partner pastes a policy and writes: <em>&ldquo;Make this better.&rdquo;</em> Why does it underperform, and the fix?",
-        "options": [
-          "It is already optimal; the AI should infer the intent",
-          "Delete the document and rely on the AI&rsquo;s general knowledge",
-          "Attach several more documents so it has more to use",
-          "&lsquo;Better&rsquo; is vague &mdash; say what to change, and for whom"
-        ],
-        "correctIndex": 3
-      },
-      {
-        "q": "A manager prompts: <em>&ldquo;Give me interview questions.&rdquo;</em> and gets a generic list. Which refinement helps most?",
-        "options": [
-          "Request them in another language to appear more thorough",
-          "Ask for as many questions as possible, relevant or not",
-          "Specify the role, the competencies and the count",
-          "Tell the AI the content is irrelevant, only the count matters"
-        ],
-        "correctIndex": 2
-      },
-      {
-        "q": "An L&amp;D specialist asks for a whole leadership course in one prompt and it comes out shallow. The issue and fix?",
-        "options": [
-          "Ask for the course, slides and exam in one longer line",
-          "The AI simply cannot do it, so abandon the attempt",
-          "The task is too broad &mdash; break it into sequenced steps",
-          "Send the identical prompt again in a fresh chat window"
-        ],
-        "correctIndex": 2
-      },
-      {
-        "q": "A user writes: <em>&ldquo;Summarise this and make it sound professional.&rdquo;</em> The tone is inconsistent. What improves it?",
-        "options": [
-          "Submit it without the source text and let it improvise",
-          "Let the AI freely choose any length and tone it prefers",
-          "Add the word &lsquo;professional&rsquo; several more times",
-          "Define the audience, the length and the tone concretely"
-        ],
-        "correctIndex": 3
-      },
-      {
-        "q": "After a first draft, a user restarts a brand-new prompt for every change. The more effective approach?",
-        "options": [
-          "Accept the first draft as final regardless of quality",
-          "Have the AI save the draft for next week instead of editing",
-          "Always restart, since earlier context is of no use",
-          "Iterate &mdash; ask for specific edits to the existing draft"
-        ],
-        "correctIndex": 3
-      },
-      {
-        "q": "Why does responsible AI carry a special duty in HR specifically?",
-        "options": [
-          "AI in HR is risk-free once a tool has been formally purchased",
-          "HR is the only function that is ever allowed to use AI tools",
-          "Responsible AI applies only to engineering, never to HR work",
-          "AI decisions scale across many people, so harm spreads fast"
-        ],
-        "correctIndex": 3
-      },
-      {
-        "q": "An AI tool auto-ranks candidates from historical hiring data. The responsible approach is to:",
-        "options": [
-          "Hide the ranking criteria so candidates cannot question them",
-          "Hire straight from the ranking to save the most time possible",
-          "Use it to shortlist for human review and audit it for bias",
-          "Trust it fully, since models are more objective than any person"
-        ],
-        "correctIndex": 2
-      },
-      {
-        "q": "Which statement best reflects human accountability in AI-supported HR decisions?",
-        "options": [
-          "The system decides, so no individual needs to be accountable",
-          "AI advises, but a named person decides and owns the outcome",
-          "Accountability transfers entirely to the tool&rsquo;s software vendor",
-          "Once AI is involved, the decision no longer needs an owner"
-        ],
-        "correctIndex": 1
-      }
-    ],
-    "s3": [
-      {
-        "q": "In a connected world, employer brand is best described as:",
-        "options": [
-          "Fully controlled by the HR marketing team alone",
-          "Set once and never changing",
-          "Co-authored by every employee's lived experience, shaped publicly and continuously",
-          "Irrelevant to talent attraction"
-        ],
-        "correctIndex": 2
-      },
-      {
-        "q": "Why does authenticity matter most in employer branding?",
-        "options": [
-          "Because employees never share their experiences",
-          "Because candidates do not research employers",
-          "Because branding has no effect on hiring",
-          "Because a gap between marketing claims and real employee experience is quickly exposed and deters candidates"
-        ],
-        "correctIndex": 3
-      }
-    ],
-    "s4": [
-      {
-        "q": "What is the central challenge of managing culture in a hybrid work mode?",
-        "options": [
-          "Forcing everyone back to the office permanently",
-          "Sustaining a coherent, inclusive culture when the informal mechanisms of a shared space are absent",
-          "Ignoring culture because it maintains itself",
-          "Eliminating all remote work"
-        ],
-        "correctIndex": 1
-      },
-      {
-        "q": "&lsquo;Proximity bias&rsquo; in a hybrid model refers to:",
-        "options": [
-          "The cost of office space",
-          "A preference for remote workers over office workers",
-          "A type of scheduling software",
-          "Those physically present getting more visibility, feedback, and opportunity than distributed colleagues"
-        ],
-        "correctIndex": 3
       }
     ]
   }
@@ -487,105 +318,40 @@ window.NAHRM_QUESTION_BANK = {
 </script>
 
 <script>
-const CACHE_VERSION = '2026-06-17-v4';
-const MODULE_ID     = 'nahrm_m1';
-const CP_COURSE_ID  = 'newAgeHrm2026SFCert';
-const CP_MODULE_IDS = ['nahrm_m1','nahrm_m2','nahrm_m3','nahrm_m4','nahrm_m5','nahrm_m6'];
-const BANK_KEY      = 'nahrm_m1';
+const CACHE_VERSION = '2026-06-17-v1';
+const MODULE_ID     = 'haix_ta';
+const CP_COURSE_ID  = 'aiExpertiseHr2026SFCert';
+const CP_MODULE_IDS = ['nahrm_m1','haix_ta'];
+const BANK_KEY      = 'haix_ta';
 
 const SECTION_DATA = [
   {
-    "title": "New Age HR",
+    "title": "Role: Talent Acquisition",
     "tabs": [
       {
-        "label": "Setting Context",
-        "heading": "Setting the context: digital change in HR",
-        "html": "<p class=\"prose\">Human resource management is being reshaped by the same digital forces transforming every other part of the enterprise. <strong>Digital change in HR</strong> is the move from HR as a record-keeping and compliance function toward HR as a digitally-enabled, data-informed partner that helps the business anticipate and absorb change.</p><p class=\"prose\">The shift has three drivers. <strong>Technology</strong> has made workforce data abundant and decisions faster &mdash; what once required a manual survey now surfaces continuously from systems the organisation already runs. <strong>Expectations</strong> have risen: employees and candidates expect the same seamless, personalised experience at work that they get as consumers, and they judge an employer by it. And the <strong>pace of change</strong> itself has compressed, so the ability to re-skill and re-organise quickly has become a competitive necessity rather than a periodic project.</p><p class=\"prose\">The clearest way to see the change is in <strong>posture</strong> &mdash; the difference between a function that reacts to events after they happen and one that anticipates them. What follows builds that idea step by step: first the contrast in posture, then what &ldquo;digital capability&rdquo; actually consists of, and finally how to build it as a sequenced investment.</p><div class=\"callout\"><strong>The leadership point:</strong> digital change in HR is not about buying tools. It is about repositioning the function so that people decisions are made with evidence, early enough to matter, at the speed the business now moves.</div>"
+        "label": "Job Description",
+        "heading": "Writing a job description",
+        "html": "<p class=\"prose\">Drafting a job description for a specialised cloud role is one of the most frequent tasks a recruiter handles &mdash; and one of the most AI-amenable. It is also where weak prompting quietly costs the most: a generic JD attracts generic applicants, lengthens the funnel, and forces the hiring manager to re-specify what they wanted in the first place. Getting this right at the prompt stage pays back at every later stage of the hire.</p><p class=\"prose\">The expertise here is not &lsquo;asking AI to write a JD&rsquo;. It is knowing <em>what a JD has to encode</em> &mdash; an accurate seniority bar, a clear split between must-have and nice-to-have skills, the work model, and an inclusive, brand-appropriate tone &mdash; and then engineering a prompt that supplies all of it so the first draft is already close to final.</p><div class=\"example-block\"><div class=\"ex-label\">The scenario</div>You need a job description for a <strong>Senior AWS DevOps Engineer</strong> for a hybrid team at a cloud consulting firm. The hiring manager wants a draft in ten minutes for a role that has been hard to fill, partly because previous postings were vague and drew mismatched candidates.</div><div class=\"prompt-ex\"><div class=\"prompt-label\">Weak prompt</div><div class=\"prompt-text\">Write a job description for a Senior AWS DevOps Engineer.</div></div><div class=\"callout callout-warn\"><strong>Why it underperforms:</strong> the prompt encodes none of what actually makes this role specific. The AI has no seniority signal beyond the word &lsquo;Senior&rsquo;, no must-have versus nice-to-have distinction, no work-model context, and no tone or structure to follow. It will fall back on an average-of-the-internet JD &mdash; plausible, generic, and almost identical to the vague postings that already failed to fill the role. You will spend more time correcting it than you saved.</div><div class=\"tech-row\"><span class=\"tech-label\">Technique(s) applied</span><div class=\"tech-badges\"><span class=\"tech-badge\">Role priming</span><span class=\"tech-badge\">Context loading (R-C-T-C-F)</span><span class=\"tech-badge\">Structured output</span></div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Refined prompt</div><div class=\"prompt-text\">You are a senior technical recruiter at a cloud consulting firm who has filled hard-to-hire DevOps roles before. Draft a job description for a Senior AWS DevOps Engineer on a hybrid team (3 days remote, 2 in office). Must-haves: 6+ years DevOps, deep AWS (EKS, Terraform, CI/CD pipelines), production on-call experience, and comfort working directly with client teams. Nice-to-have: multi-cloud exposure, FinOps awareness, IaC at scale. Tone: precise but human, inclusive language, no clich&eacute;s or hype. Structure it as: a one-line role summary, &lsquo;What you&rsquo;ll do&rsquo; (5 outcome-focused bullets), &lsquo;What you bring&rsquo; (must-have / nice-to-have, clearly separated), and a short, honest note on our hybrid model and client-facing nature. Keep it under 350 words.</div></div><div class=\"callout callout-good\"><strong>Why it works:</strong> each technique closes a specific gap. Role priming gives the AI a recruiter&rsquo;s lens, so it writes to attract rather than merely describe. Context loading supplies the seniority bar, the must/nice split, the work model, and the client-facing reality &mdash; the four things the weak prompt left the AI to guess. Structured output returns it in a layout a hiring manager can scan and approve, not a wall of prose. The result is a near-final draft because the prompt did the specification work up front.</div><div class=\"deepdive\"><div class=\"dd-label\">Technique deep-dive &mdash; how each one works</div><div class=\"dd-item\"><div class=\"dd-name\">Role priming</div><div class=\"dd-body\">You assign the AI an identity and an implied goal (&lsquo;a senior recruiter who has filled hard-to-hire DevOps roles&rsquo;). This shifts its output from neutral description toward persuasive, candidate-attracting language, and primes it to include the things an experienced recruiter would &mdash; realistic expectations, an honest note on the hard parts. The mechanism: the role acts as a lens that biases word choice, emphasis, and what gets included.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Context loading (R-C-T-C-F)</div><div class=\"dd-body\">You front-load Role, Context, Task, Constraints, and Format in one structured prompt. Each element removes a degree of freedom the AI would otherwise fill with a generic guess. Constraints (word count, tone, must/nice split) are the highest-leverage part for a JD &mdash; they are what turn &lsquo;a JD&rsquo; into &lsquo;<em>this</em> JD&rsquo;.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Structured output</div><div class=\"dd-body\">You specify the exact shape of the answer (named sections, bullet counts, ordering). This does two things: it makes the output immediately usable without reformatting, and it forces the AI to organise its thinking into the buckets you care about, which improves completeness &mdash; it cannot quietly skip &lsquo;what you bring&rsquo; if you named it as a required section.</div></div></div><div class=\"callout\"><strong>Watch-outs:</strong> verify every technical requirement with the hiring manager &mdash; AI can over- or under-state seniority and invent plausible-sounding skills. Check the inclusive-language claim yourself rather than trusting that the AI removed all bias. Never paste confidential compensation bands or internal client names into a consumer tool. The JD is a draft for human approval, not a posting to publish as-is.</div><div class=\"minicase\"><div class=\"mc-label\">Mini case study</div>A recruiter using the weak prompt spent 40 minutes editing a generic JD that still mis-stated the seniority as mid-level, and the first wave of applicants reflected it. Switching to the refined prompt &mdash; role, full context, and an explicit structure &mdash; produced a draft the hiring manager approved with two small edits in under ten minutes, and the applicant quality visibly improved. Nothing about the tool changed; the prompt carried the expertise.</div>"
       },
       {
-        "label": "Reactive vs. Anticipatory",
-        "heading": "Reactive vs. anticipatory: the same situation, two postures",
-        "html": "<p class=\"prose\">The defining difference a digital, data-informed approach makes is <strong>posture</strong> &mdash; whether HR reacts to events after they have happened or anticipates them while there is still time to act. The scenario below makes that contrast concrete using a problem every HR team recognises: quiet attrition.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; reactive vs. anticipatory</div><strong>The situation:</strong> A 600-person business unit is quietly losing good people. Over one quarter, eleven mid-level engineers resign.<br><br><strong>The reactive HR team:</strong> learns of the problem only as the resignations land. Exit interviews pile up, each describing the same themes &mdash; unclear growth, a disengaged manager, heavier workload after an earlier round of departures. By the time the pattern is visible, the people are already gone; HR is now running emergency backfill recruitment at premium cost, and the remaining engineers &mdash; watching peers leave &mdash; are themselves starting to look. HR is responding to a fire that has already spread.<br><br><strong>The anticipatory HR team:</strong> sees the same situation forming weeks earlier in signals it already has &mdash; a steady drop in engagement-survey scores for one manager&rsquo;s team, falling participation in optional activities, declining internal-tool login frequency, and a rise in that team&rsquo;s overtime. None of these is a resignation, but together they form an early-warning pattern. HR raises it with the manager, addresses the workload and growth concerns, and has a retention conversation with two flight-risk engineers <em>before</em> any of them update their CV. The same eleven-person loss is largely prevented.<br><br><strong>The point:</strong> same function, same data sources, fundamentally different posture. Reactive HR explains attrition after the fact; anticipatory HR intervenes while the outcome can still be changed. Digital capability is what moves a team from the first posture to the second &mdash; and it is worth breaking down exactly what that capability is.</div><div class=\"callout\">Reactive HR measures the cost of problems. Anticipatory HR reduces the number of problems that ever reach that stage. The data is often already there; the difference is whether the function is set up to see and act on it in time.</div>"
+        "label": "Screening",
+        "heading": "Screening & shortlisting",
+        "html": "<p class=\"prose\">Turning a stack of CVs into a defensible shortlist is high-volume, judgement-heavy, and legally sensitive work. It is exactly the kind of task where AI can save hours &mdash; and exactly where careless prompting does the most damage, because a biased or opaque screen scales unfairness across every candidate at once. Expertise here means using AI to <em>structure</em> the screen while keeping the reasoning visible, the bias contained, and the human firmly in the decision.</p><p class=\"prose\">The shift from novice to expert is from asking for a verdict to asking for <em>evidence-backed reasoning you can audit</em>. A verdict you cannot inspect is worthless in hiring; reasoning you can check against the CV is a genuine productivity gain.</p><div class=\"example-block\"><div class=\"ex-label\">The scenario</div>You have 30 CVs for the Senior AWS DevOps Engineer role and a same-day deadline for a first-pass shortlist. You need to screen consistently against your must-have criteria, and you need reasoning you could defend if a rejected candidate &mdash; or your own compliance team &mdash; asked why.</div><div class=\"prompt-ex\"><div class=\"prompt-label\">Weak prompt</div><div class=\"prompt-text\">Which of these CVs are good for the DevOps role?</div></div><div class=\"callout callout-warn\"><strong>Why it underperforms:</strong> &lsquo;good&rsquo; is undefined, so the AI silently invents its own criteria &mdash; which may include irrelevant or biased signals like the prestige of a university or the phrasing of a job title. It returns a verdict with no visible reasoning, which is indefensible and impossible to audit. Worst of all, it sounds confident while doing it, which makes the hidden bias easy to trust and hard to catch.</div><div class=\"tech-row\"><span class=\"tech-label\">Technique(s) applied</span><div class=\"tech-badges\"><span class=\"tech-badge\">Few-shot (criteria as examples)</span><span class=\"tech-badge\">Chain-of-thought</span><span class=\"tech-badge\">Structured output</span><span class=\"tech-badge\">Guardrail prompting</span></div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Refined prompt</div><div class=\"prompt-text\">You are screening CVs for a Senior AWS DevOps Engineer role. Score each candidate 1&ndash;5 against these four criteria only, and nothing else: (1) 6+ years DevOps experience, (2) hands-on AWS EKS and Terraform, (3) ownership of CI/CD pipelines, (4) production on-call experience. For each candidate and each criterion, give the score and a one-line justification that quotes or cites the specific part of the CV you based it on. Then give a total out of 20. Do not infer or use gender, age, nationality, or the prestige of any school or employer. Where the evidence for a criterion is missing or ambiguous, mark it &lsquo;unclear&rsquo; and do not guess. Return the result as a table sorted by total score, highest first.</div></div><div class=\"callout callout-good\"><strong>Why it works:</strong> few-shot pins the AI to <em>your</em> four criteria instead of its own invented ones. Chain-of-thought forces a visible, per-criterion justification you can audit line by line. The guardrail (&lsquo;do not infer demographics&rsquo;, &lsquo;mark unclear, do not guess&rsquo;) actively suppresses two of the biggest failure modes &mdash; bias and confident fabrication. Structured output makes the whole thing a reviewable table. You get a faster shortlist <em>and</em> a more defensible one than manual screening alone.</div><div class=\"deepdive\"><div class=\"dd-label\">Technique deep-dive &mdash; how each one works</div><div class=\"dd-item\"><div class=\"dd-name\">Few-shot (criteria as examples)</div><div class=\"dd-body\">&lsquo;Few-shot&rsquo; means giving the model explicit examples or rules to pattern-match against, rather than leaving it to infer them. Here the &lsquo;examples&rsquo; are your four named criteria. By specifying exactly what to score and adding &lsquo;and nothing else&rsquo;, you stop the model from importing its own implicit notion of a &lsquo;good candidate&rsquo; &mdash; which is where hidden bias usually enters.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Chain-of-thought</div><div class=\"dd-body\">You ask the model to show its reasoning step by step (here, a justification per criterion quoting the CV) instead of jumping to a conclusion. This improves accuracy on multi-step judgements and &mdash; crucially for hiring &mdash; makes the reasoning inspectable. If the model misreads a CV, the quoted evidence lets you catch it; a bare score would hide the error.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Guardrail prompting</div><div class=\"dd-body\">Guardrails are explicit constraints that block known failure modes. &lsquo;Do not infer demographics&rsquo; targets bias; &lsquo;mark unclear and do not guess&rsquo; targets fabrication (the model&rsquo;s tendency to produce a confident answer even with no evidence). Guardrails do not make the model perfect, but they meaningfully reduce the most damaging errors and give you a clear standard to audit against.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Structured output</div><div class=\"dd-body\">Forcing a sorted table with fixed columns makes the output auditable and comparable across candidates, and stops the model from burying a weak justification in prose. Structure is a quiet quality-control mechanism.</div></div></div><div class=\"callout\"><strong>Watch-outs:</strong> this is decision-support, never the decision &mdash; a human reviews the shortlist and owns the outcome. Audit the output for disparate impact across groups even with the guardrail in place. The model can still misread a CV, which is exactly why the quoted-evidence requirement matters &mdash; use it. Handle all CV data in line with your privacy policy, and never paste CVs into a tool not cleared for personal data.</div><div class=\"minicase\"><div class=\"mc-label\">Mini case study</div>A team let an AI rank candidates with the weak prompt and nearly dropped a strong applicant whose CV used non-standard job titles the model didn&rsquo;t recognise. When they rebuilt the prompt with quoted evidence and an &lsquo;unclear, do not guess&rsquo; guardrail, that same candidate surfaced with three criteria scored and one flagged &lsquo;unclear&rsquo; &mdash; routing them to human review instead of silently down-ranking them. The candidate was hired and became a top performer. The guardrail, not luck, saved the hire.</div>"
       },
       {
-        "label": "Digital Capability",
-        "heading": "What &ldquo;digital capability&rdquo; actually consists of",
-        "html": "<p class=\"prose\">It is easy to mistake digital capability for simply owning software. It is really four things working together &mdash; tools are only the first, and the least decisive.</p><div class=\"example-block\"><div class=\"ex-label\">The four parts</div><strong>1. Data and the systems that hold it.</strong> The raw material already exists in tools the organisation runs &mdash; HRIS records, engagement-survey results, learning-platform activity, collaboration-tool usage, overtime and leave data. Capability begins with bringing these together so signals can be seen in one place rather than trapped in separate systems.<br><br><strong>2. Analytics that turn data into a signal.</strong> Data alone is noise. Capability means being able to spot a meaningful pattern &mdash; a sustained drop in one team&rsquo;s engagement, a cluster of flight-risk indicators &mdash; and distinguish it from ordinary fluctuation. This ranges from simple dashboards and trend lines to predictive models that flag risk early.<br><br><strong>3. The skills and literacy to interpret it.</strong> A signal is only useful if someone can read it correctly and resist over-reading it. Capability includes the data literacy to ask &ldquo;what is this actually telling us, and what is it not?&rdquo; &mdash; and the judgement to treat an indicator as a prompt to investigate, not a verdict.<br><br><strong>4. The process to act in time.</strong> The final and most-often-missing piece: a defined way for an early signal to reach the person who can do something, fast enough to matter. A perfect prediction that lands in a quarterly report instead of with the manager this week changes nothing.</div><p class=\"prose\">Mapping this back to the scenario: the anticipatory team was not simply &ldquo;using a tool.&rdquo; It had the <strong>data</strong> joined up, <strong>analytics</strong> surfacing the falling-engagement pattern, the <strong>literacy</strong> to read it as a retention risk rather than dismiss it, and a <strong>process</strong> that put it in front of the manager while there was still time to act. Remove any one of the four and the team slides back toward the reactive posture &mdash; tools without literacy produce ignored dashboards; insight without process produces reports no one acts on. Digital capability is the combination, not any single part.</p><div class=\"callout callout-good\">The tool is the easy part. Data joined up, analytics that surface a signal, the literacy to read it, and the process to act on it &mdash; that combination is what actually changes HR&rsquo;s posture.</div>"
+        "label": "Interview Kit",
+        "heading": "Building the interview kit",
+        "html": "<p class=\"prose\">A strong interview kit does three things: it ties every question to a competency the role actually needs, it tells the panel what a strong answer looks like, and it makes scoring consistent across different interviewers. A weak kit &mdash; a generic question list &mdash; does none of these, which is why panels using one so often disagree in the debrief for reasons that have nothing to do with the candidate.</p><p class=\"prose\">Prompting can produce a panel-ready kit in minutes, but only if you supply the competencies and the standard. The expertise is in framing the request so the output is purposeful and scorable, not a trivia quiz.</p><div class=\"example-block\"><div class=\"ex-label\">The scenario</div>You need a competency-based interview kit for the Senior AWS DevOps Engineer role, for a three-person panel. It has to cover technical depth and the collaboration skills the client-facing role demands, and it has to let three different interviewers score consistently.</div><div class=\"prompt-ex\"><div class=\"prompt-label\">Weak prompt</div><div class=\"prompt-text\">Give me interview questions for a DevOps engineer.</div></div><div class=\"callout callout-warn\"><strong>Why it underperforms:</strong> with no competencies, no count, and no standard for a good answer, the AI returns a generic list &mdash; often drifting into trivia (&lsquo;what port does SSH use?&rsquo;) that tests recall, not capability. Three interviewers handed this list will ask different things and judge answers by different yardsticks, so the debrief becomes an argument about questions rather than a comparison of candidates.</div><div class=\"tech-row\"><span class=\"tech-label\">Technique(s) applied</span><div class=\"tech-badges\"><span class=\"tech-badge\">Context loading</span><span class=\"tech-badge\">Few-shot (competency framing)</span><span class=\"tech-badge\">Structured output</span></div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Refined prompt</div><div class=\"prompt-text\">You are designing an interview kit for a Senior AWS DevOps Engineer in a client-facing, hybrid team. Produce exactly 8 questions, mapped to these four competencies, two questions each: (1) AWS architecture depth, (2) incident response under pressure, (3) infrastructure-as-code discipline, (4) cross-team and client collaboration. For each question provide three things: the competency it tests, the question itself (open-ended and behavioural, not trivia), and a one-line &lsquo;what a strong answer shows&rsquo; so the panel can score consistently. Avoid questions answerable with a single fact. Format as a table with columns: Competency, Question, What a strong answer shows.</div></div><div class=\"callout callout-good\"><strong>Why it works:</strong> context loading anchors the kit to the real role &mdash; client-facing, hybrid, senior &mdash; so the questions fit. Few-shot competency framing forces every question to earn its place against a named capability, which kills trivia drift. The &lsquo;what a strong answer shows&rsquo; column is the quiet expert move: it standardises judgement across the panel, so three interviewers score the same answer the same way. Structured output makes it usable in the room.</div><div class=\"deepdive\"><div class=\"dd-label\">Technique deep-dive &mdash; how each one works</div><div class=\"dd-item\"><div class=\"dd-name\">Context loading</div><div class=\"dd-body\">Supplying the role&rsquo;s real characteristics (senior, client-facing, hybrid) constrains the AI to questions that fit this job, not a generic DevOps role. Without it, the model defaults to the most common version of the role on the internet, which may not match yours.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Few-shot (competency framing)</div><div class=\"dd-body\">By naming the four competencies and requiring two questions each, you give the model a structure to pattern-match against &mdash; every question must map to a competency. This is what converts a random list into a purposeful kit, and it guarantees balanced coverage rather than five questions on one topic and none on another.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Structured output</div><div class=\"dd-body\">The three-column table (competency, question, strong-answer indicator) is what makes the kit <em>scorable</em>. The &lsquo;strong answer&rsquo; column in particular externalises the standard so it lives in the kit, not in each interviewer&rsquo;s head &mdash; the single biggest driver of consistent, comparable scoring.</div></div></div><div class=\"callout\"><strong>Watch-outs:</strong> review every question for genuine role-relevance &mdash; the model can still slip in something that sounds technical but tests trivia. The kit supports interviewer judgement; it does not replace it. Check that questions are lawful and non-discriminatory, and that &lsquo;strong answer&rsquo; indicators don&rsquo;t encode bias (e.g. favouring a particular accent of communication over clarity).</div><div class=\"minicase\"><div class=\"mc-label\">Mini case study</div>Two interviewers on a panel had been scoring candidates differently for months, because each asked their own ad-hoc questions and judged by their own instinct. A shared, competency-mapped kit from the refined prompt &mdash; same eight questions, same &lsquo;strong answer&rsquo; standard &mdash; aligned them immediately. The next debrief was a genuine comparison of two candidates against one yardstick, and took half the time. The kit didn&rsquo;t make them better interviewers; it made them consistent ones.</div>"
       },
       {
-        "label": "Building It: The Sequence",
-        "heading": "Building digital capability: a sequenced investment",
-        "html": "<p class=\"prose\">Because the tool is the easy part, the real work is in the other three layers &mdash; and they are best built <strong>in sequence</strong>, because each one depends on the layer beneath it. Adding analytics before the data is connected, or chasing predictions before anyone can interpret them, is how organisations spend heavily and change little. The four parts of digital capability become four ordered investments.</p><div class=\"divider\"></div><p class=\"prose\"><strong>1. Connect the data &mdash; create a single, trustworthy view.</strong> The first investment is plumbing, not analytics. Workforce signals sit scattered across the HRIS, the survey tool, the learning platform, payroll, and collaboration tools, each telling part of the story. Connecting them &mdash; and cleaning them so the same person, team, and date mean the same thing everywhere &mdash; creates one reliable view. <em>Why it comes first:</em> every later layer is only as good as the data beneath it; analytics on fragmented or dirty data produce confident-looking nonsense. <em>What &ldquo;good&rdquo; looks like:</em> a manager&rsquo;s engagement, attrition, and workload data can be seen together rather than requested from three teams.</p><div class=\"divider\"></div><p class=\"prose\"><strong>2. Add analytics &mdash; turn the connected data into signals.</strong> With a trustworthy view in place, the second investment makes patterns visible: trends, comparisons, thresholds, and &mdash; over time &mdash; predictive indicators that flag risk early. The goal is not a wall of dashboards but a small number of signals that reliably mean something. <em>Why it comes second:</em> analytics is only meaningful once the underlying data is connected and clean. <em>What &ldquo;good&rdquo; looks like:</em> a falling-engagement pattern in one team surfaces automatically as an early-warning signal rather than being noticed by accident.</p><div class=\"divider\"></div><p class=\"prose\"><strong>3. Build the literacy &mdash; equip people to read signals well.</strong> A signal acted on by someone who misreads it is worse than no signal at all. The third investment is in people: giving HR teams and managers the data literacy to interpret an indicator soundly, understand its limits, and resist both ignoring it and over-reacting to it. This is also where the ethics live &mdash; reading a signal as a prompt to support someone, not to penalise them. <em>Why it comes third:</em> literacy has nothing to work on until signals exist, but it must be in place before signals drive decisions. <em>What &ldquo;good&rdquo; looks like:</em> a manager who sees a flight-risk flag asks &ldquo;what&rsquo;s driving this and how do I help?&rdquo; rather than jumping to conclusions.</p><div class=\"divider\"></div><p class=\"prose\"><strong>4. Design the process &mdash; turn a signal into a timely action.</strong> The most-often-missing investment, and the one that converts all the others into value: a defined route by which an early signal reaches the person who can act, fast enough to matter, with a clear next step. Without it, insight dies in a report. <em>Why it comes last:</em> there is no point routing signals for action until they exist and can be interpreted &mdash; but once they can, the process is what closes the loop. <em>What &ldquo;good&rdquo; looks like:</em> a flight-risk signal triggers a defined response &mdash; manager notified this week, a check-in conversation held, support offered &mdash; not a line item in next quarter&rsquo;s review.</p><div class=\"divider\"></div><div class=\"example-block\"><div class=\"ex-label\">The sequence as a whole</div>Each layer multiplies the value of the one before and is undermined without it. <strong>Data without analytics</strong> is a warehouse no one reads. <strong>Analytics without literacy</strong> produces dashboards that are ignored or misused. <strong>Literacy without process</strong> produces sound judgement that arrives too late to act on. Built in order &mdash; connect, analyse, interpret, act &mdash; the four compound into a function that anticipates rather than reacts. Built out of order, or with a layer skipped, the investment underdelivers.</div><div class=\"callout callout-good\">The advantage is won not by buying the most advanced tool, but by building all four layers in sequence &mdash; so that a signal reliably becomes a timely, well-judged action. That sequence is what separates an HR function that anticipates from one that merely reports.</div>"
+        "label": "Candidate Comms",
+        "heading": "Candidate communications",
+        "html": "<p class=\"prose\">Every candidate-facing message is an act of employer branding &mdash; the theme from the first step of this course. Offers, updates, and especially rejections are read closely, remembered, and sometimes shared publicly. A careless rejection to a final-round candidate can cost an organisation future applicants; a thoughtful one can turn a near-miss into someone who re-applies and refers others.</p><p class=\"prose\">Prompting can produce warm, specific, on-brand messages fast &mdash; but only if you give the AI the relationship context and the tone constraints. The expertise is in treating each message as situation-specific, not reaching for a template the moment volume rises.</p><div class=\"example-block\"><div class=\"ex-label\">The scenario</div>You need to send a rejection to a candidate who reached the final round for the DevOps role and interviewed well, but lost to a stronger fit. They invested significant time across several rounds. The message has to be honest, warm, and brand-protecting &mdash; and leave a door genuinely open, because they may fit a future role.</div><div class=\"prompt-ex\"><div class=\"prompt-label\">Weak prompt</div><div class=\"prompt-text\">Write a rejection email.</div></div><div class=\"callout callout-warn\"><strong>Why it underperforms:</strong> it produces a cold, generic, one-size-fits-all note &mdash; the kind that begins &lsquo;we have decided to move forward with other candidates&rsquo; and says nothing real. It ignores that this candidate reached the final round and gave hours of their time. A template like this, sent to an engaged finalist, reads as dismissive and is exactly what generates negative reviews and a reputation that quietly shrinks the future talent pool.</div><div class=\"tech-row\"><span class=\"tech-label\">Technique(s) applied</span><div class=\"tech-badges\"><span class=\"tech-badge\">Role priming</span><span class=\"tech-badge\">Context loading</span><span class=\"tech-badge\">Iterative refinement</span></div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Refined prompt</div><div class=\"prompt-text\">You are a recruiter writing to a candidate who reached the final round for a Senior AWS DevOps Engineer role, interviewed genuinely well, but lost to a closer fit for this specific role. They invested time across three interview rounds. Draft a warm, specific, respectful rejection of under 150 words that: thanks them concretely for the final-round time, is honest without making false promises, names something we genuinely valued about them, and leaves the door open for future roles in a way that is sincere rather than boilerplate. Avoid clich&eacute;s like &lsquo;we went with a stronger candidate&rsquo; or &lsquo;we&rsquo;ll keep your CV on file&rsquo;. Tone: human, direct, not corporate.</div></div><div class=\"callout callout-good\"><strong>Why it works:</strong> role priming and the relationship context produce a message fit for <em>this</em> moment &mdash; an engaged finalist, not an anonymous applicant. The constraint set controls length, honesty, and the specific things that make a rejection land well (naming a genuine strength, a sincere not a boilerplate door-opener). Iterative refinement then tunes it &mdash; &lsquo;make the opening warmer&rsquo;, &lsquo;name the system-design strength we discussed&rsquo; &mdash; until it reads like a person wrote it. The candidate leaves with a good impression of the brand despite the no.</div><div class=\"deepdive\"><div class=\"dd-label\">Technique deep-dive &mdash; how each one works</div><div class=\"dd-item\"><div class=\"dd-name\">Role priming</div><div class=\"dd-body\">Casting the AI as a recruiter writing to a specific person shifts the register from transactional to relational. The model draws on patterns of warm, professional human communication rather than formulaic HR boilerplate.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Context loading</div><div class=\"dd-body\">The relationship details &mdash; final round, interviewed well, invested time, may fit future roles &mdash; are what make the message specific and sincere. Tone and length constraints (under 150 words, no named clich&eacute;s) prevent the two most common failure modes: coldness and waffle.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Iterative refinement</div><div class=\"dd-body\">Rather than accepting the first draft, you steer it with targeted follow-ups (&lsquo;warmer&rsquo;, &lsquo;name the specific strength&rsquo;, &lsquo;shorten the middle&rsquo;). This conversational tuning is what separates a usable first draft from a message that sounds genuinely human &mdash; and it is faster than writing from scratch. The mechanism: each instruction edits the existing draft rather than regenerating, so quality compounds.</div></div></div><div class=\"callout\"><strong>Watch-outs:</strong> never promise a future role you can&rsquo;t honour &mdash; a sincere &lsquo;door open&rsquo; is not a commitment. Keep any feedback fair, accurate, and defensible. Always personalise and read the message before sending; an AI-drafted note sent unread is a brand risk, not a time-saver. Avoid anything that could read as a legal assurance.</div><div class=\"minicase\"><div class=\"mc-label\">Mini case study</div>A rushed, generic rejection once led a strong finalist to post a pointed review describing the process as &lsquo;impersonal after five hours of interviews&rsquo; &mdash; and applications from that candidate&rsquo;s network noticeably dropped. A year later, the team rebuilt its rejection approach: role + context + one refinement pass for warmth. A different finalist, rejected with that care, replied to thank the recruiter, stayed in touch, re-applied when a fitting role opened, and was hired. Same decision &mdash; a no &mdash; delivered two completely different brand outcomes.</div>"
       },
       {
-        "label": "Digital: Future HR",
-        "heading": "Digital: the future of HR",
-        "html": "<p class=\"prose\">If &ldquo;setting context&rdquo; describes the shift underway, the <strong>future of HR</strong> describes where it leads: a function defined by data fluency, employee experience, and continuous adaptation rather than annual cycles. Three characteristics stand out &mdash; HR becomes predictive, experience-led, and continuous.</p><p class=\"prose\"><strong>Predictive.</strong> Instead of reporting on what already happened, HR uses workforce data to anticipate what is coming &mdash; which teams are at risk of attrition, where capability gaps will open as the business grows, and how many hires of which type will be needed and when. The value is lead time: a predicted problem can be prevented; a reported one can only be managed.</p><p class=\"prose\"><strong>Experience-led.</strong> The future-ready function designs the employee journey with the same care a product team designs a customer journey &mdash; mapping the key moments (joining, first 90 days, promotion, returning from leave) and removing friction from each. Experience is treated as something deliberately designed, not whatever happens to result from the existing processes.</p><p class=\"prose\"><strong>Continuous.</strong> Feedback, learning, and performance conversations run year-round instead of being compressed into one annual event. The annual cycle made sense when information moved slowly; when it moves continuously, so should the conversations that act on it.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; annual vs. continuous</div><strong>The old way:</strong> A capable analyst has a frustrating year &mdash; a project stalls, her manager is stretched thin, and her development goals go untouched. None of it surfaces until the annual review in month eleven, by which point she has already mentally checked out and lines up an exit. The review documents a problem that is now too late to fix.<br><br><strong>The future-HR way:</strong> lightweight monthly check-ins flag the stalled project in month two and the neglected development goals in month three. Her manager re-scopes the work and arranges a stretch assignment while she is still engaged. The same eleven months produce a retained, growing employee instead of a documented loss &mdash; because the conversation was continuous rather than annual.</div><div class=\"callout callout-good\">Digital HR is a direction of travel, not a destination. The future-ready function is the one that keeps adapting &mdash; predictive, experience-led, and continuous &mdash; not the one that declares a transformation programme finished.</div>"
-      },
-      {
-        "label": "Industry 4.0 Skilling",
-        "heading": "Industry 4.0 and the skilling challenge",
-        "html": "<p class=\"prose\"><strong>Industry 4.0</strong> &mdash; the convergence of automation, AI, data, and connected systems &mdash; changes not just <em>how</em> work is done but <em>which skills</em> retain value. The defining HR challenge it creates is the shrinking <strong>half-life of skills</strong>: capabilities that were current a few years ago age out faster than ever, so a one-time qualification no longer carries a career.</p><p class=\"prose\">This makes <strong>continuous reskilling and upskilling</strong> a core, ongoing HR responsibility rather than an occasional training initiative. The distinction matters: <strong>upskilling</strong> deepens what someone already does (a data analyst learning advanced techniques), while <strong>reskilling</strong> moves someone into a substantially different role (a support specialist becoming a data analyst). The task is twofold &mdash; identify which capabilities the business will need next, and build credible pathways for the existing workforce to reach them, because hiring alone cannot close a gap that keeps moving.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; replace vs. reskill</div><strong>The situation:</strong> Automation absorbs much of the routine work done by a 40-person operations team. The roles as they exist today are shrinking; the organisation now needs people who can oversee, exception-handle, and improve the automated processes &mdash; a different skill set.<br><br><strong>The replace approach:</strong> treat the 40 as redundant, exit them, and hire 25 new people with the target skills. The visible cost is severance and recruitment; the hidden cost is the loss of deep institutional and customer knowledge those 40 carried, a hit to the morale and trust of everyone who remains, and a public signal to candidates about how the organisation treats its people.<br><br><strong>The reskill approach:</strong> map the adjacent skills the team already has &mdash; process knowledge, judgement, customer context &mdash; and build structured paths into the new roles for those who can make the move, with honest support for those who genuinely cannot. The organisation retains hard-won knowledge, keeps the trust of the workforce, and closes most of the capability gap from within, hiring externally only for what reskilling cannot cover.<br><br><strong>The point:</strong> Industry 4.0 does not simply destroy jobs; it shifts the skills they require. Whether that shift becomes a costly purge or a managed transition is an HR design choice.</div><div class=\"callout callout-warn\"><strong>The risk if ignored:</strong> a widening gap between the skills the business needs and the skills it has &mdash; felt as stalled initiatives, over-reliance on expensive external hiring, and disengagement among employees who sense they are being left behind rather than brought along.</div>"
-      },
-      {
-        "label": "New-Age Org Design",
-        "heading": "New-age organization design structures",
-        "html": "<p class=\"prose\">The rigid, multi-layer hierarchy was built for stability and control. <strong>New-age organization design</strong> responds to a different need &mdash; speed, adaptability, and cross-functional collaboration &mdash; and so favours flatter, more networked, and more project-based structures. Structure is not a neutral backdrop; it directly determines how quickly an organisation can sense a change and act on it.</p><p class=\"prose\">Three patterns recur. <strong>Networked teams</strong> form around outcomes rather than fixed departments, so the right people assemble for the work at hand and disband when it is done. <strong>Flatter hierarchies</strong> remove approval layers and shorten the path between a decision being needed and being made. <strong>Fluid roles</strong> let people contribute across boundaries rather than being confined to a single function. HR co-owns these choices, because each one reshapes reporting lines, rewards, and how performance is judged.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; functional silo vs. cross-functional squad</div><strong>The situation:</strong> A product needs a fix that touches engineering, design, and customer support. The market is moving and speed matters.<br><br><strong>The traditional structure:</strong> the request travels up the engineering hierarchy, across to design&rsquo;s leadership, across again to support&rsquo;s, and back down &mdash; each hand-off adding a queue and a re-explanation. Three departments optimise for their own priorities, and the fix that needed two weeks takes two months. No individual did anything wrong; the structure imposed the delay.<br><br><strong>The new-age structure:</strong> a single cross-functional squad &mdash; one engineer, one designer, one support specialist &mdash; owns the outcome end to end, decides together, and ships in days. HR&rsquo;s work made this possible: it redesigned reporting so squad members answer to the outcome, adjusted rewards so collaboration is recognised rather than only functional output, and redefined how their performance is assessed.<br><br><strong>The point:</strong> the two teams had the same talent; the structure was the variable. Organisation design decides whether capability turns into speed or gets trapped in hand-offs.</div><div class=\"callout\">Structure either accelerates or throttles an organisation&rsquo;s ability to adapt &mdash; which is why organisation design now sits firmly within HR&rsquo;s strategic remit, not adjacent to it.</div><div class=\"divider\"></div><p class=\"prose\"><strong>How AI is reshaping the structure itself.</strong> The technologies behind new-age work &mdash; generative AI, large language models (LLMs), and increasingly <em>agentic</em> AI &mdash; are not just tools people use within a structure; they change what the structure needs to look like. When routine drafting, analysis, and coordination can be assisted or automated, the organisation needs fewer layers whose main role was moving information up and down, and more roles focused on judgement, direction, and oversight. Design follows capability.</p><div class=\"example-block\"><div class=\"ex-label\">The technologies, briefly &mdash; and why they matter to design</div><strong>Generative AI &amp; LLMs.</strong> Models that produce text, summaries, code, and analysis on demand. They compress the time between a question and a usable first answer, which means small, capable teams can now cover ground that once required larger ones &mdash; favouring leaner, flatter structures.<br><br><strong>Machine learning more broadly.</strong> Systems that find patterns in data and improve with use &mdash; powering the predictive signals discussed earlier. Structurally, this pushes decision-relevant insight outward to the teams doing the work, rather than concentrating it in a central analysis function.<br><br><strong>Agentic AI.</strong> AI that does not just answer but takes multi-step actions toward a goal &mdash; carrying out a workflow, not just a prompt. This is the most design-altering of the three: when an &ldquo;agent&rdquo; can execute a process, the human role shifts from <em>doing the steps</em> to <em>setting the goal, supervising, and handling exceptions</em>. Teams begin to include capable AI agents alongside people, and the org chart has to account for who directs and is accountable for that work.<br><br><strong>Prompt engineering.</strong> The skill that connects people to all of the above. As work increasingly involves directing AI &mdash; framing the task, the context, and the constraints &mdash; the ability to instruct these systems well becomes a core workplace competency, not a niche technical one. It is the interface between the new-age workforce and the new-age tools.</div><p class=\"prose\"><strong>Shaping the workforce &mdash; sustainably and productively.</strong> The productivity gains are real, but a structure built only for short-term output is not sustainable. New-age org design has to hold two goals together. <em>Productive:</em> redesign roles and teams around what humans and AI each do best &mdash; AI for scale, speed, and pattern-finding; people for judgement, relationships, ethics, and ambiguity. <em>Sustainable:</em> invest in the reskilling that lets the existing workforce move into these higher-judgement, AI-directing roles rather than being displaced by them; guard against the always-on intensification that AI-accelerated work can create; and keep clear human accountability so that speed never outruns responsibility.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; designing an AI-augmented team</div><strong>The shift:</strong> A reporting team of eight spends most of its time gathering data and producing routine analyses. Generative AI and agentic tools can now do much of that drafting and first-pass analysis.<br><br><strong>The unsustainable design:</strong> cut the team to three, expect the same output faster, and treat the AI purely as a headcount-reduction lever. Output rises briefly, then institutional knowledge thins, the remaining three burn out directing tools with no slack, and trust across the function drops.<br><br><strong>The sustainable design:</strong> keep the people, change the work. The team reskills to <em>direct</em> the AI &mdash; framing the right questions through good prompting, supervising agentic workflows, and spending their freed-up time on the judgement-heavy work AI cannot do: interpreting results for the business, advising stakeholders, and spotting what the data does not say. Roles are redefined around oversight and insight; the structure flattens because fewer hand-offs are needed; and accountability for every AI-produced output stays clearly with a named person.<br><br><strong>The point:</strong> the same technology produced either a hollowed-out team or an elevated one &mdash; the difference was a design choice about how to shape the workforce around it.</div><div class=\"callout callout-good\">New-age org design is increasingly the work of designing <strong>human + AI</strong> structures: leaner and faster because AI handles scale, but sustainable and trustworthy because people are reskilled into higher-judgement, AI-directing roles with clear accountability. The skill that makes this human&ndash;AI partnership work in practice is prompt engineering &mdash; which is exactly what comes next.</div>"
-      }
-    ]
-  },
-  {
-    "title": "Digital AI Tools",
-    "tabs": [
-      {
-        "label": "Prompt Engineering",
-        "heading": "Prompt engineering: the skill that unlocks every AI assistant",
-        "html": "<p class=\"prose\"><strong>Prompt engineering</strong> is the practice of writing clear, well-structured instructions that get an AI assistant to produce genuinely useful output. The same tool &mdash; Claude, Gemini, or ChatGPT &mdash; can return a vague, generic answer or a sharp, usable one depending almost entirely on how the request is framed. The tool supplies the capability; the prompt decides how much of that capability you actually get.</p><p class=\"prose\">For HR work this matters more than it first appears. A weak prompt (&ldquo;write a leave policy&rdquo;) produces something bland and generic that needs heavy rework. A well-engineered prompt &mdash; one that supplies <strong>role, context, task, constraints, and format</strong> &mdash; produces a draft that is close to fit-for-purpose on the first pass. The difference is often an hour of editing versus five minutes.</p><p class=\"prose\">A reliable structure to keep in mind, sometimes shortened to <strong>R-C-T-C-F</strong>:</p><div class=\"example-block\"><div class=\"ex-label\">The anatomy of a strong prompt</div><strong>Role</strong> &mdash; who you want the assistant to act as (&ldquo;You are an experienced HR business partner&hellip;&rdquo;).<br><strong>Context</strong> &mdash; the situation and audience (&ldquo;&hellip;for a 600-person services firm rolling out a hybrid-work policy to mostly first-time remote employees&rdquo;).<br><strong>Task</strong> &mdash; the specific thing to produce (&ldquo;Draft a one-page policy summary&rdquo;).<br><strong>Constraints</strong> &mdash; tone, length, what to include or avoid (&ldquo;plain English, under 400 words, no legal jargon, neutral and inclusive&rdquo;).<br><strong>Format</strong> &mdash; how to lay it out (&ldquo;use short sections with clear headings and a 3-point summary at the top&rdquo;).</div><p class=\"prose\">Prompting is also <strong>iterative</strong>. The first answer is a starting point; you refine it by telling the assistant what to change (&ldquo;make it warmer,&rdquo; &ldquo;shorten the second section,&rdquo; &ldquo;add an example&rdquo;). Treating it as a conversation, not a one-shot command, is the single biggest habit that separates frustrated users from effective ones.</p><div class=\"prompt-ex\"><div class=\"prompt-label\">Weak prompt</div><div class=\"prompt-text\">Write a hybrid work policy.</div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Engineered prompt (R-C-T-C-F)</div><div class=\"prompt-text\">You are an experienced HR business partner. We are a 600-person services firm rolling out a hybrid-work policy for employees who are mostly working remotely for the first time. Draft a one-page policy summary they can actually understand. Keep it under 400 words, in plain English with no legal jargon, warm and inclusive in tone. Lay it out as short sections with clear headings, and put a 3-point &lsquo;what this means for you&rsquo; summary at the top.</div></div><div class=\"callout callout-warn\"><strong>Common mistakes</strong><ul><li>Being vague &mdash; &ldquo;make it good&rdquo; gives the assistant nothing to work with.</li><li>Asking for too much in one prompt, so every part comes out shallow.</li><li>Omitting the audience, so the tone and level are wrong.</li><li>Accepting the first draft instead of iterating to refine it.</li><li>Assuming the output is factually correct &mdash; always verify claims, figures, and names.</li></ul></div><div class=\"callout callout-good\"><strong>Best practices to refine your prompt</strong><ul><li>State the role and audience explicitly.</li><li>Give one clear task per prompt; chain follow-ups for the rest.</li><li>Specify length, tone, and format up front.</li><li>Provide an example of what &lsquo;good&rsquo; looks like when you can.</li><li>Iterate: ask for specific changes rather than starting over.</li></ul></div><div class=\"callout\">These skills transfer across every tool. Master prompt engineering once, and Claude, Gemini, and ChatGPT all become markedly more useful.</div>"
-      },
-      {
-        "label": "Claude",
-        "heading": "Claude (Anthropic)",
-        "html": "<p class=\"prose\"><strong>Claude</strong> is a family of AI assistants from Anthropic, designed with a strong emphasis on safety, helpfulness, and handling long, nuanced documents. Its strengths show up in tasks that involve careful reasoning over text &mdash; drafting and refining policies, summarising long documents, structuring frameworks, and working through situations where tone and judgement matter.</p><div class=\"example-block\"><div class=\"ex-label\">How can Claude help you?</div>In an HR and L&amp;D context, Claude is often used to <strong>draft first versions of learning content</strong>, <strong>structure frameworks</strong> (competency models, onboarding plans, policy outlines), and act as a <strong>thinking partner on complex people questions</strong> &mdash; talking through a tricky restructure, a sensitive conversation, or the trade-offs in a new policy. A person always reviews and owns the final output.</div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; learning content (R-C-T-C-F applied)</div><div class=\"prompt-text\">You are an instructional designer. I&rsquo;m building a 20-minute micro-learning for new people-managers at a tech services firm on giving constructive feedback. Draft a module outline with 4&ndash;5 short sections, a one-line learning objective for each, and one realistic workplace example per section. Keep the tone practical and encouraging, and end with a 3-question knowledge check.</div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; thinking partner</div><div class=\"prompt-text\">You are an experienced HR business partner. Help me think through a sensitive situation: a high performer is unhappy that a peer was promoted ahead of them. Lay out the likely concerns from their perspective, 3&ndash;4 options for how I could handle the conversation, and the trade-offs of each. Don&rsquo;t pick one for me &mdash; help me reason it through.</div></div><div class=\"lab-block\"><div class=\"lab-label\">Try it &mdash; lab steps</div><ol class=\"lab-steps\"><li>Open Claude and sign in.</li><li>Start a new chat and paste one of the example prompts above.</li><li>Read the first draft, then refine it conversationally &mdash; e.g. &ldquo;make section 3 shorter&rdquo; or &ldquo;add a manager-perspective example.&rdquo;</li><li>Ask Claude to adjust tone or format until it fits (&ldquo;rewrite the knowledge check as scenario questions&rdquo;).</li><li>Copy the result into your own document and review every claim and example for accuracy before using it.</li></ol></div><div class=\"callout callout-warn\"><strong>Common mistakes</strong><ul><li>Pasting confidential employee data into any chat without a clear organisational policy.</li><li>Asking for the whole course in one prompt instead of building it section by section.</li><li>Treating the draft as final &mdash; Claude&rsquo;s output is a strong start, not a sign-off.</li></ul></div><div class=\"callout callout-good\"><strong>Best practices to refine your prompt</strong><ul><li>Give Claude the role and the audience; it uses both well.</li><li>Lean on its strength with long context &mdash; paste the source document and ask it to work from that.</li><li>Use it iteratively as a thinking partner, asking it to lay out options and trade-offs rather than a single answer.</li></ul></div><div class=\"callout callout-warn\">As with any AI tool, the output is a starting point, not a decision. HR judgement, accuracy checks, and confidentiality safeguards remain essential.</div>"
-      },
-      {
-        "label": "Google Gemini",
-        "heading": "Google Gemini",
-        "html": "<p class=\"prose\"><strong>Gemini</strong> is Google&rsquo;s family of multimodal AI models, able to work across text, images, and other formats, and integrated across Google&rsquo;s ecosystem. Its tight integration with workspace and productivity tools makes it convenient where an organisation already works inside that environment.</p><div class=\"example-block\"><div class=\"ex-label\">How can Gemini help you?</div>For HR teams, Gemini can <strong>draft and summarise inside the tools you already use</strong> &mdash; condensing a long email thread about a policy change, drafting an announcement in your document editor, or pulling the key points out of a meeting summary &mdash; reducing the friction of switching between applications. Its multimodal ability also lets it work from an image or a screenshot of a chart, not just text.</div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; summarise (R-C-T-C-F applied)</div><div class=\"prompt-text\">You are an HR coordinator. Summarise the email thread below about our updated leave policy into a clear 5-point briefing for managers, in plain English, flagging anything that needs a manager decision. Keep it under 150 words. [paste thread]</div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; draft in context</div><div class=\"prompt-text\">You are writing on behalf of the People team. Draft a warm, concise all-staff announcement (under 200 words) introducing our new hybrid-work guidelines, linking to the full policy, and reassuring first-time remote employees that support is available.</div></div><div class=\"lab-block\"><div class=\"lab-label\">Try it &mdash; lab steps</div><ol class=\"lab-steps\"><li>Open Gemini (or invoke it inside your Google workspace tool).</li><li>Paste the example prompt, including the source content it should work from.</li><li>Review the draft and refine it &mdash; &ldquo;make it shorter,&rdquo; &ldquo;more formal,&rdquo; or &ldquo;add a line about who to contact.&rdquo;</li><li>If using an image or screenshot, attach it and ask Gemini to extract or summarise the key points.</li><li>Move the result into your final document and check accuracy and tone before sending.</li></ol></div><div class=\"callout callout-warn\"><strong>Common mistakes</strong><ul><li>Relying on the integration&rsquo;s convenience and skipping the accuracy check.</li><li>Forgetting to give the audience and tone, so the draft lands wrong.</li><li>Entering confidential personnel data without checking organisational policy first.</li></ul></div><div class=\"callout callout-good\"><strong>Best practices to refine your prompt</strong><ul><li>Use its in-workspace integration to keep drafting and summarising in one place.</li><li>Be explicit about length and tone &mdash; concise constraints produce concise output.</li><li>Use its multimodal ability when your source is an image or chart, not only text.</li></ul></div><div class=\"callout\">Convenience of integration is a real benefit &mdash; but the same care over accuracy, bias, and the privacy of employee data applies regardless of which vendor&rsquo;s tool is used.</div>"
-      },
-      {
-        "label": "ChatGPT",
-        "heading": "ChatGPT (OpenAI)",
-        "html": "<p class=\"prose\"><strong>ChatGPT</strong>, built on OpenAI&rsquo;s models, is among the most widely adopted general-purpose AI assistants. Its broad capability and large ecosystem of integrations make it a flexible option for a wide range of drafting, brainstorming, and information tasks.</p><div class=\"example-block\"><div class=\"ex-label\">How can ChatGPT help you?</div>In HR, ChatGPT is commonly used for <strong>first-draft generation, ideation, and quick reformatting</strong> &mdash; brainstorming interview questions, producing several alternative phrasings of an announcement, or turning rough notes into a structured document. Its breadth makes it a useful all-rounder for getting from a blank page to a working draft quickly.</div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; brainstorm (R-C-T-C-F applied)</div><div class=\"prompt-text\">You are a hiring manager&rsquo;s HR partner. Generate 10 behavioural interview questions for a mid-level project manager role, mapped to four competencies: stakeholder management, prioritisation, handling conflict, and delivery under pressure. For each question, add one line on what a strong answer would show.</div></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Example prompt &mdash; reformat / alternatives</div><div class=\"prompt-text\">Here are my rough notes for an internal announcement about a new recognition programme. Turn them into a clear, upbeat 180-word message, then give me two alternative versions &mdash; one more formal, one more casual &mdash; so I can choose. [paste notes]</div></div><div class=\"lab-block\"><div class=\"lab-label\">Try it &mdash; lab steps</div><ol class=\"lab-steps\"><li>Open ChatGPT and start a new chat.</li><li>Paste the example prompt with any source notes it should use.</li><li>Review the output; if you asked for alternatives, compare them and pick a direction.</li><li>Refine with specific follow-ups &mdash; &ldquo;tighten question 7&rdquo; or &ldquo;make the formal version warmer.&rdquo;</li><li>Copy the chosen version into your document and verify all details before publishing.</li></ol></div><div class=\"callout callout-warn\"><strong>Common mistakes</strong><ul><li>Entering confidential employee data into a general consumer tool without clear policy.</li><li>Accepting plausible-sounding but unverified facts &mdash; check anything factual.</li><li>Over-broad prompts that produce generic output; narrow the task and competencies.</li></ul></div><div class=\"callout callout-good\"><strong>Best practices to refine your prompt</strong><ul><li>Use it to get from blank page to draft fast, then refine.</li><li>Ask for several variants when tone is uncertain, then choose.</li><li>Map requests to explicit criteria (e.g. competencies) so output is structured, not generic.</li></ul></div><div class=\"callout callout-warn\">Wide adoption does not remove the need for governance: confidential employee data should not be entered into general consumer tools without clear organisational policy.</div>"
-      },
-      {
-        "label": "Responsible AI",
-        "heading": "Responsible AI: using these tools well in HR",
-        "html": "<p class=\"prose\">These AI tools are powerful, and in HR that power touches people&rsquo;s careers, livelihoods, and dignity directly &mdash; hiring, promotion, performance, pay, and exit. <strong>Responsible AI</strong> is the set of principles and habits that make sure these tools help people fairly and safely, rather than causing harm at scale. For a new-age HR function, it is not an optional add-on; it is the condition that makes AI adoption trustworthy enough to use at all.</p><p class=\"prose\">The reason HR carries a special duty here is leverage. A biased decision by one manager affects one process; a biased <em>model</em> applied across thousands of candidates or employees scales that harm instantly and invisibly. Responsible AI is how HR keeps the speed and reach of these tools from outrunning fairness and accountability.</p><div class=\"example-block\"><div class=\"ex-label\">The principles, applied to HR</div><strong>Fairness.</strong> Watch for bias. A model trained on past decisions can inherit and scale historical bias &mdash; so AI-supported hiring, promotion, or performance outputs must be checked for disparate impact across groups.<br><br><strong>Transparency &amp; explainability.</strong> People affected by a decision deserve to understand how it was reached. Avoid &ldquo;black-box&rdquo; outputs that no one can explain to a candidate or employee.<br><br><strong>Privacy &amp; data protection.</strong> Employee and candidate data is sensitive and often regulated. Do not paste confidential personal data into consumer tools, and follow the organisation&rsquo;s data-handling policy.<br><br><strong>Human accountability.</strong> AI advises; a person decides and owns the outcome. There should always be a named human accountable for any AI-influenced people decision &mdash; never &ldquo;the system decided.&rdquo;<br><br><strong>Human oversight.</strong> Keep a human in the loop, especially for high-stakes decisions. AI is a decision-support tool, not an autonomous decision-maker, in matters that affect someone&rsquo;s job.</div><p class=\"prose\"><strong>How this ties back to new-age HR.</strong> New-age HR is becoming data-informed, AI-augmented, and faster. Responsible AI is what keeps that direction <em>sustainable and trustworthy</em>. The same principle that shaped the org-design discussion applies here: AI handles scale and pattern-finding, but people retain judgement, ethics, and accountability. Without that guardrail, AI adoption erodes the very trust the people function depends on; with it, HR can adopt these tools confidently and lead the rest of the organisation in using them well.</p><div class=\"example-block\"><div class=\"ex-label\">Scenario &mdash; the same tool, responsibly vs. carelessly</div><strong>Carelessly:</strong> a team lets an AI tool auto-rank candidates and hires straight from the ranking, pastes CVs containing personal data into a consumer chatbot, and tells rejected candidates only that &ldquo;the system scored them low.&rdquo; Bias goes unchecked, data is exposed, and no one can explain or stand behind the decision.<br><br><strong>Responsibly:</strong> the same tool is used to <em>shortlist for human review</em>, its recommendations are audited for disparate impact, personal data is handled per policy, and a named recruiter owns each decision and can explain it. Same speed gain &mdash; without the harm.<br><br><strong>The point:</strong> responsible AI is rarely about whether to use the tool, and almost always about <em>how</em>.</div><div class=\"callout callout-good\">Responsible AI is the bridge between capability and trust. It lets new-age HR move fast with AI while protecting the fairness, privacy, and accountability that people decisions demand &mdash; and it is HR&rsquo;s role to model this for the whole organisation.</div>"
-      },
-      {
-        "label": "Others",
-        "heading": "Other tools and the bigger picture",
-        "html": "<p class=\"prose\">Beyond the major general assistants, a growing set of <strong>specialised tools</strong> targets specific HR workflows &mdash; recruitment screening, learning experience platforms, sentiment and engagement analysis, and skills-mapping. New entrants appear constantly, and capabilities overlap and shift quickly.</p><p class=\"prose\">The leadership takeaway is to focus less on any single product and more on building <strong>durable judgement</strong>: how to evaluate a tool&rsquo;s fit, govern its use, protect employee data, and keep a human accountable for decisions. Tools will change; the principles for using them responsibly &mdash; and the prompt-engineering skill itself &mdash; do not.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>Rather than standardising permanently on one assistant, a mature HR function defines clear principles &mdash; data handling, human oversight, bias checks &mdash; and applies them to whichever tools it adopts as the market evolves.</div><div class=\"callout callout-good\">The constant across every tool: AI augments HR judgement, it does not replace accountability. A person always owns the decision.</div>"
-      }
-    ]
-  },
-  {
-    "title": "Digital HR",
-    "tabs": [
-      {
-        "label": "Social Media & Employer Branding",
-        "heading": "Social media and employer branding",
-        "html": "<p class=\"prose\"><strong>Employer branding</strong> is the reputation an organisation holds as a place to work, and in a connected world that reputation is shaped publicly and continuously. <strong>Social media</strong> has turned employer brand from a recruitment-marketing exercise into a live, two-way signal that candidates and employees both read and contribute to.</p><p class=\"prose\">This matters because candidates research an employer's brand before they ever apply, and current employees broadcast their experience — positively or negatively — to wide networks. A strong, authentic employer brand widens and improves the talent pool; a weak or inauthentic one narrows it. The key word is <strong>authentic</strong>: a brand that promises an experience the organisation does not actually deliver is quickly exposed.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>Employees sharing genuine, positive experiences of their work do more for talent attraction than any paid campaign — while a visible gap between an employer's marketing claims and real employee reviews actively deters strong candidates.</div><div class=\"callout\">Employer brand is no longer controlled by HR alone — it is co-authored by every employee's experience. The strategic task is to make the lived experience worth talking about, then enable people to share it.</div>"
-      }
-    ]
-  },
-  {
-    "title": "Managing Organisation Culture Hybrid Workmode",
-    "tabs": [
-      {
-        "label": "Impact: Work From Anywhere",
-        "heading": "Managing culture in a hybrid work mode: the impact of work-from-anywhere",
-        "html": "<p class=\"prose\"><strong>Work-from-anywhere</strong> decouples work from a fixed location, and with it many of the informal mechanisms that traditionally carried culture — hallway conversations, shared spaces, and visible day-to-day norms. The central challenge of a <strong>hybrid work mode</strong> is sustaining a coherent, inclusive culture when people are distributed across locations and schedules.</p><p class=\"prose\">The impact runs in two directions. The opportunity is access to wider talent, greater flexibility, and often higher individual focus. The risk is weakened belonging, uneven access to visibility and opportunity (a &ldquo;proximity bias&rdquo; favouring those physically present), and the slow erosion of shared norms. Managing culture in this mode means being <strong>deliberate</strong> about what once happened by accident — intentionally designing connection, communication, and fairness rather than assuming the office will supply them.</p><div class=\"example-block\"><div class=\"ex-label\">In practice</div>An organisation that codifies its norms explicitly, designs rituals that include remote and in-office people equally, and checks that promotions and high-visibility work are not skewed toward those in the building, sustains culture far better than one that lets hybrid &ldquo;just happen.&rdquo;</div><div class=\"callout callout-warn\"><strong>Proximity bias</strong> is the most common hidden failure of hybrid: when those physically present get more visibility, feedback, and opportunity, distributed colleagues are quietly disadvantaged — an equity issue leaders must actively manage.</div><div class=\"callout callout-good\">In a hybrid world, culture shifts from something absorbed in a shared space to something deliberately designed and communicated. That design responsibility sits with leadership and HR.</div>"
+        "label": "Capstone",
+        "heading": "Capstone: hiring end to end",
+        "html": "<p class=\"prose\">This capstone ties the section together: a single hire, end to end, stacking the techniques from each tab into one connected workflow. Part 1 is a <strong>worked walkthrough</strong> you read &mdash; the full progression modelled step by step. Part 2 is an <strong>interactive challenge</strong> where you draft a prompt yourself, then compare it against a model answer. The goal is to see how the techniques compound across a real hiring cycle, not as isolated tricks.</p><div class=\"example-block\"><div class=\"ex-label\">The case</div><strong>Hiring a Senior AWS DevOps Engineer, end to end.</strong> A cloud consulting firm has an urgent, hard-to-fill need on a client-facing hybrid team. You will move through four stages &mdash; job description, screening, interview kit, candidate communication &mdash; stacking two to three techniques at each, and carrying a human accountable for every decision throughout.</div><h3 style=\"margin-top:24px;\">Part 1 &mdash; Worked walkthrough</h3><div class=\"step\"><div class=\"step-h\"><span class=\"step-n\">1</span> Job description</div><div class=\"tech-badges\"><span class=\"tech-badge\">Role priming</span><span class=\"tech-badge\">Context loading</span><span class=\"tech-badge\">Structured output</span></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Prompt used</div><div class=\"prompt-text\">You are a senior technical recruiter who has filled hard-to-hire DevOps roles&hellip; draft a JD for a Senior AWS DevOps Engineer on a hybrid team; must-haves and nice-to-haves separated; structure as summary / what you&rsquo;ll do / what you bring / hybrid note; under 350 words.</div></div><p class=\"prose\"><strong>Result:</strong> a specific, structured JD approved with minor edits, drawing better-matched applicants. <strong>Why:</strong> context made it role-true; structure made it usable; role priming made it attract rather than merely describe.</p></div><div class=\"step\"><div class=\"step-h\"><span class=\"step-n\">2</span> Screening</div><div class=\"tech-badges\"><span class=\"tech-badge\">Few-shot</span><span class=\"tech-badge\">Chain-of-thought</span><span class=\"tech-badge\">Guardrail</span><span class=\"tech-badge\">Structured output</span></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Prompt used</div><div class=\"prompt-text\">Score each CV 1&ndash;5 against these four criteria only; justify each score quoting the CV; mark unclear and do not guess; infer no demographics; return a sorted table.</div></div><p class=\"prose\"><strong>Result:</strong> a fast, auditable, defensible shortlist that surfaced an ambiguous-but-strong candidate for review. <strong>Why:</strong> visible reasoning plus guardrails contained bias and fabrication &mdash; the gains of the JD stage carried forward into a fair screen.</p></div><div class=\"step\"><div class=\"step-h\"><span class=\"step-n\">3</span> Interview kit</div><div class=\"tech-badges\"><span class=\"tech-badge\">Context loading</span><span class=\"tech-badge\">Few-shot</span><span class=\"tech-badge\">Structured output</span></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Prompt used</div><div class=\"prompt-text\">8 questions mapped to four competencies, two each, each with a &lsquo;what a strong answer shows&rsquo; line; behavioural not trivia; as a scorable three-column table.</div></div><p class=\"prose\"><strong>Result:</strong> a panel-ready kit that aligned three interviewers on one standard. <strong>Why:</strong> competency framing plus an explicit answer standard turned subjective scoring into consistent comparison.</p></div><div class=\"step\"><div class=\"step-h\"><span class=\"step-n\">4</span> Candidate communication</div><div class=\"tech-badges\"><span class=\"tech-badge\">Role priming</span><span class=\"tech-badge\">Context loading</span><span class=\"tech-badge\">Iterative refinement</span></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Prompt used</div><div class=\"prompt-text\">Warm, specific rejection to a final-round candidate, under 150 words, honest, names a genuine strength, sincere door open, no clich&eacute;s &mdash; then refined for warmth and a specific detail.</div></div><p class=\"prose\"><strong>Result:</strong> a brand-protecting message that kept a strong near-miss engaged for future roles. <strong>Why:</strong> context and refinement fit the message to the moment instead of reaching for a template.</p></div><div class=\"callout callout-good\">The through-line across all four stages: <strong>stack two to three techniques</strong>, always supply real context, structure the output, and keep a human accountable for the decision. The tool was identical at every stage; the technique stacking is what made it expert-level &mdash; and each well-run stage made the next one easier.</div><h3 style=\"margin-top:28px;\">Part 2 &mdash; Interactive challenge</h3><div class=\"challenge\"><p class=\"prose\"><strong>Your turn.</strong> A <em>second</em> strong candidate from the same shortlist should be kept warm for a future role &mdash; not rejected, not yet offered. Draft a prompt that would produce that &lsquo;keep-warm&rsquo; message. Aim to stack at least two techniques, supply real relationship context, and add a guardrail against implying any guarantee. Write your prompt, then reveal the model answer and compare.</p><textarea class=\"challenge-input\" id=\"challengeInput\" placeholder=\"Write your prompt here...\"></textarea><button class=\"reveal-btn\" id=\"revealBtn\" type=\"button\">Reveal a model answer</button><div class=\"reveal-body hidden\" id=\"revealBody\"><div class=\"tech-badges\"><span class=\"tech-badge\">Role priming</span><span class=\"tech-badge\">Context loading</span><span class=\"tech-badge\">Iterative refinement</span><span class=\"tech-badge\">Guardrail</span></div><div class=\"prompt-ex\"><div class=\"prompt-label\">Model prompt</div><div class=\"prompt-text\">You are a recruiter writing to a strong final-round candidate for a Senior AWS DevOps Engineer role whom we can&rsquo;t place right now but genuinely want to re-engage when a suitable role opens. Draft a warm, honest &lsquo;keep-warm&rsquo; note under 130 words that: acknowledges a specific strength they showed, is clear there is no current offer, asks their permission to reach out about future roles, and keeps the tone human. Do not imply any guarantee of a future role or timeline. Avoid clich&eacute;s like &lsquo;we&rsquo;ll keep you in mind&rsquo;.</div></div><div class=\"reveal-check\"><strong>Compare your prompt.</strong> Did you (1) prime a recruiter role, (2) load real context &mdash; who the candidate is, the &lsquo;keep-warm, no current offer&rsquo; intent, (3) set tone and length constraints, and (4) add a guardrail against implying a guaranteed future role or timeline? Those four moves are what turn a vague ask into an expert prompt. If you stacked at least two and added the guardrail, you applied the section&rsquo;s core discipline.</div></div></div>"
       }
     ]
   }
@@ -599,6 +365,14 @@ function bankFor(sectionKey) {
 
 function buildSections() {
   const root = document.getElementById('sectionsRoot');
+  const pillWrap = document.getElementById('sectionPills');
+  if (pillWrap) {
+    pillWrap.innerHTML = SECTION_DATA.map(function(sec, idx){
+      var n = idx + 1;
+      return '<button class="section-pill' + (n===1?' active':'') + '" data-sec="' + n + '" onclick="showSection(' + n + ')">'
+        + '<span class="pnum">' + n + '</span> ' + sec.title + '</button>';
+    }).join('');
+  }
   SECTION_DATA.forEach(function(sec, idx) {
     const secNum = idx + 1;
     const questions = bankFor('s' + secNum);
@@ -969,6 +743,12 @@ function cpWriteModuleComplete() {
 })();
 
 buildSections();
+document.addEventListener('click', function(e){
+  if (e.target && e.target.id === 'revealBtn') {
+    var body = document.getElementById('revealBody');
+    if (body) { body.classList.remove('hidden'); e.target.style.display='none'; }
+  }
+});
 </script>
 
 </body>
