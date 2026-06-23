@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Understanding Mastra — AI Expertise for HR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#eef2f7; --bg2:#ffffff; --bg3:#f0f4f9; --border:#d0dae8;
+    --text:#1a2332; --text-dim:#4a5568; --text-dimmer:#8fa3bc;
+    --blue:#1a6eb5; --blue-light:#e8f1fb; --blue-mid:#b8d0ed; --blue-dark:#0f4a7a;
+    --coral:#c0392b; --coral-light:#fdf0ee; --coral-mid:#f0b8b2;
+    --green:#1a6b3a; --green-light:#e8f5ed; --green-mid:#a3d4b8;
+    --amber:#92600a; --amber-light:#fdf3e3;
+    --radius:12px;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Merriweather Sans',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+  .topnav { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 32px; height:52px; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:700; color:var(--text-dim); }
+  .topnav a { color:var(--blue); text-decoration:none; }
+  .topnav a:hover { text-decoration:underline; }
+  .sep { opacity:.4; }
+  .module-band { background:var(--bg2); border-bottom:1px solid var(--border); padding:24px 40px; }
+  .module-eyebrow { font-size:13px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); margin-bottom:6px; }
+  .module-title { font-size:26px; font-weight:700; color:var(--text); }
+  .module-progress { font-size:13px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); margin-top:10px; }
+  .refresh-wrap { max-width:1100px; margin:18px auto 0; padding:0 32px; }
+  .refresh-toggle { width:100%; display:flex; align-items:center; gap:12px; padding:16px 20px; background:var(--blue-light); border:1.5px solid var(--blue-mid); border-left:3px solid var(--blue); border-radius:var(--radius); cursor:pointer; font-family:'Merriweather Sans',sans-serif; font-size:15.5px; font-weight:700; color:var(--blue-dark); text-align:left; transition:background .15s; }
+  .refresh-toggle:hover { border-color:var(--blue); }
+  .refresh-toggle .rt-icon { font-size:20px; flex-shrink:0; }
+  .refresh-toggle .rt-text { flex:1; }
+  .refresh-toggle .rt-sub { display:block; font-weight:400; font-size:13px; color:var(--text-dim); margin-top:3px; }
+  .refresh-toggle .rt-chev { font-size:13px; font-family:'Source Code Pro',monospace; transition:transform .2s; flex-shrink:0; }
+  .refresh-panel { display:none; margin-top:14px; background:var(--bg2); border:1.5px solid var(--border); border-radius:var(--radius); padding:30px 34px; animation:fadeIn .25s ease; }
+  .refresh-panel.open { display:block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:none; } }
+  .refresh-panel h3 { font-size:20px; font-weight:700; color:var(--text); margin:0 0 10px; }
+  .refresh-panel p { font-size:16px; color:var(--text-dim); line-height:1.8; margin-bottom:12px; }
+  .refresh-panel p strong { color:var(--text); font-weight:600; }
+  .refresh-panel ul { margin:0 0 14px; padding-left:22px; }
+  .refresh-panel li { font-size:15.5px; color:var(--text-dim); line-height:1.75; margin-bottom:8px; }
+  .refresh-close { margin-top:20px; padding:10px 20px; background:var(--bg2); color:var(--text-dim); border:1.5px solid var(--border); border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .refresh-close:hover { background:var(--bg3); }
+  .section-pills-wrap { background:var(--bg2); border-bottom:1px solid var(--border); padding:0 40px; overflow-x:auto; }
+  .section-pills { display:flex; gap:0; }
+  .section-pill { display:flex; align-items:center; gap:8px; padding:14px 18px; font-size:15px; font-weight:700; color:var(--text-dimmer); border-bottom:2px solid transparent; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; white-space:nowrap; transition:color .15s; font-family:'Merriweather Sans',sans-serif; }
+  .section-pill .pnum { width:26px; height:26px; border-radius:50%; background:var(--bg3); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; font-family:'Source Code Pro',monospace; flex-shrink:0; transition:all .15s; }
+  .section-pill.active { color:var(--blue); border-bottom-color:var(--blue); }
+  .section-pill.active .pnum { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .section-pill.done .pnum { background:var(--green); border-color:var(--green); color:#fff; }
+  .main { max-width:1100px; margin:0 auto; padding:32px; }
+  .section-panel { display:none; }
+  .section-panel.active { display:block; }
+  .tabs-wrap { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius) var(--radius) 0 0; padding:0 8px; overflow-x:auto; }
+  .tabs { display:flex; gap:0; }
+  .tab-btn { display:flex; align-items:center; gap:8px; padding:14px 16px; font-size:14.5px; font-weight:700; color:var(--text-dimmer); border-bottom:2px solid transparent; cursor:pointer; background:none; border-top:none; border-left:none; border-right:none; white-space:nowrap; transition:color .15s; font-family:'Merriweather Sans',sans-serif; }
+  .tab-btn .num { width:24px; height:24px; border-radius:50%; background:var(--bg3); border:1.5px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; font-family:'Source Code Pro',monospace; flex-shrink:0; transition:all .15s; }
+  .tab-btn.active { color:var(--blue); border-bottom-color:var(--blue); }
+  .tab-btn.active .num { background:var(--blue); border-color:var(--blue); color:#fff; }
+  .tab-body { background:var(--bg2); border:1px solid var(--border); border-top:none; border-radius:0 0 var(--radius) var(--radius); padding:32px; }
+  .tab-pane { display:none; }
+  .tab-pane.active { display:block; }
+  .tab-label { font-size:13px; font-family:'Source Code Pro',monospace; font-weight:700; color:var(--blue); letter-spacing:.1em; text-transform:uppercase; margin-bottom:6px; }
+  .tab-heading { font-size:23px; font-weight:700; margin-bottom:18px; }
+  .prose { font-size:16.5px; color:var(--text-dim); line-height:1.85; margin-bottom:18px; }
+  .prose strong { color:var(--text); font-weight:600; }
+  .callout { border-left:3px solid var(--blue); background:var(--blue-light); padding:14px 18px; border-radius:0 8px 8px 0; margin:18px 0; font-size:14.5px; line-height:1.7; color:var(--text-dim); }
+  .callout-warn { border-left-color:var(--amber); background:var(--amber-light); }
+  .callout-bad  { border-left-color:var(--coral); background:var(--coral-light); }
+  .callout-good { border-left-color:var(--green); background:var(--green-light); }
+  .callout strong { color:var(--text); }
+  .example-block { background:var(--bg3); border:1.5px solid var(--border); border-radius:var(--radius); padding:18px 22px; margin:18px 0; font-size:15.5px; line-height:1.8; color:var(--text-dim); }
+  .example-block .ex-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--text-dim); margin-bottom:10px; }
+  .lab-block { background:var(--blue-light); border:1.5px solid var(--blue-mid); border-radius:var(--radius); padding:18px 22px; margin:18px 0; }
+  .lab-block .lab-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+  .lab-steps { margin:0; padding-left:22px; }
+  .lab-steps li { font-size:15px; color:var(--text-dim); line-height:1.7; margin-bottom:8px; }
+  .prompt-ex { border:1.5px solid var(--border); border-left:3px solid var(--blue); border-radius:0 8px 8px 0; background:var(--bg3); padding:14px 18px; margin:14px 0; }
+  .prompt-ex .prompt-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-bottom:8px; }
+  .prompt-ex .prompt-text { font-family:'Source Code Pro',monospace; font-size:13.5px; line-height:1.7; color:var(--text); white-space:pre-wrap; }
+  .callout ul { margin:8px 0 0; padding-left:20px; }
+  .callout li { margin:5px 0; }
+  .divider { height:1px; background:var(--border); margin:26px 0; }
+  .tab-nav-row { display:flex; justify-content:space-between; margin-top:24px; }
+  .continue-btn { padding:11px 22px; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:14.5px; font-weight:700; cursor:pointer; font-family:'Merriweather Sans',sans-serif; transition:background .15s; }
+  .continue-btn:hover { background:var(--blue-dark); }
+  .assessment-sub { font-size:14.5px; color:var(--text-dim); line-height:1.7; margin-bottom:22px; }
+  .question-block { margin-bottom:26px; padding-bottom:22px; border-bottom:1px solid var(--border); }
+  .question-block:last-of-type { border-bottom:none; }
+  .q-num { font-size:11px; font-family:'Source Code Pro',monospace; color:var(--blue); letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; font-weight:600; }
+  .q-text { font-size:15.5px; font-weight:600; color:var(--text); line-height:1.5; margin-bottom:14px; }
+  .options { display:flex; flex-direction:column; gap:10px; }
+  .option { display:flex; align-items:flex-start; gap:10px; padding:12px 16px; border-radius:8px; border:1.5px solid var(--border); cursor:pointer; font-size:14.5px; color:var(--text-dim); line-height:1.5; transition:border-color .15s, background .15s; }
+  .option:hover { border-color:var(--blue-mid); background:var(--blue-light); }
+  .option input[type="radio"] { margin-top:3px; flex-shrink:0; accent-color:var(--blue); }
+  .submit-btn { margin-top:18px; padding:12px 28px; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:15px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .submit-btn:disabled { background:var(--border); color:var(--text-dimmer); cursor:not-allowed; }
+  .submit-btn:not(:disabled):hover { background:var(--blue-dark); }
+  .submit-note { font-size:13px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); margin-top:8px; }
+  .submitted-wrap { text-align:center; padding:16px 0; }
+  .submitted-icon { font-size:34px; color:var(--green); margin-bottom:6px; }
+  .submitted-title { font-size:17px; font-weight:700; color:var(--green); margin-bottom:8px; }
+  .submitted-body { font-size:14.5px; color:var(--text-dim); line-height:1.7; }
+  .review-list { text-align:left; margin:18px auto 4px; max-width:760px; }
+  .review-item { border:1.5px solid var(--border); border-radius:10px; padding:14px 16px; margin-bottom:12px; background:var(--bg2); }
+  .review-item.correct { border-left:3px solid var(--green); }
+  .review-item.incorrect { border-left:3px solid var(--coral); }
+  .review-q { font-size:14.5px; font-weight:600; color:var(--text); line-height:1.5; margin-bottom:10px; }
+  .review-q .verdict { font-family:'Source Code Pro',monospace; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:2px 8px; border-radius:6px; margin-right:8px; }
+  .review-q .verdict.correct { background:var(--green-light); color:var(--green); }
+  .review-q .verdict.incorrect { background:var(--coral-light); color:var(--coral); }
+  .review-opt { font-size:13.5px; line-height:1.6; padding:6px 10px; border-radius:6px; margin:4px 0; color:var(--text-dim); display:flex; gap:8px; align-items:flex-start; }
+  .review-opt .mark { font-family:'Source Code Pro',monospace; font-weight:700; flex-shrink:0; width:16px; }
+  .review-opt.is-correct { background:var(--green-light); color:var(--green); }
+  .review-opt.is-chosen-wrong { background:var(--coral-light); color:var(--coral); }
+  .redo-btn { display:inline-block; margin-top:14px; padding:8px 18px; background:var(--bg2); color:var(--coral); border:1.5px solid var(--coral-mid); border-radius:8px; font-size:14px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .redo-btn:hover { background:var(--coral-light); }
+  .complete-bar { display:flex; align-items:center; gap:12px; padding:16px 20px; border-radius:8px; margin:28px auto 8px; max-width:1100px; font-size:14px; font-family:'Source Code Pro',monospace; font-weight:600; border:1.5px solid var(--border); background:var(--bg3); color:var(--text-dimmer); }
+  .complete-bar.done { background:var(--green-light); border-color:var(--green-mid); border-left:3px solid var(--green); color:var(--green); }
+  .bottom-nav { display:flex; justify-content:space-between; padding:28px 0 0; border-top:1px solid var(--border); margin-top:32px; }
+  .nav-btn { padding:12px 20px; border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; text-decoration:none; font-family:'Merriweather Sans',sans-serif; background:var(--blue); color:#fff; border:none; }
+  .nav-btn:hover { background:var(--blue-dark); }
+  .nav-btn.back { background:var(--bg2); color:var(--text-dim); border:1.5px solid var(--border); }
+  footer { text-align:center; padding:26px 32px; font-size:11px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); border-top:1px solid var(--border); line-height:1.7; }
+  .hidden { display:none !important; }
+  .auth-overlay { position:fixed; inset:0; background:rgba(15,30,60,.7); display:flex; align-items:center; justify-content:center; z-index:9999; backdrop-filter:blur(4px); }
+  .auth-overlay.hidden { display:none; }
+  .auth-box { background:#fff; border-radius:16px; padding:48px 40px; max-width:420px; width:90%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.2); }
+  .auth-logo { font-size:32px; margin-bottom:16px; }
+  .auth-title { font-size:22px; font-weight:700; color:var(--text); margin-bottom:8px; }
+  .auth-sub { font-size:15px; color:var(--text-dim); line-height:1.6; margin-bottom:28px; }
+  .auth-google-btn { display:flex; align-items:center; justify-content:center; gap:12px; width:100%; padding:14px 20px; border-radius:8px; background:var(--blue); color:#fff; border:none; font-size:16px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .auth-google-btn:hover { background:var(--blue-dark); }
+  .auth-google-btn svg { width:20px; height:20px; flex-shrink:0; }
+  .auth-divider { display:flex; align-items:center; gap:10px; margin:16px 0 14px; color:var(--text-dimmer); font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+  .auth-divider::before, .auth-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+  .auth-input { width:100%; padding:12px 14px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; margin-bottom:10px; outline:none; font-family:'Merriweather Sans',sans-serif; color:var(--text); background:#fff; display:block; }
+  .auth-input:focus { border-color:var(--blue); }
+  .auth-email-btn { display:block; width:100%; padding:14px 20px; border-radius:8px; background:var(--blue); color:#fff; border:none; font-size:16px; font-weight:600; cursor:pointer; font-family:'Merriweather Sans',sans-serif; margin-top:2px; }
+  .auth-email-btn:hover { background:var(--blue-dark); }
+  .auth-error { font-size:13px; color:var(--coral); margin-top:12px; font-family:'Source Code Pro',monospace; }
+  .auth-user-bar { background:var(--blue-light); border-bottom:1px solid var(--blue-mid); padding:8px 32px; font-size:13px; font-family:'Source Code Pro',monospace; color:var(--blue-dark); display:flex; align-items:center; justify-content:space-between; }
+  .auth-user-bar.hidden { display:none; }
+  .auth-signout { background:var(--blue); color:#fff; border:none; border-radius:8px; cursor:pointer; font-size:14px; font-weight:700; font-family:'Merriweather Sans',sans-serif; padding:8px 18px; text-decoration:none; }
+  @media(max-width:640px) { .topnav,.main,.module-band { padding-left:18px; padding-right:18px; } .section-pills-wrap { padding-left:14px; } .tab-body { padding:22px 18px; } }
+
+  .tech-badges { display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 0; }
+  .tech-badge { font-family:'Source Code Pro',monospace; font-size:11px; font-weight:600; letter-spacing:.03em; background:var(--blue); color:#fff; padding:3px 9px; border-radius:12px; }
+  .tech-row { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:16px 0 6px; }
+  .tech-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text-dim); }
+  .minicase { border:1.5px solid var(--amber); background:var(--amber-light); border-left:3px solid var(--amber); border-radius:0 10px 10px 0; padding:14px 18px; margin:18px 0; font-size:14.5px; line-height:1.7; color:var(--text-dim); }
+  .minicase .mc-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--amber); margin-bottom:8px; }
+  .deepdive { border:1.5px solid var(--border); border-left:3px solid var(--blue-dark); background:var(--bg2); border-radius:0 10px 10px 0; padding:16px 20px; margin:18px 0; }
+  .deepdive .dd-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--blue-dark); margin-bottom:12px; }
+  .deepdive .dd-item { margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+  .deepdive .dd-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+  .deepdive .dd-name { font-weight:700; font-size:14.5px; color:var(--text); margin-bottom:3px; }
+  .deepdive .dd-body { font-size:14px; line-height:1.7; color:var(--text-dim); }
+  .step { border:1.5px solid var(--border); border-radius:12px; padding:16px 20px; margin:14px 0; background:var(--bg2); }
+  .step-h { display:flex; align-items:center; gap:10px; font-weight:700; font-size:16px; margin-bottom:10px; }
+  .step-n { width:26px; height:26px; border-radius:50%; background:var(--blue); color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-family:'Source Code Pro',monospace; }
+  .challenge { border:1.5px solid var(--blue-mid); background:var(--blue-light); border-radius:12px; padding:20px 22px; margin:16px 0; }
+  .challenge-input { width:100%; min-height:120px; border:1.5px solid var(--border); border-radius:8px; padding:12px 14px; font-family:'Source Code Pro',monospace; font-size:13.5px; line-height:1.6; resize:vertical; margin:6px 0 12px; }
+  .reveal-btn { padding:11px 20px; background:var(--blue); color:#fff; border:none; border-radius:8px; font-size:14.5px; font-weight:700; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .reveal-btn:hover { background:var(--blue-dark); }
+  .save-resp-btn { padding:11px 20px; background:var(--green); color:#fff; border:none; border-radius:8px; font-size:14.5px; font-weight:700; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .save-resp-btn:hover { background:#14562f; }
+  .redo-resp-btn { padding:11px 20px; background:var(--bg2); color:var(--text-dim); border:1.5px solid var(--border); border-radius:8px; font-size:14.5px; font-weight:700; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .redo-resp-btn:hover { background:var(--bg3); }
+  .save-resp-note { font-size:13px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); }
+  .save-resp-note.saved { color:var(--green); }
+  .reveal-body { margin-top:16px; }
+  .reveal-check { border-left:3px solid var(--green); background:var(--green-light); padding:12px 16px; border-radius:0 8px 8px 0; font-size:14px; line-height:1.7; color:var(--text-dim); margin-top:12px; }
+
+  .output-btn { margin:10px 0 0; padding:9px 16px; background:var(--bg2); color:var(--blue); border:1.5px solid var(--blue-mid); border-radius:8px; font-size:13.5px; font-weight:700; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .output-btn:hover { background:var(--blue-light); }
+  .output-body { margin-top:12px; border:1.5px solid var(--green-mid); background:var(--green-light); border-left:3px solid var(--green); border-radius:0 10px 10px 0; padding:16px 20px; }
+  .output-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--green); margin-bottom:6px; }
+  .output-note { font-size:12.5px; color:var(--text-dim); font-style:italic; margin-bottom:12px; }
+  .out-doc { font-size:14.5px; line-height:1.7; color:var(--text); }
+  .out-doc p { margin-bottom:10px; } .out-doc ul { margin:6px 0 10px; padding-left:20px; } .out-doc li { margin-bottom:5px; }
+  .out-table { width:100%; border-collapse:collapse; margin:8px 0; font-size:13px; }
+  .out-table th, .out-table td { border:1px solid var(--border); padding:6px 9px; text-align:left; vertical-align:top; }
+  .out-table th { background:var(--bg3); font-weight:700; }
+
+  .csv-demo { border:1.5px solid var(--blue-mid); background:var(--blue-light); border-radius:12px; padding:20px 22px; margin:18px 0; }
+  .csv-demo-label { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+  .csv-input { width:100%; min-height:110px; border:1.5px solid var(--border); border-radius:8px; padding:12px 14px; font-family:'Source Code Pro',monospace; font-size:13px; line-height:1.6; resize:vertical; }
+  .csv-upload-btn { padding:11px 18px; background:var(--bg2); color:var(--blue); border:1.5px solid var(--blue-mid); border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; font-family:'Merriweather Sans',sans-serif; }
+  .csv-upload-btn:hover { background:#fff; }
+  .csv-output { margin-top:14px; overflow-x:auto; }
+  .csv-output table { width:100%; border-collapse:collapse; font-size:13px; font-family:'Source Code Pro',monospace; }
+  .csv-output th, .csv-output td { border:1px solid var(--border); padding:6px 9px; text-align:left; white-space:nowrap; }
+  .csv-output th { background:var(--bg3); font-weight:700; }
+  .csv-rowcount { font-size:12.5px; color:var(--text-dim); margin-top:8px; font-family:'Source Code Pro',monospace; }
+
+
+  .gx-wrap { margin:8px 0; }
+  .gx-toplabel { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-bottom:14px; }
+  .gx-item { border:1.5px solid var(--border); border-radius:12px; padding:18px 20px; margin-bottom:18px; background:var(--bg2); }
+  .gx-name { font-weight:800; font-size:16px; margin-bottom:6px; color:var(--text); }
+  .gx-lead { font-size:14px; color:var(--text); margin-bottom:14px; }
+  .gx-example { border-left:3px solid var(--blue-mid); padding:2px 0 2px 14px; margin:0 0 16px; }
+  .gx-example:last-of-type { margin-bottom:6px; }
+  .gx-sample { margin-bottom:10px; }
+  .gx-sample-label { font-size:11.5px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--text-dim); margin-bottom:5px; }
+  .gx-code { background:#0f1b2d; color:#e6edf6; border:1px solid var(--border); border-radius:8px; padding:11px 13px; font-family:'Source Code Pro',monospace; font-size:12.5px; line-height:1.6; white-space:pre-wrap; word-break:break-word; overflow-x:auto; margin:0; }
+  .gx-scf p { font-size:13.5px; line-height:1.6; margin:3px 0; }
+  .gx-scf code, .gx-lead code, .gx-scf strong + code { background:var(--bg3); padding:1px 5px; border-radius:4px; font-family:'Source Code Pro',monospace; font-size:12px; }
+  .gotcha-agent { margin-top:12px; padding-top:10px; border-top:1px dashed var(--border); color:var(--blue); font-size:13.5px; }
+
+  .ai-term { border-bottom:1.5px dotted var(--blue); color:var(--blue); font-weight:600; cursor:help; }
+  .wo-wrap { margin:8px 0; }
+  .wo-toplabel { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-bottom:14px; }
+  .wo-item { border-left:3px solid var(--blue-mid); background:var(--bg2); border-radius:0 10px 10px 0; padding:14px 18px; margin-bottom:14px; }
+  .wo-name { font-weight:800; font-size:15px; margin-bottom:6px; color:var(--text); }
+  .wo-body { font-size:14px; line-height:1.65; color:var(--text); margin:0; }
+</style>
+</head>
+<body>
+
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-box">
+    <div class="auth-logo">&#128188;</div>
+    <div class="auth-title">New-Age HRM Essentials</div>
+    <div class="auth-sub">Sign in with your SourceFuse account to access the course and save your progress.</div>
+    <button class="auth-google-btn" id="googleSignInBtn">
+      <svg viewBox="0 0 48 48"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>
+      Sign in with Google
+    </button>
+    <div class="auth-divider">OR</div>
+    <input type="email" class="auth-input" id="authEmail" placeholder="you@sourcefuse.com" autocomplete="email">
+    <input type="password" class="auth-input" id="authPassword" placeholder="Password" autocomplete="current-password">
+    <button class="auth-email-btn" id="emailSignInBtn">Sign in with Email</button>
+    <div class="auth-error hidden" id="authError"></div>
+  </div>
+</div>
+
+<div class="auth-user-bar hidden" id="authUserBar">
+  <span id="authUserEmail"></span>
+  <button class="auth-signout" id="authSignOutBtn">Sign out</button>
+</div>
+
+<nav class="topnav">
+  <span>AI Expertise for HR</span>
+  <span class="sep">/</span>
+  <span>Understanding Mastra</span>
+</nav>
+
+<div class="module-band">
+  <div class="module-eyebrow">Section 1 (pilot)</div>
+  <div class="module-title">Understanding Mastra</div>
+  <div class="module-progress" id="moduleProgress">0 of 1 sections complete</div>
+</div>
+
+<div class="refresh-wrap">
+  <button class="refresh-toggle" id="refreshToggle" onclick="toggleRefresh()">
+    <span class="rt-icon">&#128161;</span>
+    <span class="rt-text">New to prompting techniques?
+      <span class="rt-sub">A quick primer on the core terms before you begin &mdash; open it if the sections feel fast-paced.</span>
+    </span>
+    <span class="rt-chev">&#9660; OPEN</span>
+  </button>
+  <div class="refresh-panel" id="refreshPanel">
+    <h3>A few terms worth knowing</h3>
+    <ul>
+      <li><strong>Role priming</strong> &mdash; telling the AI who to act as, to set the right lens.</li>
+      <li><strong>Context loading (R-C-T-C-F)</strong> &mdash; supplying role, context, task, constraints, and format.</li>
+      <li><strong>Few-shot</strong> &mdash; giving examples or explicit criteria so the AI follows your standard.</li>
+      <li><strong>Chain-of-thought</strong> &mdash; asking the AI to show its reasoning step by step.</li>
+      <li><strong>Structured output</strong> &mdash; requesting a table, template, or fixed layout.</li>
+      <li><strong>Guardrail prompting</strong> &mdash; constraints like &ldquo;flag if unsure&rdquo; to curb fabrication and bias.</li>
+    </ul>
+    <button class="refresh-close" onclick="toggleRefresh()">Close primer</button>
+  </div>
+</div>
+
+<div class="section-pills-wrap">
+  <div class="section-pills" id="sectionPills"></div>
+</div>
+
+<div class="main" id="sectionsRoot"></div>
+
+<div class="complete-bar" id="completeBar">Complete the section to finish this pilot.</div>
+
+<div class="main" style="padding-top:0;">
+  <div class="bottom-nav" style="justify-content:space-between;">
+    <a class="nav-btn back" href="course-map.html">&larr; Course Map</a>
+    <a class="nav-btn" href="understanding-agentcore.html">Understanding AgentCore &rarr;</a>
+  </div>
+</div>
+
+<footer>
+  New-Age HRM Essentials &middot; SourceFuse L&amp;D &middot; Leads to the SF Certified New-Age HRM Practitioner certification
+</footer>
+
+<script>
+window.NAHRM_QUESTION_BANK = {
+  "mastra": {
+    "s1": [
+      {
+        "q": "What is Mastra, in plain terms?",
+        "options": [
+          "A cloud service that stores company employee records",
+          "A language model that competes with GPT and Claude",
+          "A chatbot that answers questions for end users directly",
+          "A developer toolkit (framework) for building AI agents"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "What is the purpose of a &lsquo;tool&rsquo; given to an agent?",
+        "options": [
+          "To store the agent&rsquo;s conversation history over time",
+          "To replace the need for a language model entirely",
+          "To let the agent take a defined action, like looking something up",
+          "To make the agent&rsquo;s replies longer and more detailed"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "What does &lsquo;model routing&rsquo; let a developer do?",
+        "options": [
+          "Force every agent to use one single fixed model forever",
+          "Speed up the model by skipping the reasoning step",
+          "Route customer support tickets to the right human agent",
+          "Connect to many AI models through one common interface"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "Why do guardrails, evals, and observability matter?",
+        "options": [
+          "They remove the need to give the agent any instructions",
+          "They make an agent trustworthy and checkable before release",
+          "They let the agent connect to more external data sources",
+          "They make the agent respond faster to every request"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "q": "In the Hello World capstone, what mainly gave the agent its behaviour?",
+        "options": [
+          "The number of tools connected to the project",
+          "The speed of the computer it was running on",
+          "The plain-language instructions written for it",
+          "The colour theme of the local chat playground"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "What is the main goal of this part of the course?",
+        "options": [
+          "Replacing the technical team that builds the agents",
+          "Literacy: understanding what these tools make possible",
+          "Memorising every command in the framework",
+          "Becoming a full-time software developer quickly"
+        ],
+        "correctIndex": 1
+      }
+    ]
+  }
+};
+</script>
+
+<script>
+const CACHE_VERSION = '2026-06-17-v1';
+const MODULE_ID     = 'mastra';
+const CP_COURSE_ID  = 'aiExpertiseHr2026SFCert';
+const CP_MODULE_IDS = ['mastra'];
+const BANK_KEY      = 'mastra';
+
+const SECTION_DATA = [
+  {
+    "title": "Understanding Mastra",
+    "tabs": [
+      {
+        "label": "What Mastra is",
+        "heading": "What Mastra is",
+        "html": "<p class=\"prose\">Up to now you have used AI by typing into a chat box. But behind a real, working AI assistant &mdash; one that can look things up, remember a conversation, and take action &mdash; there is software that someone has to build. <strong>Mastra</strong> is one of the popular toolkits developers use to build exactly that.</p><p class=\"prose\">Think of Mastra as a ready-made kit for building <span class=\"ai-term\" title=\"An AI agent is a program that uses a language model to decide what to do — it can reason about a goal, call tools to get information or take action, and respond, rather than just answering a single question.\">AI agents</span>. Instead of a developer assembling dozens of separate parts by hand, Mastra gives them the common pieces in one place, so they can go from idea to a working agent far faster.</p><div class=\"example-block\"><div class=\"ex-label\">In one line</div>Mastra is a developer&rsquo;s toolkit (a <span class=\"ai-term\" title=\"A framework is a reusable foundation of pre-built components developers build on top of, so they don't have to write everything from scratch. Mastra is a framework for building AI agents.\">framework</span>) for building AI agents &mdash; the working software behind an AI assistant.</div><div class=\"deepdive\"><div class=\"dd-label\">Concept deep-dive</div><div class=\"dd-item\"><div class=\"dd-name\">Why a toolkit exists at all</div><div class=\"dd-body\">Building an agent from nothing means wiring together a language model, memory, tools, and safety checks separately. A framework bundles these so they work together out of the box &mdash; less plumbing, fewer mistakes, faster results.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Who uses it</div><div class=\"dd-body\">Software developers &mdash; specifically those comfortable with a common web programming language. You do not need to use Mastra yourself to benefit from understanding it: it helps you talk to your technical teams and judge what is realistic.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Where it runs</div><div class=\"dd-body\">An agent built with Mastra is ordinary software that can run on a developer&rsquo;s laptop while being built, and later on a server so others can use it.</div></div></div><div class=\"callout callout-good\">You will not be writing software in this part of the course. The goal is <strong>literacy</strong> &mdash; understanding what Mastra is and what it makes possible &mdash; so you can make informed decisions and conversations with the people who do build.</div>"
+      },
+      {
+        "label": "Building blocks",
+        "heading": "The building blocks of an agent",
+        "html": "<p class=\"prose\">A Mastra agent is made of a few simple building blocks. You do not need to know how they are coded &mdash; just what each one is for. Picture them as the parts of a capable assistant.</p><div class=\"deepdive\"><div class=\"dd-label\">Concept deep-dive</div><div class=\"dd-item\"><div class=\"dd-name\">The agent</div><div class=\"dd-body\">The core piece: it takes a request, reasons about it using a language model, and decides what to do. This is the &lsquo;brain&rsquo; that ties everything else together.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Tools</div><div class=\"dd-body\">What lets the agent <em>do</em> things rather than just talk &mdash; look up a record, search the web, send a message. A <span class=\"ai-term\" title=\"A tool is a specific capability you give an agent — a defined action it can take, like looking up data or calling another service. The agent decides when to use it.\">tool</span> is a defined action the agent can choose to use when it needs to.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Memory</div><div class=\"dd-body\">What lets the agent remember earlier parts of a conversation, or facts about the person it is helping, instead of starting blank every time.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Workflows</div><div class=\"dd-body\">For multi-step jobs, a <span class=\"ai-term\" title=\"A workflow is a defined sequence of steps an agent follows in order — useful when a task has a fixed process rather than a single open-ended question.\">workflow</span> lays out the steps in order &mdash; useful when a task always follows the same process.</div></div></div><div class=\"example-block\"><div class=\"ex-label\">A everyday picture</div>Imagine an assistant that, when asked about the weather, knows to <em>use a weather tool</em> (tool), recalls you asked about the same city yesterday (memory), and walks through &lsquo;find city &rarr; fetch forecast &rarr; summarise&rsquo; (workflow) &mdash; all coordinated by the agent. Mastra gives a developer each of these pieces ready to assemble.</div><div class=\"callout callout-good\">Notice these mirror what you already learned about good prompting and grounding: an agent needs context (memory), the ability to act on real data (tools), and a reliable process (workflows). The same principles, now built into software.</div>"
+      },
+      {
+        "label": "Models & connections",
+        "heading": "Models, tools, and connecting to the world",
+        "html": "<p class=\"prose\">Two ideas explain how a Mastra agent connects to the wider world: <strong>models</strong> and <strong>tools/connections</strong>.</p><div class=\"deepdive\"><div class=\"dd-label\">Concept deep-dive</div><div class=\"dd-item\"><div class=\"dd-name\">Model routing</div><div class=\"dd-body\">An agent needs a language model to think. Mastra can connect to many different models (from various providers) through one common interface &mdash; so a developer can switch the underlying model without rebuilding the agent. This is called <span class=\"ai-term\" title=\"Model routing means an agent framework can connect to many different AI models through one standard interface, letting developers swap the underlying model easily.\">model routing</span>.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Tools and MCP</div><div class=\"dd-body\">Beyond built-in tools, agents often need to reach external systems. A shared standard called <span class=\"ai-term\" title=\"MCP (Model Context Protocol) is an open standard for connecting AI agents to external tools and data sources in a consistent way, so the same connection can be reused across different agents.\">MCP</span> lets agents connect to tools and data in a consistent way &mdash; the same connection can be reused across agents.</div></div><div class=\"dd-item\"><div class=\"dd-name\">What ‘the agent uses a tool’ really means</div><div class=\"dd-body\">When an agent &lsquo;uses a tool&rsquo;, the model decides a capability is needed, the framework runs that action, hands the result back to the model, and the model uses it to answer. The agent is reading and reporting from real data &mdash; exactly the grounding discipline from earlier.</div></div></div><div class=\"callout callout-good\">This is why an agent can answer questions a plain chatbot cannot: through tools and connections it reaches real, current data, instead of relying only on what the model learned during training.</div>"
+      },
+      {
+        "label": "Guardrails & trust",
+        "heading": "Guardrails, evals, and trust",
+        "html": "<p class=\"prose\">An agent that can act in the real world has to be trustworthy. Mastra includes features for exactly this &mdash; and they map directly onto the gotchas and safeguards you have already studied.</p><div class=\"deepdive\"><div class=\"dd-label\">Concept deep-dive</div><div class=\"dd-item\"><div class=\"dd-name\">Guardrails</div><div class=\"dd-body\">Checks on what goes into and comes out of the agent &mdash; for example, blocking attempts to manipulate it (<span class=\"ai-term\" title=\"Prompt injection is an attack where hidden instructions in data or input try to make an AI agent ignore its real instructions and do something unintended.\">prompt injection</span>) or filtering unsafe responses before they reach a user.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Evals</div><div class=\"dd-body\">Short for evaluations: repeatable checks that score an agent&rsquo;s answers for quality, so a team can measure whether a change made the agent better or worse before releasing it. Think of it as automated quality testing.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Observability</div><div class=\"dd-body\">The ability to see what the agent did step by step &mdash; which tools it called, where it went wrong &mdash; so problems can be diagnosed. This is the same troubleshooting visibility you saw in the gotchas content.</div></div></div><div class=\"callout callout-good\">The lesson from your earlier modules holds in software too: a trustworthy agent is defined by knowing when not to answer and by being checkable. Guardrails, evals, and observability are how that discipline gets built in.</div>"
+      },
+      {
+        "label": "Hello World Capstone",
+        "heading": "Optional capstone: build your first agent",
+        "html": "<p class=\"prose\">This optional, hands-on capstone lets you <strong>build and run your very first AI agent</strong> with Mastra &mdash; right on your own computer. It is a &lsquo;Hello World&rsquo;: the simplest possible working example. The agent will ask you <em>&ldquo;How are you?&rdquo;</em>, you answer, and it replies.</p><div class=\"callout callout-warn\">This is optional and a little technical. If at any point this feels too complex, that is completely fine &mdash; take the help of the L&amp;D team to set your environment up, or simply read along to understand what is involved.</div><h3 style=\"margin-top:24px;\">What you will need</h3><div class=\"example-block\"><div class=\"ex-label\">Before you start</div>A computer (Windows or Mac), an internet connection, and about 20 minutes. You do not need any prior coding experience &mdash; you will copy and paste a few commands.</div><h3 style=\"margin-top:24px;\">Step 1 &mdash; Set up your computer</h3><p class=\"prose\">An AI agent is software, so your computer needs a tool called <strong>Node.js</strong> to run it. We have prepared a simple setup script that installs what you need. Download the matching one for your system and run it:</p><div class=\"example-block\"><div class=\"ex-label\">Windows</div>Download <code>mastra-setup-windows.bat</code>, then double-click it. If Windows shows a security prompt, choose &lsquo;More info &rarr; Run anyway&rsquo; (it only installs Node.js and Mastra&rsquo;s starter).</div><div class=\"example-block\"><div class=\"ex-label\">Mac</div>Download <code>mastra-setup-mac.sh</code>. Open the <strong>Terminal</strong> app, type <code>bash </code> (with a space), drag the downloaded file onto the Terminal window, and press Enter.</div><div class=\"callout callout-warn\">The script installs Node.js (if you don&rsquo;t already have it) and prepares a starter project. If anything fails or looks confusing, this is a good moment to ask the L&amp;D team for help.</div><h3 style=\"margin-top:24px;\">Step 2 &mdash; Create your agent project</h3><p class=\"prose\">In the same window the script opened, create a new Mastra project by running:</p><div class=\"prompt-ex\"><div class=\"prompt-label\">Command</div><div class=\"prompt-text\">npm create mastra@latest hello-agent</div></div><p class=\"prose\">When it asks questions, you can accept the defaults (press Enter). Pick a model provider you have access to if prompted. This creates a folder called <code>hello-agent</code> with a ready-to-run starter agent inside.</p><h3 style=\"margin-top:24px;\">Step 3 &mdash; Make it say hello</h3><p class=\"prose\">Your project comes with an example agent. We will give it the simple &lsquo;How are you?&rsquo; behaviour. Open the project&rsquo;s agent file (your setup notes show where) and set the agent&rsquo;s instructions to this:</p><div class=\"prompt-ex\"><div class=\"prompt-label\">Agent instructions</div><div class=\"prompt-text\">You are a friendly greeter. Begin the conversation by asking exactly: &ldquo;How are you?&rdquo; After the person replies, respond with exactly: &ldquo;Thank you for responding, &rdquo; followed by their name if they gave one, otherwise &ldquo;friend&rdquo;. Keep it warm and brief.</div></div><div class=\"callout callout-good\">This is the whole trick: an agent&rsquo;s behaviour is mostly just clear instructions &mdash; the same prompting skill you have practised all course, now living inside software.</div><h3 style=\"margin-top:24px;\">Step 4 &mdash; Run it and chat</h3><p class=\"prose\">Start Mastra&rsquo;s local playground:</p><div class=\"prompt-ex\"><div class=\"prompt-label\">Command</div><div class=\"prompt-text\">cd hello-agent\nnpm run dev</div></div><p class=\"prose\">Your browser opens a small chat playground. Your agent greets you with <em>&ldquo;How are you?&rdquo;</em> &mdash; type your answer (e.g. &ldquo;I&rsquo;m good, I&rsquo;m Asha&rdquo;) and it replies <em>&ldquo;Thank you for responding, Asha.&rdquo;</em> You have just built and run your first AI agent.</p><div class=\"callout callout-good\"><strong>That&rsquo;s the milestone.</strong> You created an agent, gave it instructions, ran it, and had a real exchange. In the next module you will see how an agent like this is taken from your laptop and deployed so others can use it.</div><h3 style=\"margin-top:24px;\">A quick reflection</h3><div class=\"challenge\"><p class=\"prose\">Before moving on: in your own words, what gave this agent its behaviour? Type your thought, then reveal a model answer.</p><textarea class=\"challenge-input\" id=\"challengeInput\" placeholder=\"Your reflection...\"></textarea><button class=\"reveal-btn\" id=\"revealBtn\" type=\"button\">Reveal a model answer</button><div class=\"reveal-body hidden\" id=\"revealBody\"><div class=\"reveal-check\">The agent&rsquo;s behaviour came almost entirely from its <strong>instructions</strong> &mdash; plain-language prompting, the same skill from the rest of the course. The framework (Mastra) supplied the machinery to run those instructions as software; you supplied the intent. That balance &mdash; clear human instruction plus reliable machinery &mdash; is what building an agent is really about.</div></div></div>"
+      }
+    ]
+  }
+];
+
+
+function bankFor(sectionKey) {
+  try { return (window.NAHRM_QUESTION_BANK[BANK_KEY] || {})[sectionKey] || []; }
+  catch(e) { return []; }
+}
+
+function buildSections() {
+  const root = document.getElementById('sectionsRoot');
+  const pillWrap = document.getElementById('sectionPills');
+  if (pillWrap) {
+    pillWrap.innerHTML = SECTION_DATA.map(function(sec, idx){
+      var n = idx + 1;
+      return '<button class="section-pill' + (n===1?' active':'') + '" data-sec="' + n + '" onclick="showSection(' + n + ')">'
+        + '<span class="pnum">' + n + '</span> ' + sec.title + '</button>';
+    }).join('');
+  }
+  SECTION_DATA.forEach(function(sec, idx) {
+    const secNum = idx + 1;
+    const questions = bankFor('s' + secNum);
+    const panel = document.createElement('section');
+    panel.className = 'section-panel' + (secNum === 1 ? ' active' : '');
+    panel.id = 'section-' + secNum;
+
+    const tabs = sec.tabs;
+    const quizTabNum = tabs.length + 1;
+
+    let tabsBtns = '';
+    tabs.forEach(function(t, ti) {
+      tabsBtns += '<button class="tab-btn' + (ti===0?' active':'') + '" onclick="showTab(' + secNum + ',' + (ti+1) + ')">'
+        + '<span class="num">' + (ti+1) + '</span> ' + t.label + '</button>';
+    });
+    tabsBtns += '<button class="tab-btn" onclick="showTab(' + secNum + ',' + quizTabNum + ')"><span class="num">' + quizTabNum + '</span> Check understanding</button>';
+
+    let panes = '';
+    tabs.forEach(function(t, ti) {
+      const nextTab = ti + 2;
+      panes += '<div class="tab-pane' + (ti===0?' active':'') + '" id="pane-' + secNum + '-' + (ti+1) + '">'
+        + '<div class="tab-label">' + t.label + '</div>'
+        + '<div class="tab-heading">' + t.heading + '</div>'
+        + t.html
+        + '<div class="divider"></div>'
+        + '<div class="tab-nav-row"><span></span><button class="continue-btn" onclick="showTab(' + secNum + ',' + nextTab + ')">Continue &rarr;</button></div>'
+        + '</div>';
+    });
+
+    let qHtml = '';
+    questions.forEach(function(q, qi) {
+      let opts = '';
+      q.options.forEach(function(opt, oi) {
+        opts += '<label class="option"><input type="radio" name="s' + secNum + '_q' + (qi+1) + '" value="' + oi + '"> ' + opt + '</label>';
+      });
+      qHtml += '<div class="question-block">'
+        + '<div class="q-num">Question ' + (qi+1) + ' of ' + questions.length + '</div>'
+        + '<div class="q-text">' + q.q + '</div>'
+        + '<div class="options">' + opts + '</div>'
+        + '</div>';
+    });
+
+    panes += '<div class="tab-pane" id="pane-' + secNum + '-' + quizTabNum + '">'
+      + '<div class="tab-label">Check understanding</div>'
+      + '<div class="tab-heading">Check your understanding</div>'
+      + '<div class="questions-wrap" id="questionsWrap-' + secNum + '">'
+      + '<p class="assessment-sub">Answer all ' + questions.length + ' questions to complete this section. Your answers are saved.</p>'
+      + qHtml
+      + '<button class="submit-btn" id="submitBtn-' + secNum + '" disabled>Submit answers</button>'
+      + '<div class="submit-note" id="submitNote-' + secNum + '">Select an answer for each question to submit.</div>'
+      + '</div>'
+      + '<div class="submitted-wrap hidden" id="submittedWrap-' + secNum + '">'
+      + '<div class="submitted-icon">&#10003;</div><div class="submitted-title">Section complete</div>'
+      + '<div class="submitted-body" id="submittedScore-' + secNum + '">Your answers have been recorded and this section is marked complete.</div>'
+      + '<div class="review-list" id="reviewList-' + secNum + '"></div>'
+      + '<button class="redo-btn" id="redoBtn-' + secNum + '">&#x21BA; Redo section</button>'
+      + '</div>'
+      + '</div>';
+
+    panel.innerHTML = '<div class="tabs-wrap"><div class="tabs">' + tabsBtns + '</div></div>'
+      + '<div class="tab-body">' + panes + '</div>';
+    root.appendChild(panel);
+  });
+}
+
+function toggleRefresh() {
+  var t = document.getElementById('refreshToggle');
+  var p = document.getElementById('refreshPanel');
+  if (!t || !p) return;
+  var open = p.classList.toggle('open');
+  t.classList.toggle('open', open);
+  var chev = t.querySelector('.rt-chev');
+  if (chev) chev.textContent = open ? '\u25B2 CLOSE' : '\u25BC OPEN';
+}
+
+function showSection(n) {
+  document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.section-pill').forEach(b => b.classList.remove('active'));
+  document.getElementById('section-' + n)?.classList.add('active');
+  document.querySelector('.section-pill[data-sec="' + n + '"]')?.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function showTab(sec, t) {
+  const panel = document.getElementById('section-' + sec);
+  if (!panel) return;
+  const paneCount = panel.querySelectorAll('.tab-pane').length;
+  if (t > paneCount) t = paneCount;
+  panel.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  panel.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  panel.querySelector('#pane-' + sec + '-' + t)?.classList.add('active');
+  panel.querySelectorAll('.tab-btn')[t-1]?.classList.add('active');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function loadSec(secNum) {
+  const k = window.nahrmLearnerKey('s' + secNum);
+  try { return JSON.parse(localStorage.getItem(k)) || {}; } catch(e) { return {}; }
+}
+function saveSec(secNum, s) {
+  const k = window.nahrmLearnerKey('s' + secNum);
+  localStorage.setItem(k, JSON.stringify(s));
+}
+function updateModuleProgress() {
+  let done = 0;
+  for (let i = 1; i <= SECTION_DATA.length; i++) {
+    if (loadSec(i).complete) {
+      done++;
+      document.querySelector('.section-pill[data-sec="' + i + '"]')?.classList.add('done');
+    }
+  }
+  const el = document.getElementById('moduleProgress');
+  if (el) el.textContent = done + ' of ' + SECTION_DATA.length + ' sections complete';
+  const bar = document.getElementById('completeBar');
+  if (done >= SECTION_DATA.length) {
+    if (bar) { bar.classList.add('done'); bar.textContent = '\u2713 Module complete \u2014 all ' + SECTION_DATA.length + ' sections finished.'; }
+    cpWriteModuleComplete();
+  } else if (bar) {
+    bar.classList.remove('done');
+    bar.textContent = 'Complete all ' + SECTION_DATA.length + ' sections to finish this module. (' + done + '/' + SECTION_DATA.length + ' done)';
+  }
+}
+
+function wireSection(secNum) {
+  const questions = bankFor('s' + secNum);
+  const qCount = questions.length;
+  const submitBtn = document.getElementById('submitBtn-' + secNum);
+  const note = document.getElementById('submitNote-' + secNum);
+
+  function checkAll() {
+    let answered = 0;
+    for (let i = 1; i <= qCount; i++) {
+      if (document.querySelector('input[name="s' + secNum + '_q' + i + '"]:checked')) answered++;
+    }
+    const all = answered === qCount;
+    if (submitBtn) submitBtn.disabled = !all;
+    if (note) note.textContent = all ? 'Ready to submit.' : 'Select an answer for each question to submit.';
+  }
+  document.querySelectorAll('#questionsWrap-' + secNum + ' input[type="radio"]').forEach(function(r) {
+    r.addEventListener('change', checkAll);
+  });
+
+  function renderReview() {
+    const s = loadSec(secNum);
+    const scoreEl = document.getElementById('submittedScore-' + secNum);
+    const listEl = document.getElementById('reviewList-' + secNum);
+    if (!listEl) return;
+    const answers = s.answers || {};
+    const score = (typeof s.score === 'number') ? s.score : 0;
+    const total = (typeof s.total === 'number') ? s.total : qCount;
+    if (scoreEl) scoreEl.innerHTML = 'Your answers have been recorded and this section is marked complete.<br>You scored <strong>' + score + ' of ' + total + '</strong>. Review the answers below, then redo the section if you&rsquo;d like.';
+    let html = '';
+    questions.forEach(function(q, qi) {
+      const chosen = answers['q' + (qi+1)];
+      const isCorrect = chosen === q.correctIndex;
+      let opts = '';
+      q.options.forEach(function(opt, oi) {
+        let cls = 'review-opt', mark = '';
+        if (oi === q.correctIndex) { cls += ' is-correct'; mark = '&#10003;'; }
+        else if (oi === chosen) { cls += ' is-chosen-wrong'; mark = '&#10007;'; }
+        opts += '<div class="' + cls + '"><span class="mark">' + mark + '</span><span>' + opt
+              + (oi === q.correctIndex ? '  <em>(correct answer)</em>' : (oi === chosen ? '  <em>(your answer)</em>' : '')) + '</span></div>';
+      });
+      html += '<div class="review-item ' + (isCorrect ? 'correct' : 'incorrect') + '">'
+            + '<div class="review-q"><span class="verdict ' + (isCorrect ? 'correct' : 'incorrect') + '">'
+            + (isCorrect ? 'Correct' : 'Incorrect') + '</span>Q' + (qi+1) + '. ' + q.q + '</div>'
+            + opts + '</div>';
+    });
+    listEl.innerHTML = html;
+  }
+
+  function showSubmitted() {
+    document.getElementById('questionsWrap-' + secNum)?.classList.add('hidden');
+    document.getElementById('submittedWrap-' + secNum)?.classList.remove('hidden');
+    renderReview();
+  }
+
+  if (submitBtn) submitBtn.addEventListener('click', function() {
+    const answers = {};
+    for (let i = 1; i <= qCount; i++) {
+      const v = document.querySelector('input[name="s' + secNum + '_q' + i + '"]:checked')?.value;
+      answers['q' + i] = v != null ? parseInt(v, 10) : null;
+    }
+    const correct = {};
+    questions.forEach(function(q, qi) { correct['q' + (qi+1)] = q.correctIndex; });
+    let score = 0;
+    for (let i = 1; i <= qCount; i++) { if (answers['q'+i] === correct['q'+i]) score++; }
+    const s = loadSec(secNum);
+    s.sectionId='s'+secNum; s.answers=answers; s.correct=correct; s.score=score; s.total=qCount;
+    s.submittedAt=new Date().toISOString(); s.complete=true;
+    saveSec(secNum, s);
+    arSaveAssessment(secNum, s, questions);
+    showSubmitted();
+    document.querySelector('.section-pill[data-sec="' + secNum + '"]')?.classList.add('done');
+    updateModuleProgress();
+  });
+
+  const redo = document.getElementById('redoBtn-' + secNum);
+  if (redo) redo.addEventListener('click', function() {
+    localStorage.removeItem(window.nahrmLearnerKey('s' + secNum));
+    document.getElementById('questionsWrap-' + secNum)?.classList.remove('hidden');
+    document.getElementById('submittedWrap-' + secNum)?.classList.add('hidden');
+    document.querySelectorAll('#questionsWrap-' + secNum + ' input[type="radio"]').forEach(function(r){ r.checked = false; });
+    if (submitBtn) submitBtn.disabled = true;
+    if (note) note.textContent = 'Select an answer for each question to submit.';
+    document.querySelector('.section-pill[data-sec="' + secNum + '"]')?.classList.remove('done');
+    updateModuleProgress();
+  });
+
+  if (loadSec(secNum).submittedAt) showSubmitted();
+}
+
+document.addEventListener('learnerReady', function() {
+  cpEnsureModuleStarted();
+  crLoadResponse();
+  for (let i = 1; i <= SECTION_DATA.length; i++) wireSection(i);
+  updateModuleProgress();
+});
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+const _FB_CONFIG = {
+  apiKey: "AIzaSyC-I-IOCq2fCwa471fsD5xOn6SYQSBDp7Q",
+  authDomain: "sfcertification-grafana.firebaseapp.com",
+  projectId: "sfcertification-grafana",
+  storageBucket: "sfcertification-grafana.firebasestorage.app",
+  messagingSenderId: "227322696511",
+  appId: "1:227322696511:web:12e7ced7dd3d45fa06798a"
+};
+if (!window._fbApp) { window._fbApp = firebase.initializeApp(_FB_CONFIG); }
+const _auth = firebase.auth(window._fbApp);
+const _provider = new firebase.auth.GoogleAuthProvider();
+_provider.setCustomParameters({ hd: 'sourcefuse.com' });
+
+window.nahrmLearnerKey = function(sectionId) {
+  const uid = window._learnerUid || 'anon';
+  return 'nahrm_learner_' + uid + '_' + MODULE_ID + '_' + sectionId;
+};
+
+function showOverlay() { document.getElementById('authOverlay')?.classList.remove('hidden'); }
+function hideOverlay() { document.getElementById('authOverlay')?.classList.add('hidden'); }
+function showUserBar(email) {
+  const bar = document.getElementById('authUserBar'); const em = document.getElementById('authUserEmail');
+  if (bar) bar.classList.remove('hidden'); if (em) em.textContent = 'Welcome, ' + email;
+}
+
+// Course access allowlist (nominated learners + admins). Case-insensitive.
+const COURSE_ALLOWLIST = [
+  'jv.ravichandran@sourcefuse.com',
+  'noushin.khan@sourcefuse.com',
+  'akanksha.puri@sourcefuse.com',
+  'ravdeep.singh@sourcefuse.com'
+];
+
+_auth.onAuthStateChanged(function(user) {
+  if (user) {
+    function proceed(email) {
+      email = (email || '').toLowerCase();
+      const errEl = document.getElementById('authError');
+      if (!email.endsWith('@sourcefuse.com')) {
+        if (errEl) { errEl.textContent = 'Please use your @sourcefuse.com account.'; errEl.classList.remove('hidden'); }
+        _auth.signOut(); showOverlay(); return;
+      }
+      if (COURSE_ALLOWLIST.indexOf(email) === -1) {
+        if (errEl) { errEl.textContent = 'You are not nominated to the course. Please contact the L&D administrator.'; errEl.classList.remove('hidden'); }
+        _auth.signOut(); showOverlay(); return;
+      }
+      window._learnerUid = user.uid; window._learnerEmail = email;
+      hideOverlay(); showUserBar(email);
+      document.dispatchEvent(new Event('learnerReady'));
+    }
+    var email0 = user.email || '';
+    if (email0) { proceed(email0); return; }
+    // email empty on provider object (can happen via SSO) — resolve from ID token claims, then providerData
+    user.getIdTokenResult().then(function(r){
+      var e = (r && r.claims && r.claims.email) || '';
+      if (!e && user.providerData && user.providerData[0]) e = user.providerData[0].email || '';
+      proceed(e);
+    }).catch(function(){
+      var e = (user.providerData && user.providerData[0] && user.providerData[0].email) || '';
+      proceed(e);
+    });
+  } else {
+    window._learnerUid = null; window._learnerEmail = null;
+    showOverlay();
+  }
+});
+
+document.getElementById('googleSignInBtn')?.addEventListener('click', function() {
+  _auth.signInWithPopup(_provider).catch(function(err) {
+    const el = document.getElementById('authError');
+    if (el) { el.textContent = err.message; el.classList.remove('hidden'); }
+  });
+});
+
+function nahrmEmailSignIn() {
+  const email = (document.getElementById('authEmail')?.value || '').trim().toLowerCase();
+  const pwd = document.getElementById('authPassword')?.value || '';
+  const el = document.getElementById('authError');
+  function fail(msg){ if(el){ el.textContent = msg; el.classList.remove('hidden'); } }
+  if (el) el.classList.add('hidden');
+  if (!email || !pwd) { fail('Please enter your email and password.'); return; }
+  if (!email.endsWith('@sourcefuse.com')) { fail('Only @sourcefuse.com accounts are allowed.'); return; }
+  _auth.signInWithEmailAndPassword(email, pwd).catch(function(err) {
+    const m = (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') ? 'Incorrect password.'
+            : (err.code === 'auth/user-not-found') ? 'No account found for this email.' : err.message;
+    fail(m);
+  });
+}
+document.getElementById('emailSignInBtn')?.addEventListener('click', nahrmEmailSignIn);
+document.getElementById('authPassword')?.addEventListener('keydown', function(e){ if(e.key==='Enter') nahrmEmailSignIn(); });
+document.getElementById('authSignOutBtn')?.addEventListener('click', function() { _auth.signOut(); });
+
+// ── assessmentResponses (uid-keyed; separate collection; Check-understanding) ──
+function arDb() { return firebase.firestore(window._fbApp); }
+function arDocRef() { return arDb().collection('assessmentResponses').doc(window._learnerUid); }
+function arReady() { return window._fbApp && window._learnerUid && window._learnerUid !== 'anon' && window._learnerUid != null; }
+function arSaveAssessment(secNum, s, questions) {
+  if (!arReady()) return;
+  var sectionTitle = '';
+  try { sectionTitle = (SECTION_DATA[secNum-1] && SECTION_DATA[secNum-1].title) || ('Section ' + secNum); } catch(e) { sectionTitle = 'Section ' + secNum; }
+  var t = (function(){ var d=new Date(), pad=function(n){return String(n).padStart(2,'0');};
+    return { date:d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()), time:pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds()) }; })();
+  var key = CP_COURSE_ID + '__' + MODULE_ID + '__reflect' + secNum;
+  var update = { email: window._learnerEmail || null, responses: {} };
+  update.responses[key] = {
+    moduleId: MODULE_ID,
+    moduleName: CP_MODULE_NAME,
+    sectionId: 's' + secNum,
+    sectionTitle: sectionTitle,
+    answers: s.answers || {},
+    correct: s.correct || {},
+    score: (typeof s.score === 'number') ? s.score : null,
+    total: (typeof s.total === 'number') ? s.total : (questions ? questions.length : null),
+    submittedOn: t.date,
+    submittedAt: t.time
+  };
+  arDocRef().set(update, { merge: true }).catch(function(e){ console.warn('[assessmentResponses] save failed:', e.message); });
+}
+
+// ── courseProgress (uid-keyed; module map) ──
+function cpNow() {
+  var d = new Date(); var pad = function(n){ return String(n).padStart(2,'0'); };
+  return { date: d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()), time: pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds()), ms: d.getTime() };
+}
+function cpFmtDuration(ms) {
+  if (ms == null || ms < 0) return null;
+  var s = Math.floor(ms/1000), h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
+  if (h > 0) return h+'h '+m+'m '+sec+'s'; if (m > 0) return m+'m '+sec+'s'; return sec+'s';
+}
+function cpDb() { return firebase.firestore(window._fbApp); }
+function cpDocRef() { return cpDb().collection('courseProgress').doc(window._learnerUid); }
+function cpReady() { return window._fbApp && window._learnerUid && window._learnerUid !== 'anon' && window._learnerUid != null; }
+
+function cpEnsureModuleStarted() {
+  if (!cpReady()) return;
+  var ref = cpDocRef();
+  ref.get().then(function(snap){
+    var data = snap.exists ? (snap.data() || {}) : {};
+    var course = (data.courses && data.courses[CP_COURSE_ID]) || {};
+    var mods = course.modules || {};
+    var t = cpNow();
+    var update = { email: window._learnerEmail || null, name: window._learnerEmail || null, courses: {} };
+    update.courses[CP_COURSE_ID] = { moduleInProgress: MODULE_ID, modules: {} };
+    if (!course.courseStartedOn) { update.courses[CP_COURSE_ID].courseStartedOn = t.date; update.courses[CP_COURSE_ID].courseStartedAt = t.time; }
+    if (!mods[MODULE_ID] || !mods[MODULE_ID].startedOn) {
+      update.courses[CP_COURSE_ID].modules[MODULE_ID] = { startedOn: t.date, startedAt: t.time };
+    }
+    ref.set(update, { merge: true }).catch(function(e){ console.warn('[courseProgress] start write failed:', e.message); });
+  }).catch(function(e){ console.warn('[courseProgress] start read failed:', e.message); });
+}
+
+function cpWriteModuleComplete() {
+  if (!cpReady()) return;
+  var ref = cpDocRef();
+  ref.get().then(function(snap){
+    var data = snap.exists ? (snap.data() || {}) : {};
+    var course = (data.courses && data.courses[CP_COURSE_ID]) || {};
+    var mods = course.modules || {};
+    var t = cpNow();
+    var startMs = null; var mEntry = mods[MODULE_ID];
+    if (mEntry && mEntry.startedOn && mEntry.startedAt) { startMs = new Date(mEntry.startedOn + 'T' + mEntry.startedAt).getTime(); }
+    var moduleTimeTaken = startMs != null ? cpFmtDuration(t.ms - startMs) : null;
+    var existing = mods[MODULE_ID] || {};
+    var courseUpdate = { modules: {} };
+    courseUpdate.modules[MODULE_ID] = {
+      completedOn: existing.completedOn || t.date,
+      completedAt: existing.completedAt || t.time,
+      timeTaken: existing.timeTaken || moduleTimeTaken
+    };
+    if (course.moduleInProgress === MODULE_ID) courseUpdate.moduleInProgress = null;
+    var completedCount = 0;
+    CP_MODULE_IDS.forEach(function(id){
+      if (id === MODULE_ID) { completedCount++; return; }
+      if (mods[id] && mods[id].completedOn) completedCount++;
+    });
+    if (completedCount >= CP_MODULE_IDS.length && !course.courseCompletedOn) {
+      courseUpdate.courseCompletedOn = t.date; courseUpdate.courseCompletedAt = t.time;
+      if (course.courseStartedOn && course.courseStartedAt) {
+        var cStart = new Date(course.courseStartedOn + 'T' + course.courseStartedAt).getTime();
+        courseUpdate.timeTaken = cpFmtDuration(t.ms - cStart);
+      }
+    }
+    var update = { email: window._learnerEmail || null, name: window._learnerEmail || null, courses: {} };
+    update.courses[CP_COURSE_ID] = courseUpdate;
+    ref.set(update, { merge: true }).catch(function(e){ console.warn('[courseProgress] complete write failed:', e.message); });
+  }).catch(function(e){ console.warn('[courseProgress] complete read failed:', e.message); });
+}
+
+
+// ── challengeResponses (uid-keyed; separate collection) ──
+const CHALLENGE_ID = CP_COURSE_ID + '__' + MODULE_ID + '__reflect';
+const CP_MODULE_NAME = 'Understanding Mastra';
+function crDb() { return firebase.firestore(window._fbApp); }
+function crDocRef() { return crDb().collection('challengeResponses').doc(window._learnerUid); }
+function crReady() { return window._fbApp && window._learnerUid && window._learnerUid !== 'anon' && window._learnerUid != null; }
+function crNow() {
+  var d = new Date(), pad = function(n){ return String(n).padStart(2,'0'); };
+  return { date: d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()), time: pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds()) };
+}
+function crSetNote(msg, saved) {
+  var n = document.getElementById('saveRespNote');
+  if (!n) return;
+  n.textContent = msg || '';
+  n.classList.toggle('saved', !!saved);
+}
+function crLoadResponse() {
+  if (!crReady()) return;
+  crDocRef().get().then(function(snap){
+    var data = snap.exists ? (snap.data() || {}) : {};
+    var ch = (data.challenges && data.challenges[CHALLENGE_ID]) || null;
+    var ta = document.getElementById('challengeInput');
+    if (ch && ta && typeof ch.response === 'string') {
+      ta.value = ch.response;
+      crSetNote('Saved response loaded (' + (ch.savedOn || '') + ').', true);
+    }
+  }).catch(function(e){ console.warn('[challengeResponses] load failed:', e.message); });
+}
+function crSaveResponse() {
+  var ta = document.getElementById('challengeInput');
+  if (!ta) return;
+  if (!crReady()) { crSetNote('Sign in to save your response.', false); return; }
+  var t = crNow();
+  var update = { email: window._learnerEmail || null, challenges: {} };
+  update.challenges[CHALLENGE_ID] = { moduleId: MODULE_ID, moduleName: CP_MODULE_NAME, response: ta.value || '', savedOn: t.date, savedAt: t.time };
+  crSetNote('Saving…', false);
+  crDocRef().set(update, { merge: true }).then(function(){
+    crSetNote('Response saved (' + t.date + ' ' + t.time + ').', true);
+  }).catch(function(e){
+    crSetNote('Save failed — please try again.', false);
+    console.warn('[challengeResponses] save failed:', e.message);
+  });
+}
+function crRedoResponse() {
+  // UI-only: clear the textarea. Firestore is NOT touched; it is overwritten only on Save.
+  var ta = document.getElementById('challengeInput');
+  if (ta) { ta.value = ''; ta.focus(); }
+  crSetNote('Cleared — your saved response is kept until you Save again.', false);
+}
+document.addEventListener('click', function(e){
+  if (e.target && e.target.id === 'saveRespBtn') crSaveResponse();
+  if (e.target && e.target.id === 'redoRespBtn') crRedoResponse();
+});
+
+(function() {
+  console.log('%c[SF Knowledge Hub] understanding-mastra.html — CACHE_VERSION = ' + CACHE_VERSION, 'color:#1a6eb5;font-weight:bold;');
+  function addVersion(url) {
+    if (!url || url.startsWith('http') || url.startsWith('#') || url.startsWith('mailto')) return url;
+    if (!url.endsWith('.html') && !url.includes('.html?')) return url;
+    const sep = url.includes('?') ? '&' : '?';
+    if (url.includes('v=' + CACHE_VERSION)) return url;
+    return url + sep + 'v=' + CACHE_VERSION;
+  }
+  document.querySelectorAll('a[href]').forEach(a => { a.href = addVersion(a.getAttribute('href')); });
+})();
+
+
+document.addEventListener('click', function(e){
+  if (e.target && e.target.classList && e.target.classList.contains('output-btn')) {
+    var oid = e.target.getAttribute('data-out');
+    var body = document.getElementById('out-' + oid);
+    if (body) {
+      var nowHidden = body.classList.toggle('hidden');
+      e.target.textContent = nowHidden ? 'Check output of the prompt' : 'Hide output';
+    }
+  }
+});
+
+
+// ── CSV grounding demo (parse-and-display; illustrative placeholder) ──
+function csvParse(text) {
+  var lines = (text || '').trim().split(/\r?\n/).filter(function(l){ return l.trim() !== ''; });
+  if (!lines.length) return null;
+  function splitRow(l){
+    var out=[], cur='', inQ=false;
+    for (var i=0;i<l.length;i++){ var c=l[i];
+      if (c === '"') { inQ = !inQ; continue; }
+      if (c === ',' && !inQ) { out.push(cur); cur=''; continue; }
+      cur += c;
+    }
+    out.push(cur); return out.map(function(s){ return s.trim(); });
+  }
+  var header = splitRow(lines[0]);
+  var rows = lines.slice(1).map(splitRow);
+  return { header: header, rows: rows };
+}
+function csvRender(parsed) {
+  var out = document.getElementById('csvOutput');
+  if (!out) return;
+  if (!parsed || !parsed.header.length) { out.classList.add('hidden'); return; }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];}); }
+  var thead = '<tr>' + parsed.header.map(function(h){ return '<th>' + esc(h) + '</th>'; }).join('') + '</tr>';
+  var tbody = parsed.rows.map(function(r){
+    var cells = parsed.header.map(function(_, i){ return '<td>' + esc(r[i] != null ? r[i] : '') + '</td>'; }).join('');
+    return '<tr>' + cells + '</tr>';
+  }).join('');
+  out.innerHTML = '<table><thead>' + thead + '</thead><tbody>' + tbody + '</tbody></table>'
+    + '<div class="csv-rowcount">Parsed ' + parsed.rows.length + ' row' + (parsed.rows.length===1?'':'s') + ' \u00d7 ' + parsed.header.length + ' columns \u2014 this is the data a grounded bot would answer from.</div>';
+  out.classList.remove('hidden');
+}
+function csvNote(msg){ var n=document.getElementById('csvNote'); if(n) n.textContent = msg || ''; }
+document.addEventListener('click', function(e){
+  if (e.target && e.target.id === 'csvParseBtn') {
+    var ta = document.getElementById('csvInput');
+    var parsed = csvParse(ta ? ta.value : '');
+    if (!parsed) { csvNote('Nothing to parse \u2014 paste some CSV first.'); return; }
+    csvRender(parsed); csvNote('Parsed ' + parsed.rows.length + ' row(s).');
+  }
+  if (e.target && e.target.id === 'csvClearBtn') {
+    var ta2 = document.getElementById('csvInput'); if (ta2) ta2.value='';
+    var out = document.getElementById('csvOutput'); if (out){ out.innerHTML=''; out.classList.add('hidden'); }
+    csvNote('Cleared.');
+  }
+});
+document.addEventListener('change', function(e){
+  if (e.target && e.target.id === 'csvFile') {
+    var f = e.target.files && e.target.files[0];
+    if (!f) return;
+    var reader = new FileReader();
+    reader.onload = function(){
+      var ta = document.getElementById('csvInput'); if (ta) ta.value = reader.result;
+      var parsed = csvParse(reader.result); csvRender(parsed);
+      csvNote('Loaded ' + f.name + (parsed ? ' \u2014 ' + parsed.rows.length + ' row(s).' : ''));
+    };
+    reader.onerror = function(){ csvNote('Could not read that file.'); };
+    reader.readAsText(f);
+  }
+});
+
+buildSections();
+document.addEventListener('click', function(e){
+  if (e.target && e.target.id === 'revealBtn') {
+    var body = document.getElementById('revealBody');
+    if (body) { body.classList.remove('hidden'); e.target.style.display='none'; }
+  }
+});
+</script>
+
+</body>
+</html>
