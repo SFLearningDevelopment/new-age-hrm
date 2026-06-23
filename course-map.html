@@ -49,14 +49,45 @@
   .badge-soon { align-self:flex-start; font-size:11px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--amber); background:var(--amber-light); border:1px solid #e6c48f; padding:2px 9px; border-radius:20px; }
 
   footer { text-align:center; padding:26px; font-size:11px; font-family:'Source Code Pro',monospace; color:var(--text-dimmer); }
+
+  /* auth gate */
+  #authOverlay { position:fixed; inset:0; background:var(--bg); display:flex; align-items:center; justify-content:center; z-index:1000; padding:20px; }
+  #authOverlay.hidden { display:none; }
+  .auth-card { background:var(--bg2); border:1px solid var(--border); border-radius:16px; padding:40px 36px; max-width:440px; width:100%; text-align:center; box-shadow:0 10px 40px rgba(26,51,80,.10); }
+  .auth-eyebrow { font-size:12px; font-family:'Source Code Pro',monospace; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
+  .auth-card h2 { font-size:23px; font-weight:700; margin-bottom:8px; color:var(--text); }
+  .auth-card p { font-size:14px; color:var(--text-dim); margin-bottom:24px; }
+  .gbtn { display:inline-flex; align-items:center; gap:10px; background:var(--blue); color:#fff; border:none; border-radius:9px; padding:12px 22px; font-size:15px; font-weight:700; font-family:'Merriweather Sans',sans-serif; cursor:pointer; }
+  .gbtn:hover { background:var(--blue-dark); }
+  .auth-error { margin-top:16px; font-size:13px; color:var(--coral); min-height:18px; }
+  .page-gate { display:none; }
+  body.authed .page-gate { display:block; }
+  .signout { background:none; border:1px solid var(--border); color:var(--blue); border-radius:7px; padding:5px 12px; font-size:12px; font-family:'Source Code Pro',monospace; cursor:pointer; margin-left:12px; }
+  .signout:hover { border-color:var(--blue); }
 </style>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 </head>
 <body>
 
+<div id="authOverlay">
+  <div class="auth-card">
+    <div class="auth-eyebrow">AI Expertise for HR</div>
+    <p>Please sign in with your SourceFuse account to continue.</p>
+    <button class="gbtn" id="googleSignInBtn">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#fff" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.9 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.1 17.7 9.5 24 9.5z" opacity=".0"/><path fill="#FFF" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.5 3-2.2 5.5-4.7 7.2l7.3 5.7c4.3-3.9 6.8-9.7 6.8-17.4z" opacity="0"/></svg>
+      <span style="display:inline-flex;align-items:center;gap:10px;"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.3 0 6.3 1.2 8.6 3.2l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.1-2.7-.5-4z"/></svg>Sign in with Google</span>
+    </button>
+    <div class="auth-error" id="authError"></div>
+  </div>
+</div>
+
+<div class="page-gate">
 <div class="topnav">
   <a href="nahrm-module-1-intro-new-age-hr.html">SF Knowledge Hub</a>
   <span class="sep"> / </span> AI Expertise for HR
   <span class="sep"> / </span> Course Map
+  <span id="authUserBar" style="float:right;color:var(--text-dim);"><span id="authUserEmail"></span><button class="signout" id="authSignOutBtn">Sign out</button></span>
 </div>
 
 <div class="hero">
@@ -142,10 +173,76 @@
 
 <footer>SF Knowledge Hub &middot; AI Expertise for HR &middot; Course Map &middot; CACHE_VERSION = <span id="cv"></span></footer>
 
+</div>
+
 <script>
-  const CACHE_VERSION = '2026-06-17-v1';
+  // ---- Firebase auth gate ----
+  const _FB_CONFIG = {
+    apiKey: "AIzaSyC-I-IOCq2fCwa471fsD5xOn6SYQSBDp7Q",
+    authDomain: "sfcertification-grafana.firebaseapp.com",
+    projectId: "sfcertification-grafana",
+    storageBucket: "sfcertification-grafana.firebasestorage.app",
+    messagingSenderId: "227322696511",
+    appId: "1:227322696511:web:12e7ced7dd3d45fa06798a"
+  };
+  if (!window._fbApp) { window._fbApp = firebase.initializeApp(_FB_CONFIG); }
+  const _auth = firebase.auth(window._fbApp);
+  const _provider = new firebase.auth.GoogleAuthProvider();
+  _provider.setCustomParameters({ hd: 'sourcefuse.com' });
+
+  const COURSE_ALLOWLIST = [
+    'jv.ravichandran@sourcefuse.com',
+    'noushin.khan@sourcefuse.com',
+    'akanksha.puri@sourcefuse.com',
+    'ravdeep.singh@sourcefuse.com'
+  ];
+
+  function showOverlay(){ document.getElementById('authOverlay').classList.remove('hidden'); document.body.classList.remove('authed'); }
+  function hideOverlay(){ document.getElementById('authOverlay').classList.add('hidden'); document.body.classList.add('authed'); }
+
+  _auth.onAuthStateChanged(function(user){
+    if (user) {
+      function proceed(email){
+        email = (email || '').toLowerCase();
+        const errEl = document.getElementById('authError');
+        if (!email.endsWith('@sourcefuse.com')) {
+          if (errEl) errEl.textContent = 'Please use your @sourcefuse.com account.';
+          _auth.signOut(); showOverlay(); return;
+        }
+        if (COURSE_ALLOWLIST.indexOf(email) === -1) {
+          if (errEl) errEl.textContent = 'You are not nominated to the course. Please contact the L&D administrator.';
+          _auth.signOut(); showOverlay(); return;
+        }
+        window._learnerUid = user.uid; window._learnerEmail = email;
+        var em = document.getElementById('authUserEmail'); if (em) em.textContent = email + ' ';
+        hideOverlay();
+      }
+      var email0 = user.email || '';
+      if (email0) { proceed(email0); return; }
+      user.getIdTokenResult().then(function(r){
+        var e = (r && r.claims && r.claims.email) || '';
+        if (!e && user.providerData && user.providerData[0]) e = user.providerData[0].email || '';
+        proceed(e);
+      }).catch(function(){
+        var e = (user.providerData && user.providerData[0] && user.providerData[0].email) || '';
+        proceed(e);
+      });
+    } else {
+      window._learnerUid = null; window._learnerEmail = null;
+      showOverlay();
+    }
+  });
+
+  document.getElementById('googleSignInBtn')?.addEventListener('click', function(){
+    _auth.signInWithPopup(_provider).catch(function(err){
+      const el = document.getElementById('authError'); if (el) el.textContent = err.message;
+    });
+  });
+  document.getElementById('authSignOutBtn')?.addEventListener('click', function(){ _auth.signOut(); });
+
+  const CACHE_VERSION = '2026-06-17-v3';
   document.getElementById('cv').textContent = CACHE_VERSION;
-  console.log('%c[SF Knowledge Hub] course-map-ai.html — CACHE_VERSION = ' + CACHE_VERSION, 'color:#1a6eb5;font-weight:bold;');
+  console.log('%c[SF Knowledge Hub] course-map.html — CACHE_VERSION = ' + CACHE_VERSION, 'color:#1a6eb5;font-weight:bold;');
   // stamp internal links with cache-bust
   (function(){
     document.querySelectorAll('a.card[href]').forEach(function(a){
