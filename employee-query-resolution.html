@@ -233,10 +233,6 @@
       <svg viewBox="0 0 48 48"><path fill="#fff" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>
       Sign in with Google
     </button>
-    <div class="auth-divider">OR</div>
-    <input type="email" class="auth-input" id="authEmail" placeholder="you@sourcefuse.com" autocomplete="email">
-    <input type="password" class="auth-input" id="authPassword" placeholder="Password" autocomplete="current-password">
-    <button class="auth-email-btn" id="emailSignInBtn">Sign in with Email</button>
     <div class="auth-error hidden" id="authError"></div>
   </div>
 </div>
@@ -258,27 +254,6 @@
   <div class="module-progress" id="moduleProgress">0 of 1 sections complete</div>
 </div>
 
-<div class="refresh-wrap">
-  <button class="refresh-toggle" id="refreshToggle" onclick="toggleRefresh()">
-    <span class="rt-icon">&#128161;</span>
-    <span class="rt-text">New to prompting techniques?
-      <span class="rt-sub">A quick primer on the core terms before you begin &mdash; open it if the sections feel fast-paced.</span>
-    </span>
-    <span class="rt-chev">&#9660; OPEN</span>
-  </button>
-  <div class="refresh-panel" id="refreshPanel">
-    <h3>A few terms worth knowing</h3>
-    <ul>
-      <li><strong>Role priming</strong> &mdash; telling the AI who to act as, to set the right lens.</li>
-      <li><strong>Context loading (R-C-T-C-F)</strong> &mdash; supplying role, context, task, constraints, and format.</li>
-      <li><strong>Few-shot</strong> &mdash; giving examples or explicit criteria so the AI follows your standard.</li>
-      <li><strong>Chain-of-thought</strong> &mdash; asking the AI to show its reasoning step by step.</li>
-      <li><strong>Structured output</strong> &mdash; requesting a table, template, or fixed layout.</li>
-      <li><strong>Guardrail prompting</strong> &mdash; constraints like &ldquo;flag if unsure&rdquo; to curb fabrication and bias.</li>
-    </ul>
-    <button class="refresh-close" onclick="toggleRefresh()">Close primer</button>
-  </div>
-</div>
 
 <div class="section-pills-wrap">
   <div class="section-pills" id="sectionPills"></div>
@@ -388,7 +363,7 @@ window.NAHRM_QUESTION_BANK = {
 </script>
 
 <script>
-const CACHE_VERSION = '2026-06-17-v10';
+const CACHE_VERSION = '2026-06-17-v11';
 const MODULE_ID     = 'employeeQueries';
 const CP_COURSE_ID  = 'aiExpertiseHr2026SFCert';
 const CP_MODULE_IDS = ['nahrm_m1','haix_ta','onboarding','employeeQueries'];
@@ -750,22 +725,6 @@ document.getElementById('googleSignInBtn')?.addEventListener('click', function()
   });
 });
 
-function nahrmEmailSignIn() {
-  const email = (document.getElementById('authEmail')?.value || '').trim().toLowerCase();
-  const pwd = document.getElementById('authPassword')?.value || '';
-  const el = document.getElementById('authError');
-  function fail(msg){ if(el){ el.textContent = msg; el.classList.remove('hidden'); } }
-  if (el) el.classList.add('hidden');
-  if (!email || !pwd) { fail('Please enter your email and password.'); return; }
-  if (!email.endsWith('@sourcefuse.com')) { fail('Only @sourcefuse.com accounts are allowed.'); return; }
-  _auth.signInWithEmailAndPassword(email, pwd).catch(function(err) {
-    const m = (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') ? 'Incorrect password.'
-            : (err.code === 'auth/user-not-found') ? 'No account found for this email.' : err.message;
-    fail(m);
-  });
-}
-document.getElementById('emailSignInBtn')?.addEventListener('click', nahrmEmailSignIn);
-document.getElementById('authPassword')?.addEventListener('keydown', function(e){ if(e.key==='Enter') nahrmEmailSignIn(); });
 document.getElementById('authSignOutBtn')?.addEventListener('click', function() { _auth.signOut(); });
 
 // ── assessmentResponses (uid-keyed; separate collection; Check-understanding) ──
