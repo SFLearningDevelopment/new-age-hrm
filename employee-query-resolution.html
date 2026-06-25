@@ -220,6 +220,19 @@
   .wo-item { border-left:3px solid var(--blue-mid); background:var(--bg2); border-radius:0 10px 10px 0; padding:14px 18px; margin-bottom:14px; }
   .wo-name { font-weight:800; font-size:15px; margin-bottom:6px; color:var(--text); }
   .wo-body { font-size:14px; line-height:1.65; color:var(--text); margin:0; }
+
+  .mcp-primer { border:1.5px solid var(--blue-mid); background:var(--blue-light); border-radius:12px; margin:0 0 18px; overflow:hidden; }
+  .mcp-primer-toggle { width:100%; display:flex; align-items:center; gap:12px; padding:14px 18px; background:none; border:none; cursor:pointer; text-align:left; font-family:'Merriweather Sans',sans-serif; }
+  .mpt-icon { font-size:18px; }
+  .mpt-text { flex:1; font-weight:700; font-size:15px; color:var(--blue-dark); }
+  .mpt-sub { display:block; font-weight:400; font-size:13px; color:var(--text-dim); margin-top:2px; }
+  .mpt-chev { font-family:'Source Code Pro',monospace; font-size:11px; font-weight:700; color:var(--blue); white-space:nowrap; }
+  .mcp-primer-panel { padding:4px 20px 18px; border-top:1px solid var(--blue-mid); }
+  .mcp-primer-panel h4 { color:var(--blue-dark); font-size:15px; }
+  .primer-term { padding:10px 0; border-bottom:1px solid var(--border); }
+  .primer-term:last-child { border-bottom:none; }
+  .pt-name { font-weight:700; color:var(--blue-dark); font-size:15px; margin-bottom:4px; }
+  .primer-term p { margin:3px 0; font-size:14px; line-height:1.6; }
 </style>
 </head>
 <body>
@@ -264,8 +277,9 @@
 <div class="complete-bar" id="completeBar">Complete the section to finish this pilot.</div>
 
 <div class="main" style="padding-top:0;">
-  <div class="bottom-nav" style="justify-content:flex-start;">
+  <div class="bottom-nav" style="justify-content:space-between;">
     <a class="nav-btn back" href="course-map.html">&larr; Course Map</a>
+    <a class="nav-btn" href="understanding-mastra.html">Understanding Mastra &rarr;</a>
   </div>
 </div>
 
@@ -356,6 +370,36 @@ window.NAHRM_QUESTION_BANK = {
           "Check the row count against what you expect before trusting a total"
         ],
         "correctIndex": 3
+      },
+      {
+        "q": "When building an agent, how should you handle a query that depends on physically sensing the environment (e.g. a smell)?",
+        "options": [
+          "Let the agent give its best guess about the physical situation",
+          "Ask the agent to physically inspect the area before replying",
+          "Have the agent describe the smell in as much detail as it can",
+          "Treat it as out of scope by design and route or draft instead"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "How would you instruct an agent, via its system prompt, to deal with such out-of-scope queries?",
+        "options": [
+          "Tell it to invent a plausible answer to avoid seeming unhelpful",
+          "Tell it to always answer every query no matter the topic",
+          "Tell it to recognise the category and respond with a safe fallback",
+          "Tell it to delete any query it does not fully understand"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "Filtering human-sensory queries out before the agent answers is most similar to which practice?",
+        "options": [
+          "Letting the agent connect to more external data sources",
+          "Increasing the length of every answer the agent gives",
+          "Making the agent reply faster by skipping its reasoning",
+          "Filtering profanity from inputs before the agent acts on them"
+        ],
+        "correctIndex": 3
       }
     ]
   }
@@ -363,7 +407,7 @@ window.NAHRM_QUESTION_BANK = {
 </script>
 
 <script>
-const CACHE_VERSION = '2026-06-17-v11';
+const CACHE_VERSION = '2026-06-17-v12';
 const MODULE_ID     = 'employeeQueries';
 const CP_COURSE_ID  = 'aiExpertiseHr2026SFCert';
 const CP_MODULE_IDS = ['nahrm_m1','haix_ta','onboarding','employeeQueries'];
@@ -376,7 +420,7 @@ const SECTION_DATA = [
       {
         "label": "Grounded Answers",
         "heading": "From drafting to answering: the grounding concept",
-        "html": "<p class=\"prose\">So far this course has used AI to <em>draft</em> things. Employee query resolution is different: here the AI has to <strong>answer questions using real data</strong> &mdash; a leave balance, a bench percentage, a headcount. That changes the problem. A general assistant can write a beautiful paragraph about leave policy, but it has no idea how many days <em>you</em> have left. To answer that, it must be <strong>grounded</strong> in a real data source.</p><p class=\"prose\"><strong>Grounding</strong> means the assistant&rsquo;s answer is built from actual retrieved data, not from its general training. The practical pattern: the system fetches the relevant records (from an HR system, a CRM, a resource tool), hands them to the AI as context, and the AI answers <em>only</em> from what it was given. Get this right and you have a trustworthy query bot; get it wrong and you have a confident system inventing people&rsquo;s leave balances &mdash; which is worse than no system at all.</p><div class=\"example-block\"><div class=\"ex-label\">The shift, in one line</div>Drafting tasks ask the AI &lsquo;<em>write something plausible</em>&rsquo;. Query resolution asks &lsquo;<em>answer accurately from this specific data, and don&rsquo;t guess</em>&rsquo;. The second is a higher bar &mdash; and the guardrails matter far more.</div><div class=\"callout callout-warn\">This module is conceptual and will be refined as our own tooling firms up. The goal here is to understand <em>how</em> a grounded query bot works and what good prompting and guardrails look like &mdash; not to wire a live integration yet.</div><div class=\"deepdive\"><div class=\"dd-label\">Concept deep-dive</div><div class=\"dd-item\"><div class=\"dd-name\">Grounding</div><div class=\"dd-body\">The assistant answers from data supplied to it at query time, not from memory. In practice a retrieval step pulls the right records and passes them in as context; the AI&rsquo;s job is to read and report, not to recall.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Why it matters for HR</div><div class=\"dd-body\">Leave balances, headcount, and bench numbers are facts with consequences. An ungrounded &lsquo;guess&rsquo; here isn&rsquo;t a stylistic miss &mdash; it&rsquo;s misinformation about someone&rsquo;s entitlements or the business&rsquo;s capacity.</div></div><div class=\"dd-item\"><div class=\"dd-name\">The non-negotiable guardrail</div><div class=\"dd-body\">A grounded bot must be told: answer only from the provided data; if the answer isn&rsquo;t in the data, say so. Without that, the model fills gaps with plausible fabrication.</div></div></div>"
+        "html": "<div class=\"mcp-primer\"><button class=\"mcp-primer-toggle\" type=\"button\" onclick=\"(function(b){var p=b.nextElementSibling;var open=p.style.display==='block';p.style.display=open?'none':'block';b.querySelector('.mpt-chev').innerHTML=open?'&#9660; OPEN':'&#9650; CLOSE';})(this)\"><span class=\"mpt-icon\">&#128683;</span><span class=\"mpt-text\">AI agnostic tasks<span class=\"mpt-sub\">Queries your agent should not attempt &mdash; a boundary you set as the builder.</span></span><span class=\"mpt-chev\">&#9660; OPEN</span></button><div class=\"mcp-primer-panel\" style=\"display:none;\"><h4 style=\"margin:0 0 8px;\">Some tasks are out of scope by design</h4><p class=\"prose\">As you move toward building your own agent, one of the most important decisions is what your agent should <em>not</em> attempt. Some queries fall outside what a language model can meaningfully resolve &mdash; and the right design is to <strong>recognise that category and decline it on purpose</strong>, not to let the agent improvise an answer. This is a boundary you set as the builder, not a failure the agent stumbles into.</p><div class=\"primer-term\"><div class=\"pt-name\">The category: human-sensory and physical-world queries</div><p>A query bot works with <strong>information</strong>, not with senses or physical presence. Anything that depends on smelling, tasting, touching, hearing, or directly perceiving the physical environment &mdash; or on physically acting in it &mdash; is not something the agent should be asked to resolve. It has no way to ground such an answer, so attempting one only invites fabrication.</p></div><div class=\"example-block\"><div class=\"ex-label\">Example</div>An employee asks: &ldquo;There&rsquo;s a strong smell near my desk from incense sticks (agarbattis) and paint fumes &mdash; what should I do?&rdquo; The agent cannot perceive or assess the smell, so it should not try to judge it. What it <em>can</em> do is handle the <strong>informational</strong> part: acknowledge the concern, and route it &mdash; draft a note to Facilities/Admin, or point the person to the right contact. The sensory judgement stays with a human; the agent helps with everything around it.</div><div class=\"primer-term\"><div class=\"pt-name\">How you build this boundary in</div><p>Two reinforcing layers, both of which you control as the builder:</p><p><strong>1. The system prompt.</strong> You instruct the agent, up front, to recognise this category and respond with a safe fallback rather than an answer. For example:</p><div class=\"prompt-ex\"><div class=\"prompt-label\">System-prompt instruction</div><div class=\"prompt-text\">If a request depends on physically sensing or perceiving the environment (smell, taste, touch, sound, sight) or on taking physical action, do not attempt to resolve it. Say it needs a person on site, and offer to draft a note to Facilities/Admin or point them to the right contact.</div></div><p><strong>2. Input filtering.</strong> Just as you would screen inputs for profanity before the agent acts on them, you screen for this &lsquo;human-sensory / physical-perception&rsquo; category and apply a defined handling rule. Same discipline, different category: detect, then route by rule instead of letting the model answer.</p></div><div class=\"callout callout-good\"><strong>The capability takeaway:</strong> designing an agent is as much about <em>what you exclude</em> as what you enable. Define the out-of-scope categories, instruct the agent (system prompt) to recognise and decline them with a safe fallback, and back that up with input filtering &mdash; the same way profanity is filtered before it ever reaches the response.</div></div></div><p class=\"prose\">So far this course has used AI to <em>draft</em> things. Employee query resolution is different: here the AI has to <strong>answer questions using real data</strong> &mdash; a leave balance, a bench percentage, a headcount. That changes the problem. A general assistant can write a beautiful paragraph about leave policy, but it has no idea how many days <em>you</em> have left. To answer that, it must be <strong>grounded</strong> in a real data source.</p><p class=\"prose\"><strong>Grounding</strong> means the assistant&rsquo;s answer is built from actual retrieved data, not from its general training. The practical pattern: the system fetches the relevant records (from an HR system, a CRM, a resource tool), hands them to the AI as context, and the AI answers <em>only</em> from what it was given. Get this right and you have a trustworthy query bot; get it wrong and you have a confident system inventing people&rsquo;s leave balances &mdash; which is worse than no system at all.</p><div class=\"example-block\"><div class=\"ex-label\">The shift, in one line</div>Drafting tasks ask the AI &lsquo;<em>write something plausible</em>&rsquo;. Query resolution asks &lsquo;<em>answer accurately from this specific data, and don&rsquo;t guess</em>&rsquo;. The second is a higher bar &mdash; and the guardrails matter far more.</div><div class=\"callout callout-warn\">This module is conceptual and will be refined as our own tooling firms up. The goal here is to understand <em>how</em> a grounded query bot works and what good prompting and guardrails look like &mdash; not to wire a live integration yet.</div><div class=\"deepdive\"><div class=\"dd-label\">Concept deep-dive</div><div class=\"dd-item\"><div class=\"dd-name\">Grounding</div><div class=\"dd-body\">The assistant answers from data supplied to it at query time, not from memory. In practice a retrieval step pulls the right records and passes them in as context; the AI&rsquo;s job is to read and report, not to recall.</div></div><div class=\"dd-item\"><div class=\"dd-name\">Why it matters for HR</div><div class=\"dd-body\">Leave balances, headcount, and bench numbers are facts with consequences. An ungrounded &lsquo;guess&rsquo; here isn&rsquo;t a stylistic miss &mdash; it&rsquo;s misinformation about someone&rsquo;s entitlements or the business&rsquo;s capacity.</div></div><div class=\"dd-item\"><div class=\"dd-name\">The non-negotiable guardrail</div><div class=\"dd-body\">A grounded bot must be told: answer only from the provided data; if the answer isn&rsquo;t in the data, say so. Without that, the model fills gaps with plausible fabrication.</div></div></div>"
       },
       {
         "label": "PeopleStrong",
