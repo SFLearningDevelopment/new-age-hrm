@@ -267,27 +267,6 @@
   <div class="module-progress" id="moduleProgress">0 of 1 sections complete</div>
 </div>
 
-<div class="refresh-wrap">
-  <button class="refresh-toggle" id="refreshToggle" onclick="toggleRefresh()">
-    <span class="rt-icon">&#128161;</span>
-    <span class="rt-text">New to prompting techniques?
-      <span class="rt-sub">A quick primer on the core terms before you begin &mdash; open it if the sections feel fast-paced.</span>
-    </span>
-    <span class="rt-chev">&#9660; OPEN</span>
-  </button>
-  <div class="refresh-panel" id="refreshPanel">
-    <h3>A few terms worth knowing</h3>
-    <ul>
-      <li><strong>Role priming</strong> &mdash; telling the AI who to act as, to set the right lens.</li>
-      <li><strong>Context loading (R-C-T-C-F)</strong> &mdash; supplying role, context, task, constraints, and format.</li>
-      <li><strong>Few-shot</strong> &mdash; giving examples or explicit criteria so the AI follows your standard.</li>
-      <li><strong>Chain-of-thought</strong> &mdash; asking the AI to show its reasoning step by step.</li>
-      <li><strong>Structured output</strong> &mdash; requesting a table, template, or fixed layout.</li>
-      <li><strong>Guardrail prompting</strong> &mdash; constraints like &ldquo;flag if unsure&rdquo; to curb fabrication and bias.</li>
-    </ul>
-    <button class="refresh-close" onclick="toggleRefresh()">Close primer</button>
-  </div>
-</div>
 
 <div class="section-pills-wrap">
   <div class="section-pills" id="sectionPills"></div>
@@ -428,7 +407,7 @@ window.NAHRM_QUESTION_BANK = {
 </script>
 
 <script>
-const CACHE_VERSION = '2026-06-17-v3';
+const CACHE_VERSION = '2026-06-17-v4';
 const MODULE_ID     = 'mastra';
 const CP_COURSE_ID  = 'aiExpertiseHr2026SFCert';
 const CP_MODULE_IDS = ['mastra'];
