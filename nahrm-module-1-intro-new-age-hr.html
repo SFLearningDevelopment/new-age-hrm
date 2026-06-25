@@ -158,6 +158,11 @@
   .mpt-chev { font-family:'Source Code Pro',monospace; font-size:11px; font-weight:700; color:var(--blue); white-space:nowrap; }
   .mcp-primer-panel { padding:4px 20px 18px; border-top:1px solid var(--blue-mid); }
   .mcp-primer-panel h4 { color:var(--blue-dark); font-size:15px; }
+
+  .primer-term { padding:10px 0; border-bottom:1px solid var(--border); }
+  .primer-term:last-child { border-bottom:none; }
+  .pt-name { font-weight:700; color:var(--blue-dark); font-size:15px; margin-bottom:4px; }
+  .primer-term p { margin:3px 0; font-size:14px; line-height:1.6; }
 </style>
 </head>
 <body>
@@ -196,27 +201,7 @@
   <div class="module-progress" id="moduleProgress">0 of 4 sections complete</div>
 </div>
 
-<div class="refresh-wrap">
-  <button class="refresh-toggle" id="refreshToggle" onclick="toggleRefresh()">
-    <span class="rt-icon">&#128161;</span>
-    <span class="rt-text">New to the language of digital HR?
-      <span class="rt-sub">A quick primer on the core terms before you begin &mdash; open it if the sections feel fast-paced.</span>
-    </span>
-    <span class="rt-chev">&#9660; OPEN</span>
-  </button>
-  <div class="refresh-panel" id="refreshPanel">
-    <h3>A few terms worth knowing</h3>
-    <ul>
-      <li><strong>Digital HR</strong> &mdash; using technology and data to run and improve people processes, and to make HR a faster, more evidence-based partner to the business.</li>
-      <li><strong>Industry 4.0</strong> &mdash; the current wave of automation, AI, data, and connected systems reshaping work and the skills it requires.</li>
-      <li><strong>Reskilling / upskilling</strong> &mdash; helping people learn new capabilities (reskilling) or deepen existing ones (upskilling) as roles evolve.</li>
-      <li><strong>Employer branding</strong> &mdash; an organisation&rsquo;s reputation as a place to work, increasingly shaped in public and by employees themselves.</li>
-      <li><strong>Hybrid / work-from-anywhere</strong> &mdash; work models that combine or remove fixed-location constraints, changing how culture is sustained.</li>
-      <li><strong>Generative AI assistant</strong> &mdash; a tool (such as Claude, Gemini, or ChatGPT) that produces text and other content to support &mdash; not replace &mdash; human work.</li>
-    </ul>
-    <button class="refresh-close" onclick="toggleRefresh()">Close primer</button>
-  </div>
-</div>
+<div class="refresh-wrap" id="sectionPrimer"></div>
 
 <div class="section-pills-wrap">
   <div class="section-pills" id="sectionPills">
@@ -315,6 +300,36 @@ window.NAHRM_QUESTION_BANK = {
           "It is becoming a core workplace skill for directing AI tools well"
         ],
         "correctIndex": 3
+      },
+      {
+        "q": "What is a Large Language Model (LLM)?",
+        "options": [
+          "A dashboard that charts trends in workforce data over time",
+          "A fixed set of hand-written rules that never changes or learns",
+          "An AI trained on vast text to understand and produce language",
+          "A storage system that holds a company&rsquo;s employee records"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "q": "How does Agentic AI differ from a plain AI assistant?",
+        "options": [
+          "It avoids using any external tools or live data sources",
+          "It learns nothing and simply repeats its training word-for-word",
+          "It only produces images instead of producing any text",
+          "It takes multi-step actions toward a goal, not just one answer"
+        ],
+        "correctIndex": 3
+      },
+      {
+        "q": "What best describes Generative AI?",
+        "options": [
+          "A method purely for cleaning and de-duplicating raw datasets",
+          "AI that creates new content rather than only analysing data",
+          "A way to store documents so an assistant can search them later",
+          "A rule engine that routes support tickets to the right team"
+        ],
+        "correctIndex": 1
       }
     ],
     "s2": [
@@ -498,7 +513,7 @@ window.NAHRM_QUESTION_BANK = {
 </script>
 
 <script>
-const CACHE_VERSION = '2026-06-17-v9';
+const CACHE_VERSION = '2026-06-17-v10';
 const MODULE_ID     = 'nahrm_m1';
 const CP_COURSE_ID  = 'newAgeHrm2026SFCert';
 const CP_MODULE_IDS = ['nahrm_m1','nahrm_m2','nahrm_m3','nahrm_m4','nahrm_m5','nahrm_m6'];
@@ -614,6 +629,70 @@ function bankFor(sectionKey) {
   catch(e) { return []; }
 }
 
+
+// ---- Section-specific primer band (below module tabs, above section pills) ----
+var DEFAULT_PRIMER = {
+  title: "New to the language of digital HR?",
+  sub: "A quick primer on the core terms before you begin \u2014 open it if the sections feel fast-paced.",
+  heading: "A few terms worth knowing",
+  body: '<ul>'
+    + '<li><strong>Digital HR</strong> &mdash; using technology and data to run and improve people processes, and to make HR a faster, more evidence-based partner to the business.</li>'
+    + '<li><strong>Industry 4.0</strong> &mdash; the current wave of automation, AI, data, and connected systems reshaping work and the skills it requires.</li>'
+    + '<li><strong>Reskilling / upskilling</strong> &mdash; helping people learn new capabilities (reskilling) or deepen existing ones (upskilling) as roles evolve.</li>'
+    + '<li><strong>Employer branding</strong> &mdash; an organisation&rsquo;s reputation as a place to work, increasingly shaped in public and by employees themselves.</li>'
+    + '<li><strong>Hybrid / work-from-anywhere</strong> &mdash; work models that combine or remove fixed-location constraints, changing how culture is sustained.</li>'
+    + '<li><strong>Generative AI assistant</strong> &mdash; a tool (such as Claude, Gemini, or ChatGPT) that produces text and other content to support &mdash; not replace &mdash; human work.</li>'
+    + '</ul>'
+};
+
+// Per-section primers (manually assigned). Key = section number.
+var SECTION_PRIMERS = {
+  1: {
+    title: "New to Data Analytics, LLMs, Generative AI, Agentic AI and Machine Learning?",
+    sub: "A quick, foundational primer on these terms \u2014 each with a plain definition, an example, and a best practice.",
+    heading: "Five foundational terms",
+    body: ''
+      + '<div class="primer-term"><div class="pt-name">Data Analytics</div>'
+        + '<p><strong>What it is:</strong> examining data to find patterns and insights that support better decisions \u2014 from simple trends and dashboards to deeper statistical analysis.</p>'
+        + '<p><strong>Example:</strong> spotting that one team\u2019s engagement scores have fallen three months running, flagging a retention risk before anyone resigns.</p>'
+        + '<p><strong>Best practice:</strong> be clear what question you are answering, and treat a pattern as a prompt to investigate \u2014 not a verdict on its own.</p></div>'
+      + '<div class="primer-term"><div class="pt-name">Machine Learning (ML)</div>'
+        + '<p><strong>What it is:</strong> a type of software that learns patterns from data and improves with experience, rather than following only fixed, hand-written rules.</p>'
+        + '<p><strong>Example:</strong> a model that learns from past attrition to estimate which employees are at higher risk of leaving.</p>'
+        + '<p><strong>Best practice:</strong> remember a model reflects the data it learned from \u2014 check for bias and never treat its output as guaranteed truth.</p></div>'
+      + '<div class="primer-term"><div class="pt-name">Large Language Model (LLM)</div>'
+        + '<p><strong>What it is:</strong> a kind of ML model trained on vast amounts of text to understand and produce human-like language \u2014 the engine behind tools like Claude, Gemini, and ChatGPT.</p>'
+        + '<p><strong>Example:</strong> drafting a first version of a policy summary or an interview guide from a short instruction.</p>'
+        + '<p><strong>Best practice:</strong> give it clear role, context, and constraints \u2014 and always verify facts, figures, and names before using its output.</p></div>'
+      + '<div class="primer-term"><div class="pt-name">Generative AI</div>'
+        + '<p><strong>What it is:</strong> AI that <em>creates</em> new content \u2014 text, images, code \u2014 rather than only analysing existing data. LLMs are the text form of generative AI.</p>'
+        + '<p><strong>Example:</strong> generating a draft onboarding plan, a job description, or a set of training scenarios to start from.</p>'
+        + '<p><strong>Best practice:</strong> treat what it produces as a strong first draft to review and own \u2014 not a finished, sign-off-ready output.</p></div>'
+      + '<div class="primer-term"><div class="pt-name">Agentic AI</div>'
+        + '<p><strong>What it is:</strong> AI that does not just answer but takes multi-step <em>actions</em> toward a goal \u2014 carrying out a workflow (using tools, making decisions along the way), not just responding to a single prompt.</p>'
+        + '<p><strong>Example:</strong> an assistant that, asked about leave, looks up the record, checks the balance, and drafts the reply \u2014 several steps, not one answer.</p>'
+        + '<p><strong>Best practice:</strong> keep clear human oversight and accountability \u2014 the more an agent can <em>act</em>, the more its actions need boundaries and review.</p></div>'
+  }
+};
+
+function renderSectionPrimer(n) {
+  var wrap = document.getElementById('sectionPrimer');
+  if (!wrap) return;
+  var p = SECTION_PRIMERS[n] || DEFAULT_PRIMER;
+  wrap.innerHTML =
+    '<button class="refresh-toggle" id="refreshToggle" onclick="toggleRefresh()">'
+    + '<span class="rt-icon">&#128161;</span>'
+    + '<span class="rt-text">' + p.title
+    + '<span class="rt-sub">' + p.sub + '</span></span>'
+    + '<span class="rt-chev">&#9660; OPEN</span>'
+    + '</button>'
+    + '<div class="refresh-panel" id="refreshPanel">'
+    + '<h3>' + p.heading + '</h3>'
+    + p.body
+    + '<button class="refresh-close" onclick="toggleRefresh()">Close primer</button>'
+    + '</div>';
+}
+
 function buildSections() {
   const root = document.getElementById('sectionsRoot');
   SECTION_DATA.forEach(function(sec, idx) {
@@ -692,6 +771,7 @@ function toggleRefresh() {
 }
 
 function showSection(n) {
+  renderSectionPrimer(n);
   document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.section-pill').forEach(b => b.classList.remove('active'));
   document.getElementById('section-' + n)?.classList.add('active');
@@ -1039,6 +1119,7 @@ function cpWriteModuleComplete() {
 })();
 
 buildSections();
+renderSectionPrimer(1);
 </script>
 
 </body>
